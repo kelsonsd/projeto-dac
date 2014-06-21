@@ -2,8 +2,7 @@ package br.edu.ifpb.dac.frames;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.Timer;
-
+import javafx.scene.chart.PieChart;
 
 /**
  *
@@ -17,36 +16,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public MenuPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
-        setResizable(false);        
+        setResizable(false);                
         
-        timer1.start();
         setData();        
     }
     
-    private void setData() {
-        Date data = new Date();
+    private void setData() {        
         SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
-        String dataformatada = formatador.format(data);
-        labelData.setText(dataformatada);
-    }
-    
-    private void setHora() {
-        Date hora = new Date();
-        SimpleDateFormat formatador = new SimpleDateFormat("HH:mm:ss");
-        String horaFormatada = formatador.format(hora);
-        labelHora.setText(horaFormatada);
-    }
+        String dataformatada = formatador.format(new Date());
+        data.setText(dataformatada);
+    }    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        timer1 = new org.netbeans.examples.lib.timerbean.Timer();
-        jPanel1 = new javax.swing.JPanel();
-        labelData = new javax.swing.JLabel();
-        labelHora = new javax.swing.JLabel();
+        panel = new javax.swing.JPanel();
+        data = new javax.swing.JLabel();
         labelCentroMenuPrincipal = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        menuBar = new javax.swing.JMenuBar();
         menuCadastrar = new javax.swing.JMenu();
         cadastroLivro = new javax.swing.JMenuItem();
         cadastroPessoa = new javax.swing.JMenuItem();
@@ -60,64 +48,67 @@ public class MenuPrincipal extends javax.swing.JFrame {
         efetuaVenda = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenu();
 
-        timer1.addTimerListener(new org.netbeans.examples.lib.timerbean.TimerListener() {
-            public void onTime(java.awt.event.ActionEvent evt) {
-                timer1OnTime(evt);
-            }
-        });
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Gerenciamento - Livraria Ler Bem");
 
-        jPanel1.setToolTipText("");
+        panel.setToolTipText("");
 
-        labelData.setText("Data:");
-
-        labelHora.setText("Hora:");
+        data.setText("Data:");
 
         labelCentroMenuPrincipal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelCentroMenuPrincipal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelCentroMenuPrincipal.setText("LIVRARIA LER BEM");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelData)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 416, Short.MAX_VALUE)
-                .addComponent(labelHora)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(186, 186, 186)
+        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
+        panel.setLayout(panelLayout);
+        panelLayout.setHorizontalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLayout.createSequentialGroup()
+                .addGap(191, 191, 191)
                 .addComponent(labelCentroMenuPrincipal)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(191, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(data)
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        panelLayout.setVerticalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addComponent(labelCentroMenuPrincipal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelData)
-                    .addComponent(labelHora))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+                .addComponent(data)
                 .addContainerGap())
         );
 
         menuCadastrar.setText("Cadastrar");
 
         cadastroLivro.setText("Livro");
+        cadastroLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastroLivroActionPerformed(evt);
+            }
+        });
         menuCadastrar.add(cadastroLivro);
 
         cadastroPessoa.setText("Autor/Funcionário");
+        cadastroPessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastroPessoaActionPerformed(evt);
+            }
+        });
         menuCadastrar.add(cadastroPessoa);
 
         cadastroEditora.setText("Editora");
+        cadastroEditora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastroEditoraActionPerformed(evt);
+            }
+        });
         menuCadastrar.add(cadastroEditora);
 
-        jMenuBar1.add(menuCadastrar);
+        menuBar.add(menuCadastrar);
 
         listaLivros.setText("Pesquisar");
 
@@ -133,37 +124,54 @@ public class MenuPrincipal extends javax.swing.JFrame {
         listaVendas.setText("Venda");
         listaLivros.add(listaVendas);
 
-        jMenuBar1.add(listaLivros);
+        menuBar.add(listaLivros);
 
         menuVender.setText("Vender");
 
         efetuaVenda.setText("Efetuar Venda");
         menuVender.add(efetuaVenda);
 
-        jMenuBar1.add(menuVender);
+        menuBar.add(menuVender);
 
         menuSair.setText("Sair");
-        jMenuBar1.add(menuSair);
+        menuSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuSairMouseClicked(evt);
+            }
+        });
+        menuBar.add(menuSair);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void timer1OnTime(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timer1OnTime
-        setHora();
-    }//GEN-LAST:event_timer1OnTime
+    private void cadastroLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroLivroActionPerformed
+        new CadastroLivro().setVisible(true);     
+    }//GEN-LAST:event_cadastroLivroActionPerformed
+
+    private void cadastroPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroPessoaActionPerformed
+        new CadastroPessoa().setVisible(true);
+    }//GEN-LAST:event_cadastroPessoaActionPerformed
+
+    private void cadastroEditoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroEditoraActionPerformed
+        new CadastroEditora().setVisible(true);
+    }//GEN-LAST:event_cadastroEditoraActionPerformed
+
+    private void menuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSairMouseClicked
+        dispose();
+    }//GEN-LAST:event_menuSairMouseClicked
     
     public static void main(String args[]) {
         new MenuPrincipal().setVisible(true);        
@@ -173,20 +181,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem cadastroEditora;
     private javax.swing.JMenuItem cadastroLivro;
     private javax.swing.JMenuItem cadastroPessoa;
+    private javax.swing.JLabel data;
     private javax.swing.JMenuItem efetuaVenda;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelCentroMenuPrincipal;
-    private javax.swing.JLabel labelData;
-    private javax.swing.JLabel labelHora;
     private javax.swing.JMenuItem listaEditoras;
     private javax.swing.JMenu listaLivros;
     private javax.swing.JMenuItem listaPessoas;
     private javax.swing.JMenuItem listaVendas;
+    private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuCadastrar;
     private javax.swing.JMenu menuSair;
     private javax.swing.JMenu menuVender;
-    private org.netbeans.examples.lib.timerbean.Timer timer1;
+    private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
 }

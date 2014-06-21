@@ -3,6 +3,7 @@ package br.edu.ifpb.dac.entidades;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -16,27 +17,25 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Pessoa implements Serializable {    
     @Id
-    @GeneratedValue
-    private int id;
-    private int codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;    
     private String nome;
-
-    public Pessoa() {
+    
+    public Pessoa(){
     }    
     
-    public Pessoa(int codigo, String nome) {
-        this.codigo = codigo;
+    public Pessoa(String nome) {        
         this.nome = nome;
     }
 
-    public int getCodigo() {
-        return codigo;
+    public int getId() {
+        return id;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
+    public void setId(int id) {
+        this.id = id;
+    }    
+    
     public String getNome() {
         return nome;
     }

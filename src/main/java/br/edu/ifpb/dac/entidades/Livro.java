@@ -5,9 +5,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -19,26 +21,31 @@ import javax.persistence.OneToMany;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Livro implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String titulo;
     private String idioma;
-    private int anoPublicacao;    
+    private int anoPublicacao;
+    
+    @ManyToOne
+    private Editora editora;    
     
     @OneToMany(cascade = CascadeType.ALL)
     private List<Autor> listaAutores;
+    
     @OneToMany(cascade = CascadeType.ALL)
     private List<Edicao> listaEdicoes;
 
     public Livro() {
     }
     
-    public Livro(String titulo, String idioma, int anoPublicacao, List<Autor> listaAutores, List<Edicao> listaEdicoes) {        
+    public Livro(String titulo, String idioma, int anoPublicacao, List<Autor> listaAutores, List<Edicao> listaEdicoes, Editora editora) {        
         this.titulo = titulo;
         this.idioma = idioma;
         this.anoPublicacao = anoPublicacao;
         this.listaAutores = listaAutores;
         this.listaEdicoes = listaEdicoes;
+        this.editora = editora;
     }
 
     public int getId() {
@@ -87,5 +94,13 @@ public class Livro implements Serializable {
 
     public void setListaEdicoes(List<Edicao> listaEdicoes) {
         this.listaEdicoes = listaEdicoes;
+    }
+
+    public Editora getEditora() {
+        return editora;
+    }
+
+    public void setEditora(Editora editora) {
+        this.editora = editora;
     }    
 }

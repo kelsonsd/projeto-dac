@@ -8,15 +8,15 @@ import javax.persistence.Entity;
  */
 
 @Entity
-public class Autor extends Pessoa{
-    private String dataNascimento;
+public class Autor extends Pessoa{    
+    private String dataNascimento;    
     private String biografia;  
 
     public Autor() {
     }
 
-    public Autor(String dataNascimento, String biografia, int codigo, String nome) {
-        super(codigo, nome);
+    public Autor(String dataNascimento, String biografia, String nome) {
+        super(nome);
         this.dataNascimento = dataNascimento;
         this.biografia = biografia;
     }   

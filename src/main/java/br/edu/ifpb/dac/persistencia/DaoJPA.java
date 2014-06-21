@@ -27,7 +27,7 @@ public class DaoJPA implements DAO{
         try {
             em.getTransaction().begin();
             em.persist(o);
-            em.getTransaction().commit();
+            em.getTransaction().commit();            
        
         } catch (Exception e) {
             e.printStackTrace();
@@ -54,7 +54,15 @@ public class DaoJPA implements DAO{
     }
 
     @Override
-    public void deletar(Object o) {
-        em.remove(o);
+    public void remover(Object o) {
+        try {
+            em.getTransaction().begin();
+            em.remove(o);
+            em.getTransaction().commit();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        }
     }
 }

@@ -3,6 +3,7 @@ package br.edu.ifpb.dac.entidades;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -13,22 +14,23 @@ import javax.persistence.Id;
 @Entity
 public class Edicao implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Id
     private String isbn;
     private int numero;
-    private double valor;
-    private String ano;
+    private double preco;
+    private int ano;
     private int numPaginas;
     private int qtdeEstoque;    
 
     public Edicao() {
     }
 
-    public Edicao(String isbn, int numero, double valor, String ano, int numPaginas, int qtdeEstoque) {
+    public Edicao(String isbn, int numero, double valor, int ano, int numPaginas, int qtdeEstoque) {
         this.isbn = isbn;
         this.numero = numero;
-        this.valor = valor;
+        this.preco = valor;
         this.ano = ano;
         this.numPaginas = numPaginas;
         this.qtdeEstoque = qtdeEstoque;
@@ -58,19 +60,19 @@ public class Edicao implements Serializable {
         this.numero = numero;
     }
 
-    public double getValor() {
-        return valor;
+    public double getPreco() {
+        return preco;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setPreco(double valor) {
+        this.preco = valor;
     }
 
-    public String getAno() {
+    public int getAno() {
         return ano;
     }
 
-    public void setAno(String ano) {
+    public void setAno(int ano) {
         this.ano = ano;
     }
 
