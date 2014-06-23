@@ -15,7 +15,7 @@ public class LivroFiccao extends Livro {
     public LivroFiccao() {
     }
 
-    public LivroFiccao(String genero, int codigo, String titulo, String idioma, int anoPublicacao, List<Autor> listaAutores,
+    public LivroFiccao(String genero, String titulo, String idioma, int anoPublicacao, List<Autor> listaAutores,
            List<Edicao> listaEdicoes, Editora editora) {
         
         super(titulo, idioma, anoPublicacao, listaAutores, listaEdicoes, editora);

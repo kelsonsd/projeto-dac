@@ -1,5 +1,11 @@
 package br.edu.ifpb.dac.frames;
 
+import br.edu.ifpb.dac.entidades.Autor;
+import br.edu.ifpb.dac.entidades.Funcionario;
+import br.edu.ifpb.dac.persistencia.DAO;
+import br.edu.ifpb.dac.persistencia.DaoJPA;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kelsonsd
@@ -10,6 +16,20 @@ public class CadastroPessoa extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        
+        comboTipoActionPerformed(null);
+    }
+    
+    public void limparCamposAutor() {
+        textNome.setText("");
+        textDataNascimento.setText("");
+        textAreaBiografia.setText("");                
+    }
+    
+    public void limparCamposFuncionario() {
+        textNome.setText("");
+        textMatricula.setText("");
+        textFuncao.setText("");                
     }
 
     @SuppressWarnings("unchecked")
@@ -53,6 +73,11 @@ public class CadastroPessoa extends javax.swing.JFrame {
         labelBiografia.setText("Biografia");
 
         comboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Autor", "Funcionário" }));
+        comboTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTipoActionPerformed(evt);
+            }
+        });
 
         try {
             textDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -65,8 +90,18 @@ public class CadastroPessoa extends javax.swing.JFrame {
         scrollPanelBiografia.setViewportView(textAreaBiografia);
 
         btSalvar.setText("Salvar");
+        btSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarActionPerformed(evt);
+            }
+        });
 
         btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelCadastroPessoaLayout = new javax.swing.GroupLayout(panelCadastroPessoa);
         panelCadastroPessoa.setLayout(panelCadastroPessoaLayout);
@@ -95,7 +130,7 @@ public class CadastroPessoa extends javax.swing.JFrame {
                             .addGroup(panelCadastroPessoaLayout.createSequentialGroup()
                                 .addComponent(labelMatricula)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(labelFuncao)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -154,6 +189,82 @@ public class CadastroPessoa extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        DAO dao = new DaoJPA("projeto-dac"); 
+        String nome = textNome.getText().trim();
+        
+        if(!nome.isEmpty()) {
+            if(comboTipo.getSelectedIndex() == 0) {            
+                String dataNascimento = textDataNascimento.getText().trim();
+                String biografia = textAreaBiografia.getText().trim();
+
+                if(dataNascimento.isEmpty() || biografia.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Informe todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
+                }
+                else {
+                    Autor autor = new Autor(dataNascimento, biografia, nome);               
+
+                    if(dao.salvar(autor)) {
+                        JOptionPane.showMessageDialog(this, "Autor cadastrado com sucesso");
+                        limparCamposAutor();
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(this, "Erro!");
+                    }
+                }       
+            }
+            else {            
+                String matricula = textMatricula.getText().trim();
+                String funcao = textFuncao.getText().trim();            
+
+                if(matricula.isEmpty() || funcao.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Informe todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
+                }
+                else {
+                    Funcionario funcionario = new Funcionario(matricula, funcao, nome);                
+
+                    if(dao.salvar(funcionario)) {
+                        JOptionPane.showMessageDialog(this, "Funcionário cadastrado com sucesso");
+                        limparCamposFuncionario();
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(this, "Erro!");
+                    }
+                }
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Informe todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btSalvarActionPerformed
+
+    private void comboTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoActionPerformed
+        if(comboTipo.getSelectedIndex() == 0) {
+           textMatricula.setText("");
+           textFuncao.setText("");
+           
+           textMatricula.setEnabled(false);
+           textFuncao.setEnabled(false);           
+           
+           textDataNascimento.setEnabled(true);
+           textAreaBiografia.setEnabled(true);
+       }
+       else {
+           textDataNascimento.setText("");
+           textAreaBiografia.setText("");
+           
+           textDataNascimento.setEnabled(false);           
+           textAreaBiografia.setEnabled(false);
+           
+           textMatricula.setEnabled(true);
+           textFuncao.setEnabled(true);
+       }
+    }//GEN-LAST:event_comboTipoActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;

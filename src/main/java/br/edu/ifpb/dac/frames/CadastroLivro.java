@@ -1,15 +1,87 @@
 package br.edu.ifpb.dac.frames;
 
+import br.edu.ifpb.dac.entidades.Autor;
+import br.edu.ifpb.dac.entidades.Edicao;
+import br.edu.ifpb.dac.entidades.Editora;
+import br.edu.ifpb.dac.entidades.LivroFiccao;
+import br.edu.ifpb.dac.entidades.LivroTecnico;
+import br.edu.ifpb.dac.persistencia.DAO;
+import br.edu.ifpb.dac.persistencia.DaoJPA;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kelsonsd
  */
 public class CadastroLivro extends javax.swing.JFrame {
     
+    private final DAO dao = new DaoJPA("projeto-dac");
+    private DefaultListModel<Autor> listModelAutores;
+    private DefaultListModel<Edicao> listModelEdicoes;
+        
     public CadastroLivro() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        
+        carregaCombos();        
+        setModel();    
+    }    
+    
+    private void carregaCombos() {
+        comboTipoActionPerformed(null);
+        comboEditoraMouseClicked(null);
+        comboAutorMouseClicked(null);
+        comboEdicaoMouseClicked(null);
+    }
+    
+    private void setModel() {
+        listModelAutores = new DefaultListModel<>();
+        listAutores.setModel(listModelAutores);
+        
+        listModelEdicoes = new DefaultListModel<>();
+        listEdicoes.setModel(listModelEdicoes);
+    }
+    
+    private List<Autor> getAutoresSelecionados() {
+        List<Autor> listaAutoresSelecionados = new ArrayList<>();        
+        DefaultListModel<Autor> modelAux = (DefaultListModel<Autor>) listAutores.getModel();
+        
+        for (int i = 0; i < modelAux.size(); i++) {
+            Autor autor = modelAux.getElementAt(i);
+            listaAutoresSelecionados.add(autor);
+        }
+        return listaAutoresSelecionados;
+    }
+    
+    private List<Edicao> getEdicoesSelecionadas() {
+        List<Edicao> listaEdicoesSelecionadas = new ArrayList<>();        
+        DefaultListModel<Edicao> modelAux = (DefaultListModel<Edicao>) listEdicoes.getModel();
+        
+        for (int i = 0; i < modelAux.size(); i++) {
+            Edicao edicao = modelAux.getElementAt(i);
+            listaEdicoesSelecionadas.add(edicao);
+        }
+        return listaEdicoesSelecionadas;
+    }
+    
+    private void limparCampos() {        
+        textTitulo.setText("");
+        textIdioma.setText("");
+        textGenero.setText("");
+        textAreaAtuacao.setText("");
+        textAnoLivro.setText("");
+        
+        comboTipo.setSelectedIndex(-1);
+        comboEditora.setSelectedIndex(-1);
+        comboAutor.setSelectedIndex(-1);
+        comboEdicao.setSelectedIndex(-1);
+        
+        listModelAutores.removeAllElements();
+        listModelEdicoes.removeAllElements();        
     }
     
     @SuppressWarnings("unchecked")
@@ -26,8 +98,8 @@ public class CadastroLivro extends javax.swing.JFrame {
         labelAnoLivro = new javax.swing.JLabel();
         labelAutor = new javax.swing.JLabel();
         comboAutor = new javax.swing.JComboBox();
-        btAdicionar = new javax.swing.JButton();
-        btRemover = new javax.swing.JButton();
+        btAdicionarAutor = new javax.swing.JButton();
+        btRemoverAutor = new javax.swing.JButton();
         textGenero = new javax.swing.JTextField();
         textIdioma = new javax.swing.JTextField();
         textTitulo = new javax.swing.JTextField();
@@ -37,25 +109,18 @@ public class CadastroLivro extends javax.swing.JFrame {
         btSalvar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
         btNovaEdicao = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        labelInformacoesEdicao = new javax.swing.JLabel();
-        labelCodISBN = new javax.swing.JLabel();
-        labelNumero = new javax.swing.JLabel();
-        labelPreco = new javax.swing.JLabel();
-        labelAnoEdicao = new javax.swing.JLabel();
-        labelNumeroDePaginas = new javax.swing.JLabel();
-        labelQuantidade = new javax.swing.JLabel();
-        textCodISBN = new javax.swing.JTextField();
-        textNumero = new javax.swing.JTextField();
-        textPreco = new javax.swing.JFormattedTextField();
-        textAnoEdicao = new javax.swing.JTextField();
-        textNumeroDePaginas = new javax.swing.JTextField();
-        textQuantidade = new javax.swing.JTextField();
+        labelEdicao = new javax.swing.JLabel();
         labelEditora = new javax.swing.JLabel();
         comboEditora = new javax.swing.JComboBox();
         comboTipo = new javax.swing.JComboBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPaneAutor = new javax.swing.JScrollPane();
         listAutores = new javax.swing.JList();
+        btNovaEditora = new javax.swing.JButton();
+        comboEdicao = new javax.swing.JComboBox();
+        btAdicionarEdicao = new javax.swing.JButton();
+        scrollPaneEdicao = new javax.swing.JScrollPane();
+        listEdicoes = new javax.swing.JList();
+        btRemoverEdicao = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Livro");
@@ -77,15 +142,25 @@ public class CadastroLivro extends javax.swing.JFrame {
 
         labelAutor.setText("Autor");
 
-        comboAutor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboAutorActionPerformed(evt);
+        comboAutor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboAutorMouseClicked(evt);
             }
         });
 
-        btAdicionar.setText("Adicionar");
+        btAdicionarAutor.setText("Adicionar");
+        btAdicionarAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAdicionarAutorActionPerformed(evt);
+            }
+        });
 
-        btRemover.setText("Remover");
+        btRemoverAutor.setText("Remover");
+        btRemoverAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRemoverAutorActionPerformed(evt);
+            }
+        });
 
         btNovoAutor.setText("Novo Autor");
         btNovoAutor.addActionListener(new java.awt.event.ActionListener() {
@@ -102,128 +177,134 @@ public class CadastroLivro extends javax.swing.JFrame {
         });
 
         btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
 
         btNovaEdicao.setText("Nova Edição");
+        btNovaEdicao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNovaEdicaoActionPerformed(evt);
+            }
+        });
 
-        labelInformacoesEdicao.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        labelInformacoesEdicao.setText("Informações da Edição");
-
-        labelCodISBN.setText("Código ISBN");
-
-        labelNumero.setText("Número");
-
-        labelPreco.setText("Preço");
-
-        labelAnoEdicao.setText("Ano");
-
-        labelNumeroDePaginas.setText("Nº de Páginas");
-
-        labelQuantidade.setText("Quantidade");
-
-        textPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        labelEdicao.setText("Edição");
 
         labelEditora.setText("Editora");
 
-        comboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ficção", "Técnico" }));
+        comboEditora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboEditoraMouseClicked(evt);
+            }
+        });
 
-        jScrollPane1.setViewportView(listAutores);
+        comboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ficção", "Técnico" }));
+        comboTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTipoActionPerformed(evt);
+            }
+        });
+
+        scrollPaneAutor.setViewportView(listAutores);
+
+        btNovaEditora.setText("Nova Editora");
+        btNovaEditora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNovaEditoraActionPerformed(evt);
+            }
+        });
+
+        comboEdicao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboEdicaoMouseClicked(evt);
+            }
+        });
+
+        btAdicionarEdicao.setText("Adicionar");
+        btAdicionarEdicao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAdicionarEdicaoActionPerformed(evt);
+            }
+        });
+
+        scrollPaneEdicao.setViewportView(listEdicoes);
+
+        btRemoverEdicao.setText("Remover");
+        btRemoverEdicao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRemoverEdicaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelCadastroLivroLayout = new javax.swing.GroupLayout(panelCadastroLivro);
         panelCadastroLivro.setLayout(panelCadastroLivroLayout);
         panelCadastroLivroLayout.setHorizontalGroup(
             panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroLivroLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btSalvar)
-                .addGap(18, 18, 18)
-                .addComponent(btCancelar)
-                .addGap(109, 109, 109))
             .addGroup(panelCadastroLivroLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroLivroLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btSalvar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btCancelar)
+                        .addGap(109, 109, 109))
                     .addGroup(panelCadastroLivroLayout.createSequentialGroup()
                         .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelCadastroLivroLayout.createSequentialGroup()
-                                .addComponent(labelInformacoesEdicao)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btNovaEdicao))
                             .addGroup(panelCadastroLivroLayout.createSequentialGroup()
                                 .addComponent(labelTipo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(labelEditora)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(comboEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btNovaEditora))
+                            .addComponent(labeIinformacoesLivro)
                             .addGroup(panelCadastroLivroLayout.createSequentialGroup()
-                                .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labeIinformacoesLivro)
-                                    .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroLivroLayout.createSequentialGroup()
-                                            .addComponent(labelGenero)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(textGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(labelAreaAtuacao)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(textAreaAtuacao, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(labelAnoLivro)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(textAnoLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(labelTitulo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(labelIdioma)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btNovoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btNovaEdicao)
+                            .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroLivroLayout.createSequentialGroup()
+                                    .addComponent(labelGenero)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(textGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(labelAreaAtuacao)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(textAreaAtuacao, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(labelAnoLivro)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(textAnoLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelCadastroLivroLayout.createSequentialGroup()
+                                    .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(scrollPaneEdicao, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(panelCadastroLivroLayout.createSequentialGroup()
-                                            .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroLivroLayout.createSequentialGroup()
-                                                    .addComponent(labelAutor)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(comboAutor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(btAdicionar)
-                                                .addComponent(btRemover))))
-                                    .addGroup(panelCadastroLivroLayout.createSequentialGroup()
-                                        .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroLivroLayout.createSequentialGroup()
-                                                    .addComponent(labelNumero)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(textNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(labelAnoEdicao)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(textAnoEdicao))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroLivroLayout.createSequentialGroup()
-                                                    .addComponent(labelCodISBN)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(textCodISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(panelCadastroLivroLayout.createSequentialGroup()
-                                                .addComponent(labelPreco)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(textPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(panelCadastroLivroLayout.createSequentialGroup()
-                                                .addComponent(labelQuantidade)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(textQuantidade))
-                                            .addGroup(panelCadastroLivroLayout.createSequentialGroup()
-                                                .addComponent(labelNumeroDePaginas)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(textNumeroDePaginas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(panelCadastroLivroLayout.createSequentialGroup()
-                                        .addComponent(labelTitulo)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(textTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(labelIdioma)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(textIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 2, Short.MAX_VALUE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panelCadastroLivroLayout.createSequentialGroup()
-                        .addComponent(btNovoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(labelEdicao)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(comboEdicao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(scrollPaneAutor, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroLivroLayout.createSequentialGroup()
+                                            .addComponent(labelAutor)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(comboAutor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(btAdicionarAutor)
+                                        .addComponent(btRemoverAutor)
+                                        .addComponent(btAdicionarEdicao)))
+                                .addComponent(btRemoverEdicao)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panelCadastroLivroLayout.setVerticalGroup(
@@ -231,12 +312,13 @@ public class CadastroLivro extends javax.swing.JFrame {
             .addGroup(panelCadastroLivroLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labeIinformacoesLivro)
-                .addGap(15, 15, 15)
+                .addGap(14, 14, 14)
                 .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTipo)
                     .addComponent(labelEditora)
                     .addComponent(comboEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btNovaEditora))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTitulo)
@@ -255,38 +337,26 @@ public class CadastroLivro extends javax.swing.JFrame {
                 .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAutor)
                     .addComponent(comboAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btAdicionar))
+                    .addComponent(btAdicionarAutor))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btRemover))
+                    .addComponent(btRemoverAutor)
+                    .addComponent(scrollPaneAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btNovoAutor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelInformacoesEdicao)
-                    .addComponent(btNovaEdicao))
-                .addGap(15, 15, 15)
-                .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCodISBN)
-                    .addComponent(textCodISBN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNumero)
-                    .addComponent(textNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelAnoEdicao)
-                    .addComponent(textAnoEdicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelNumeroDePaginas)
-                    .addComponent(textNumeroDePaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelPreco)
-                    .addComponent(textPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelQuantidade)
-                    .addComponent(textQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
+                .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelCadastroLivroLayout.createSequentialGroup()
+                        .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelEdicao)
+                            .addComponent(comboEdicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btAdicionarEdicao))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrollPaneEdicao, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btRemoverEdicao))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btNovaEdicao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btSalvar)
                     .addComponent(btCancelar))
@@ -307,58 +377,190 @@ public class CadastroLivro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void comboAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAutorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboAutorActionPerformed
+    private void btRemoverEdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverEdicaoActionPerformed
+        if(listEdicoes.getSelectedIndex() != -1) {
+            listModelEdicoes.remove(listEdicoes.getSelectedIndex());
+        }
+    }//GEN-LAST:event_btRemoverEdicaoActionPerformed
+
+    private void btAdicionarEdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarEdicaoActionPerformed
+        if(comboEdicao.getSelectedIndex() != -1) {
+            Edicao edicaoSelecionada = (Edicao) comboEdicao.getSelectedItem();
+            if(listModelEdicoes.isEmpty()) {
+                listModelEdicoes.addElement(edicaoSelecionada);
+            }
+            else if(!listModelEdicoes.contains(edicaoSelecionada)) {
+                listModelEdicoes.addElement(edicaoSelecionada);
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Esta edicão já está adicionada na lista!", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btAdicionarEdicaoActionPerformed
+
+    private void comboEdicaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboEdicaoMouseClicked
+        List<Edicao> edicoes = dao.buscarTodos(Edicao.class);
+        comboEdicao.removeAllItems();
+
+        for (Edicao edicao : edicoes) {
+            comboEdicao.addItem(edicao);
+        }
+    }//GEN-LAST:event_comboEdicaoMouseClicked
+
+    private void btNovaEditoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovaEditoraActionPerformed
+        new CadastroEditora().setVisible(true);
+    }//GEN-LAST:event_btNovaEditoraActionPerformed
+
+    private void comboTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoActionPerformed
+        if(comboTipo.getSelectedIndex() == 0) {
+            textAreaAtuacao.setText("");
+            textAreaAtuacao.setEnabled(false);
+
+            textGenero.setEnabled(true);
+        }
+        else {
+            textGenero.setText("");
+            textGenero.setEnabled(false);
+
+            textAreaAtuacao.setEnabled(true);
+        }
+    }//GEN-LAST:event_comboTipoActionPerformed
+
+    private void comboEditoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboEditoraMouseClicked
+        List<Editora> editoras = dao.buscarTodos(Editora.class);
+        comboEditora.removeAllItems();
+
+        for (Editora editora : editoras) {
+            comboEditora.addItem(editora);
+        }
+    }//GEN-LAST:event_comboEditoraMouseClicked
+
+    private void btNovaEdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovaEdicaoActionPerformed
+        new CadastroEdicao().setVisible(true);
+    }//GEN-LAST:event_btNovaEdicaoActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        // TODO add your handling code here:
+        String titulo = textTitulo.getText().trim();
+        String idioma = textIdioma.getText().trim();
+        int anoPublicacao = 0;
+        String genero = textGenero.getText().trim();
+        String areaAtuacao = textAreaAtuacao.getText().trim();
+
+        Editora editora = (Editora) comboEditora.getSelectedItem();
+        List<Autor> autores = getAutoresSelecionados();
+        List<Edicao> edicoes = getEdicoesSelecionadas();
+        
+        if(!textAnoLivro.getText().isEmpty()) {
+            anoPublicacao = Integer.parseInt(textAnoLivro.getText().trim());
+        }
+
+        if(titulo.isEmpty() || idioma.isEmpty() || anoPublicacao == 0 ||
+            comboEditora.getSelectedIndex() == -1 || comboAutor.getSelectedIndex() == -1 ||
+                comboEdicao.getSelectedIndex() == -1) {
+
+            JOptionPane.showMessageDialog(this, "Informe todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
+        }
+        else {
+            if(comboTipo.getSelectedIndex() == 0) {
+                if(!genero.isEmpty()) {
+                    LivroFiccao livroFiccao = new LivroFiccao(genero, titulo, idioma, anoPublicacao, autores, edicoes, editora);
+                    
+                    if(dao.salvar(livroFiccao)) {
+                        JOptionPane.showMessageDialog(this, "Livro Ficção cadastrado com sucesso");
+                        limparCampos();
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(this, "Erro!");
+                    }
+                }
+            }
+            else {
+                if(!areaAtuacao.isEmpty()) {
+                    LivroTecnico livroTecnico = new LivroTecnico(areaAtuacao, titulo, idioma, anoPublicacao, autores, edicoes, editora);
+
+                    if(dao.salvar(livroTecnico)) {
+                        JOptionPane.showMessageDialog(this, "Livro Técnico cadastrado com sucesso");
+                        limparCampos();
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(this, "Erro!");
+                    }
+                }
+            }                
+        }    
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btNovoAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoAutorActionPerformed
         new CadastroPessoa().setVisible(true);
     }//GEN-LAST:event_btNovoAutorActionPerformed
 
+    private void btRemoverAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverAutorActionPerformed
+        if(listAutores.getSelectedIndex() != -1) {
+            listModelAutores.remove(listAutores.getSelectedIndex());
+        }
+    }//GEN-LAST:event_btRemoverAutorActionPerformed
+
+    private void btAdicionarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarAutorActionPerformed
+        if(comboAutor.getSelectedIndex() != -1) {
+            Autor autorSelecionado = (Autor) comboAutor.getSelectedItem();
+            if(listModelAutores.isEmpty()) {
+                listModelAutores.addElement(autorSelecionado);
+            }
+            else if(!listModelAutores.contains(autorSelecionado)) {
+                listModelAutores.addElement(autorSelecionado);
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Este autor já está adicionado na lista!", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btAdicionarAutorActionPerformed
+
+    private void comboAutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboAutorMouseClicked
+        List<Autor> autores = dao.buscarTodos(Autor.class);
+        comboAutor.removeAllItems();
+
+        for (Autor autor : autores) {
+            comboAutor.addItem(autor);
+        }
+    }//GEN-LAST:event_comboAutorMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btAdicionar;
+    private javax.swing.JButton btAdicionarAutor;
+    private javax.swing.JButton btAdicionarEdicao;
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btNovaEdicao;
+    private javax.swing.JButton btNovaEditora;
     private javax.swing.JButton btNovoAutor;
-    private javax.swing.JButton btRemover;
+    private javax.swing.JButton btRemoverAutor;
+    private javax.swing.JButton btRemoverEdicao;
     private javax.swing.JButton btSalvar;
     private javax.swing.JComboBox comboAutor;
+    private javax.swing.JComboBox comboEdicao;
     private javax.swing.JComboBox comboEditora;
     private javax.swing.JComboBox comboTipo;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labeIinformacoesLivro;
-    private javax.swing.JLabel labelAnoEdicao;
     private javax.swing.JLabel labelAnoLivro;
     private javax.swing.JLabel labelAreaAtuacao;
     private javax.swing.JLabel labelAutor;
-    private javax.swing.JLabel labelCodISBN;
+    private javax.swing.JLabel labelEdicao;
     private javax.swing.JLabel labelEditora;
     private javax.swing.JLabel labelGenero;
     private javax.swing.JLabel labelIdioma;
-    private javax.swing.JLabel labelInformacoesEdicao;
-    private javax.swing.JLabel labelNumero;
-    private javax.swing.JLabel labelNumeroDePaginas;
-    private javax.swing.JLabel labelPreco;
-    private javax.swing.JLabel labelQuantidade;
     private javax.swing.JLabel labelTipo;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JList listAutores;
+    private javax.swing.JList listEdicoes;
     private javax.swing.JPanel panelCadastroLivro;
-    private javax.swing.JTextField textAnoEdicao;
+    private javax.swing.JScrollPane scrollPaneAutor;
+    private javax.swing.JScrollPane scrollPaneEdicao;
     private javax.swing.JTextField textAnoLivro;
     private javax.swing.JTextField textAreaAtuacao;
-    private javax.swing.JTextField textCodISBN;
     private javax.swing.JTextField textGenero;
     private javax.swing.JTextField textIdioma;
-    private javax.swing.JTextField textNumero;
-    private javax.swing.JTextField textNumeroDePaginas;
-    private javax.swing.JFormattedTextField textPreco;
-    private javax.swing.JTextField textQuantidade;
     private javax.swing.JTextField textTitulo;
     // End of variables declaration//GEN-END:variables
 }

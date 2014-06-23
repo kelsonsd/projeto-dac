@@ -1,8 +1,9 @@
 package br.edu.ifpb.dac.frames;
 
+import br.edu.ifpb.dac.persistencia.DAO;
+import br.edu.ifpb.dac.persistencia.DaoJPA;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javafx.scene.chart.PieChart;
 
 /**
  *
@@ -75,9 +76,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                .addGap(100, 100, 100)
+                .addGap(115, 115, 115)
                 .addComponent(labelCentroMenuPrincipal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
                 .addComponent(data)
                 .addContainerGap())
         );
@@ -172,11 +173,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void menuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSairMouseClicked
         dispose();
     }//GEN-LAST:event_menuSairMouseClicked
-    
-    public static void main(String args[]) {
-        new MenuPrincipal().setVisible(true);        
-    }
-
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem cadastroEditora;
     private javax.swing.JMenuItem cadastroLivro;

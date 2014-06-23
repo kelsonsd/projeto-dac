@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="projeto-dac" transaction-type="RESOURCE_LOCAL">
-    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>    
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
-<!--    <class>br.ebr.edu.ifpb.dac.entidades.Pessoa</class>
-    <class>br.ebr.edu.ifpb.dac.entidades.Autor</class>    
-    <class>br.ebr.edu.ifpb.dac.entidades.Funcionario</class>
-    <class>br.ebr.edu.ifpb.dac.entidades.Livro</class>
-    <class>br.ebr.edu.ifpb.dac.entidades.LivroFiccao</class>
-    <class>br.ebr.edu.ifpb.dac.entidades.LivroTecnico</class>
-    <class>br.ebr.edu.ifpb.dac.entidades.Editora</class>
-    <class>br.ebr.edu.ifpb.dac.entidades.Edicao</class>
-    <class>br.ebr.edu.ifpb.dac.entidades.Venda</class>-->
-    
+        
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/projeto1-dac"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
@@ -20,5 +11,6 @@
       <property name="javax.persistence.jdbc.password" value="12345"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
+    
   </persistence-unit>
 </persistence>

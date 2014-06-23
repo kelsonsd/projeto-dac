@@ -2,9 +2,10 @@ package br.edu.ifpb.dac.entidades;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import org.eclipse.persistence.annotations.PrimaryKey;
+import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  *
@@ -12,6 +13,7 @@ import javax.persistence.Id;
  */
 
 @Entity
+@PrimaryKey
 public class Edicao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -91,4 +93,9 @@ public class Edicao implements Serializable {
     public void setQtdeEstoque(int qtdeEstoque) {
         this.qtdeEstoque = qtdeEstoque;
     }
+
+    @Override
+    public String toString() {
+        return "ISBN: " + isbn + " Nº: " + numero + " Estoque: " + qtdeEstoque;
+    }    
 }

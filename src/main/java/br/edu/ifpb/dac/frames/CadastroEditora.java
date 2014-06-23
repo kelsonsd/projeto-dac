@@ -1,5 +1,10 @@
 package br.edu.ifpb.dac.frames;
 
+import br.edu.ifpb.dac.entidades.Editora;
+import br.edu.ifpb.dac.persistencia.DAO;
+import br.edu.ifpb.dac.persistencia.DaoJPA;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kelsonsd
@@ -10,6 +15,11 @@ public class CadastroEditora extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+    }
+    
+    public void limparCampos() {
+        textNome.setText("");
+        textTelefone.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -42,8 +52,18 @@ public class CadastroEditora extends javax.swing.JFrame {
         }
 
         btSalvar.setText("Salvar");
+        btSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarActionPerformed(evt);
+            }
+        });
 
         btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelCadastroEditoraLayout = new javax.swing.GroupLayout(panelCadastroEditora);
         panelCadastroEditora.setLayout(panelCadastroEditoraLayout);
@@ -56,7 +76,7 @@ public class CadastroEditora extends javax.swing.JFrame {
                     .addGroup(panelCadastroEditoraLayout.createSequentialGroup()
                         .addComponent(labelNome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelTelefone)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -67,7 +87,7 @@ public class CadastroEditora extends javax.swing.JFrame {
                 .addComponent(btSalvar)
                 .addGap(18, 18, 18)
                 .addComponent(btCancelar)
-                .addGap(90, 90, 90))
+                .addGap(75, 75, 75))
         );
         panelCadastroEditoraLayout.setVerticalGroup(
             panelCadastroEditoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,6 +120,31 @@ public class CadastroEditora extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btCancelarActionPerformed
+
+    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        String nome = textNome.getText().trim();
+        String telefone = textTelefone.getText().trim();        
+        
+        if(nome.equals("") || telefone.equals("(  )    -")) {        
+            JOptionPane.showMessageDialog(this, "Informe todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
+        }
+        else {
+            DAO dao = new DaoJPA("projeto-dac");
+            Editora editora = new Editora(nome, telefone);
+            
+            if(dao.salvar(editora)) {
+                JOptionPane.showMessageDialog(this, "Editora cadastrada com sucesso");
+                limparCampos();
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Erro!");
+            }
+        }
+    }//GEN-LAST:event_btSalvarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
