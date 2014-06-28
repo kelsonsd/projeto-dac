@@ -4,6 +4,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,14 +33,13 @@ public class DaoJPA<T> implements DAO<T>{
         try {
             em.getTransaction().begin();
             em.persist(objeto);
-            em.getTransaction().commit();            
-       
+            return commitTransaction();
+                   
         } catch (Exception e) {
             e.printStackTrace();
-            em.getTransaction().rollback();
+            JOptionPane.showMessageDialog(null, "Erro ao adicionar!", "Erro!", JOptionPane.ERROR_MESSAGE);
             return false;
-        }
-        return true;
+        }        
     }
 
     @Override
@@ -48,11 +49,11 @@ public class DaoJPA<T> implements DAO<T>{
             objLocalizado = (T) em.find(classe, id);
         } catch (IllegalArgumentException ex) {
         }
-        return objLocalizado;        
+        return objLocalizado;      
     }
     
     @Override
-    public List<T> buscarTodos(Class clazz) {
+    public List<T> buscarTodos(Class clazz) {        
         String query = "SELECT x FROM " + clazz.getSimpleName() + " x";
         return em.createQuery(query).getResultList();
     }
@@ -61,29 +62,40 @@ public class DaoJPA<T> implements DAO<T>{
     public boolean atualizar(T objeto) {
         try {
             em.getTransaction().begin();
-            em.merge(objeto);
-            em.getTransaction().commit();
+            em.merge(objeto);            
+            return commitTransaction();
             
         } catch (Exception e) {
             e.printStackTrace();
-            em.getTransaction().rollback();
+            JOptionPane.showMessageDialog(null, "Erro na atualização!", "Erro!", JOptionPane.ERROR_MESSAGE);
             return false;
-        }
-        return true;
+        }        
     }
 
     @Override
     public boolean remover(T objeto) {
         try {
             em.getTransaction().begin();
-            em.remove(objeto);
-            em.getTransaction().commit();
+            em.remove(objeto);            
+            return commitTransaction();
             
         } catch (Exception e) {
             e.printStackTrace();
-            em.getTransaction().rollback();
+            JOptionPane.showMessageDialog(null, "Erro na remoção!", "Erro!", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        return true;
-    } 
+    }
+    
+    private boolean commitTransaction() {            
+        try {
+            em.getTransaction().commit();            
+            return true;
+        } catch (PersistenceException ex) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();                
+            }    
+            JOptionPane.showMessageDialog(null, "Não foi possível completar a operação! " + ex.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }        
+    }
 }

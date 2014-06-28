@@ -1,4 +1,4 @@
-package br.edu.ifpb.dac.frames;
+package br.edu.ifpb.dac.frames.cadastros;
 
 /**
  *

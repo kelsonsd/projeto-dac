@@ -1,6 +1,9 @@
 package br.edu.ifpb.dac.entidades;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -10,7 +13,10 @@ import javax.persistence.Entity;
 @Entity
 public class Autor extends Pessoa{    
     private String dataNascimento;    
-    private String biografia;  
+    private String biografia;
+            
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    private List<Livro> listaLivros;    
 
     public Autor() {
     }
@@ -35,5 +41,13 @@ public class Autor extends Pessoa{
 
     public void setBiografia(String biografia) {
         this.biografia = biografia;
-    }    
+    }
+
+    public List<Livro> getListaLivros() {
+        return listaLivros;
+    }
+
+    public void setListaLivros(List<Livro> listaLivros) {
+        this.listaLivros = listaLivros;
+    }
 }

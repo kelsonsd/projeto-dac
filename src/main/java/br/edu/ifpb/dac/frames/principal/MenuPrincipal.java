@@ -1,7 +1,10 @@
-package br.edu.ifpb.dac.frames;
+package br.edu.ifpb.dac.frames.principal;
 
-import br.edu.ifpb.dac.persistencia.DAO;
-import br.edu.ifpb.dac.persistencia.DaoJPA;
+import br.edu.ifpb.dac.frames.cadastros.CadastroEditora;
+import br.edu.ifpb.dac.frames.cadastros.CadastroLivro;
+import br.edu.ifpb.dac.frames.cadastros.CadastroPessoa;
+import br.edu.ifpb.dac.frames.listagens.ListarAutores;
+import br.edu.ifpb.dac.frames.listagens.ListarLivros;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -9,18 +12,15 @@ import java.util.Date;
  *
  * @author kelsonsd
  */
+
 public class MenuPrincipal extends javax.swing.JFrame {        
-    
-    /**
-     * Creates new form MenuPrincipal
-     */
+            
     public MenuPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
-        setResizable(false);                
-        
+        setResizable(false);                            
         setData();        
-    }
+    }    
     
     private void setData() {        
         SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
@@ -40,11 +40,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         cadastroLivro = new javax.swing.JMenuItem();
         cadastroPessoa = new javax.swing.JMenuItem();
         cadastroEditora = new javax.swing.JMenuItem();
-        listaLivros = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        listaPessoas = new javax.swing.JMenuItem();
+        menuListar = new javax.swing.JMenu();
+        listaLivros = new javax.swing.JMenuItem();
+        listaAutores = new javax.swing.JMenuItem();
         listaEditoras = new javax.swing.JMenuItem();
         listaVendas = new javax.swing.JMenuItem();
+        listaFuncionarios = new javax.swing.JMenuItem();
         menuVender = new javax.swing.JMenu();
         efetuaVenda = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenu();
@@ -111,21 +112,34 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         menuBar.add(menuCadastrar);
 
-        listaLivros.setText("Pesquisar");
+        menuListar.setText("Listar");
 
-        jMenuItem5.setText("Livro");
-        listaLivros.add(jMenuItem5);
+        listaLivros.setText("Livros");
+        listaLivros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaLivrosActionPerformed(evt);
+            }
+        });
+        menuListar.add(listaLivros);
 
-        listaPessoas.setText("Autor/Funcionário");
-        listaLivros.add(listaPessoas);
+        listaAutores.setText("Autores");
+        listaAutores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaAutoresActionPerformed(evt);
+            }
+        });
+        menuListar.add(listaAutores);
 
-        listaEditoras.setText("Editora");
-        listaLivros.add(listaEditoras);
+        listaEditoras.setText("Editoras");
+        menuListar.add(listaEditoras);
 
-        listaVendas.setText("Venda");
-        listaLivros.add(listaVendas);
+        listaVendas.setText("Vendas");
+        menuListar.add(listaVendas);
 
-        menuBar.add(listaLivros);
+        listaFuncionarios.setText("Funcionários");
+        menuListar.add(listaFuncionarios);
+
+        menuBar.add(menuListar);
 
         menuVender.setText("Vender");
 
@@ -173,6 +187,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void menuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSairMouseClicked
         dispose();
     }//GEN-LAST:event_menuSairMouseClicked
+
+    private void listaLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaLivrosActionPerformed
+        new ListarLivros().setVisible(true);
+    }//GEN-LAST:event_listaLivrosActionPerformed
+
+    private void listaAutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaAutoresActionPerformed
+        new ListarAutores().setVisible(true);
+    }//GEN-LAST:event_listaAutoresActionPerformed
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem cadastroEditora;
@@ -180,14 +202,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem cadastroPessoa;
     private javax.swing.JLabel data;
     private javax.swing.JMenuItem efetuaVenda;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JLabel labelCentroMenuPrincipal;
+    private javax.swing.JMenuItem listaAutores;
     private javax.swing.JMenuItem listaEditoras;
-    private javax.swing.JMenu listaLivros;
-    private javax.swing.JMenuItem listaPessoas;
+    private javax.swing.JMenuItem listaFuncionarios;
+    private javax.swing.JMenuItem listaLivros;
     private javax.swing.JMenuItem listaVendas;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuCadastrar;
+    private javax.swing.JMenu menuListar;
     private javax.swing.JMenu menuSair;
     private javax.swing.JMenu menuVender;
     private javax.swing.JPanel panel;

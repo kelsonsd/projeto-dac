@@ -1,10 +1,13 @@
 package br.edu.ifpb.dac.entidades;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -17,7 +20,10 @@ public class Editora implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
-    private String telefone;    
+    private String telefone;
+    
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Edicao> edicoes;
 
     public Editora() {
     }
@@ -50,6 +56,14 @@ public class Editora implements Serializable {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
+    public List<Edicao> getEdicoes() {
+        return edicoes;
+    }
+
+    public void setEdicoes(List<Edicao> edicoes) {
+        this.edicoes = edicoes;
+    }    
 
     @Override
     public String toString() {

@@ -1,11 +1,15 @@
 package br.edu.ifpb.dac.entidades;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import org.eclipse.persistence.annotations.PrimaryKey;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -18,13 +22,23 @@ public class Edicao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
     @Id
     private String isbn;
     private int numero;
     private double preco;
     private int ano;
     private int numPaginas;
-    private int qtdeEstoque;    
+    private int qtdeEstoque;   
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    private Livro livro;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    private Editora editora;   
+    
+    @ManyToMany(mappedBy = "edicoes")
+    private List<Venda> listVendas;
 
     public Edicao() {
     }
@@ -35,7 +49,7 @@ public class Edicao implements Serializable {
         this.preco = valor;
         this.ano = ano;
         this.numPaginas = numPaginas;
-        this.qtdeEstoque = qtdeEstoque;
+        this.qtdeEstoque = qtdeEstoque;        
     }
     
     public int getId() {
@@ -93,6 +107,30 @@ public class Edicao implements Serializable {
     public void setQtdeEstoque(int qtdeEstoque) {
         this.qtdeEstoque = qtdeEstoque;
     }
+
+    public Livro getLivro() {
+        return livro;
+    }
+
+    public void setLivro(Livro livro) {
+        this.livro = livro;
+    }
+
+    public Editora getEditora() {
+        return editora;
+    }
+
+    public void setEditora(Editora editora) {
+        this.editora = editora;
+    }
+
+    public List<Venda> getListVendas() {
+        return listVendas;
+    }
+
+    public void setListVendas(List<Venda> listVendas) {
+        this.listVendas = listVendas;
+    }    
 
     @Override
     public String toString() {

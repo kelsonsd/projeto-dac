@@ -15,10 +15,8 @@ public class LivroTecnico extends Livro {
     public LivroTecnico() {
     }
 
-    public LivroTecnico(String areaAtuacao, String titulo, String idioma, int anoPublicacao,
-           List<Autor> listaAutores, List<Edicao> listaEdicoes, Editora editora) {
-        
-        super(titulo, idioma, anoPublicacao, listaAutores, listaEdicoes, editora);
+    public LivroTecnico(String titulo, String idioma, int anoPublicacao, String areaAtuacao) {        
+        super(titulo, idioma, anoPublicacao);
         this.areaAtuacao = areaAtuacao;
     }
 

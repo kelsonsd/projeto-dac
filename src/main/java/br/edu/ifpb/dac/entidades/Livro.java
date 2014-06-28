@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -25,27 +24,21 @@ public class Livro implements Serializable {
     private int id;
     private String titulo;
     private String idioma;
-    private int anoPublicacao;
+    private int anoPublicacao;      
     
-    @ManyToOne
-    private Editora editora;    
-    
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private List<Autor> listaAutores;
     
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Edicao> listaEdicoes;
+    @OneToMany(cascade = CascadeType.ALL)    
+    private List<Edicao> listaEdicoes;    
 
     public Livro() {
     }
     
-    public Livro(String titulo, String idioma, int anoPublicacao, List<Autor> listaAutores, List<Edicao> listaEdicoes, Editora editora) {        
+    public Livro(String titulo, String idioma, int anoPublicacao) {        
         this.titulo = titulo;
         this.idioma = idioma;
-        this.anoPublicacao = anoPublicacao;
-        this.listaAutores = listaAutores;
-        this.listaEdicoes = listaEdicoes;
-        this.editora = editora;
+        this.anoPublicacao = anoPublicacao;                
     }
 
     public int getId() {
@@ -96,11 +89,30 @@ public class Livro implements Serializable {
         this.listaEdicoes = listaEdicoes;
     }
 
-    public Editora getEditora() {
-        return editora;
+    @Override
+    public String toString() {
+        return "Título: " + titulo + " Idioma: " + idioma + " Ano da Publicação: " + anoPublicacao;
+    }  
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Livro other = (Livro) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
     }
 
-    public void setEditora(Editora editora) {
-        this.editora = editora;
-    }    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + this.id;
+        return hash;
+    }
 }

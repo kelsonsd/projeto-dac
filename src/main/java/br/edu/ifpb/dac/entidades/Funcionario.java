@@ -1,5 +1,6 @@
 package br.edu.ifpb.dac.entidades;
 
+import java.util.List;
 import javax.persistence.Entity;
 
 /**
@@ -11,6 +12,8 @@ import javax.persistence.Entity;
 public class Funcionario extends Pessoa {
     private String matricula;
     private String funcao;
+    
+    private List<Venda> listVendas;
 
     public Funcionario() {
     }

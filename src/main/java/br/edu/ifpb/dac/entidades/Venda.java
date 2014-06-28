@@ -3,12 +3,11 @@ package br.edu.ifpb.dac.entidades;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -29,17 +28,16 @@ public class Venda implements Serializable {
     private String matriculaFuncionario;
     private double total;    
     
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     private List<Edicao> edicoes;
 
     public Venda() {
     }
 
-    public Venda(Date dataVenda, String matriculaFuncionario, double total, List<Edicao> edicoes) {
+    public Venda(Date dataVenda, String matriculaFuncionario, double total) {
         this.dataVenda = dataVenda;
         this.matriculaFuncionario = matriculaFuncionario;
-        this.total = total;
-        this.edicoes = edicoes;
+        this.total = total;        
     }
     
     public int getId() {

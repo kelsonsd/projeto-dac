@@ -1,6 +1,5 @@
 package br.edu.ifpb.dac.entidades;
 
-import java.util.List;
 import javax.persistence.Entity;
 
 /**
@@ -15,10 +14,8 @@ public class LivroFiccao extends Livro {
     public LivroFiccao() {
     }
 
-    public LivroFiccao(String genero, String titulo, String idioma, int anoPublicacao, List<Autor> listaAutores,
-           List<Edicao> listaEdicoes, Editora editora) {
-        
-        super(titulo, idioma, anoPublicacao, listaAutores, listaEdicoes, editora);
+    public LivroFiccao(String titulo, String idioma, int anoPublicacao, String genero) {        
+        super(titulo, idioma, anoPublicacao);
         this.genero = genero;
     }
 
@@ -28,5 +25,5 @@ public class LivroFiccao extends Livro {
 
     public void setGenero(String genero) {
         this.genero = genero;
-    }    
+    }   
 }
