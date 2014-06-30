@@ -2,6 +2,7 @@ package br.edu.ifpb.dac.entidades;
 
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -11,8 +12,9 @@ import javax.persistence.Entity;
 @Entity
 public class Funcionario extends Pessoa {
     private String matricula;
-    private String funcao;
+    private String funcao;    
     
+    @OneToMany
     private List<Venda> listVendas;
 
     public Funcionario() {
@@ -38,5 +40,18 @@ public class Funcionario extends Pessoa {
 
     public void setFuncao(String funcao) {
         this.funcao = funcao;
+    }
+
+    public List<Venda> getListVendas() {
+        return listVendas;
+    }
+
+    public void setListVendas(List<Venda> listVendas) {
+        this.listVendas = listVendas;
+    }
+
+    @Override
+    public String toString() {
+        return "Nome: " + getNome() + " - Matrícula: " + matricula + " - Função: " + funcao;
     }    
 }

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -28,8 +29,11 @@ public class Venda implements Serializable {
     private String matriculaFuncionario;
     private double total;    
     
+    @OneToOne
+    private Funcionario funcionario;
+    
     @ManyToMany
-    private List<Edicao> edicoes;
+    private List<Edicao> listaEdicoes;
 
     public Venda() {
     }
@@ -54,15 +58,7 @@ public class Venda implements Serializable {
 
     public void setDataVenda(Date dataVenda) {
         this.dataVenda = dataVenda;
-    }
-
-    public List<Edicao> getEdicoes() {
-        return edicoes;
-    }
-
-    public void setEdicoes(List<Edicao> edicoes) {
-        this.edicoes = edicoes;
-    }
+    }    
     
     public String getMatriculaFuncionario() {
         return matriculaFuncionario;
@@ -78,5 +74,26 @@ public class Venda implements Serializable {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+    
+    public List<Edicao> getListaEdicoes() {
+        return listaEdicoes;
+    }
+
+    public void setListaEdicoes(List<Edicao> listaEdicoes) {
+        this.listaEdicoes = listaEdicoes;
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+
+    @Override
+    public String toString() {
+        return "Data: " + dataVenda + " - Matrícula: " + matriculaFuncionario + " - Total: R$ " + total;
     }
 }

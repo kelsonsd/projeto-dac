@@ -64,10 +64,5 @@ public class Pessoa implements Serializable {
         int hash = 7;
         hash = 67 * hash + this.id;
         return hash;
-    }
-
-    @Override
-    public String toString() {
-        return nome;
-    }    
+    }        
 }

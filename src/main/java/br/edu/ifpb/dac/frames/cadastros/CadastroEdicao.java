@@ -251,7 +251,7 @@ public class CadastroEdicao extends javax.swing.JFrame {
         else {            
             Edicao edicao = new Edicao(isbn, numero, preco, ano, numeroDePaginas, qtdeEstoque);
             
-            editora.getEdicoes().add(edicao);
+            editora.getListaEdicoes().add(edicao);
             edicao.setEditora(editora);            
             
             List<Edicao> edicoes = dao.buscarTodos(Edicao.class); 

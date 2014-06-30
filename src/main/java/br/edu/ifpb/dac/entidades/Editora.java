@@ -23,7 +23,7 @@ public class Editora implements Serializable {
     private String telefone;
     
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Edicao> edicoes;
+    private List<Edicao> listaEdicoes;
 
     public Editora() {
     }
@@ -57,12 +57,12 @@ public class Editora implements Serializable {
         this.telefone = telefone;
     }
 
-    public List<Edicao> getEdicoes() {
-        return edicoes;
+    public List<Edicao> getListaEdicoes() {
+        return listaEdicoes;
     }
 
-    public void setEdicoes(List<Edicao> edicoes) {
-        this.edicoes = edicoes;
+    public void setListaEdicoes(List<Edicao> listaEdicoes) {
+        this.listaEdicoes = listaEdicoes;
     }    
 
     @Override

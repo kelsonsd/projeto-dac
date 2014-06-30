@@ -1,6 +1,5 @@
 package br.edu.ifpb.dac.entidades;
 
-import java.util.List;
 import javax.persistence.Entity;
 
 /**

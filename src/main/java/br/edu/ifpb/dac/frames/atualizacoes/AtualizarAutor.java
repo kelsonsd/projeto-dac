@@ -44,10 +44,11 @@ public class AtualizarAutor extends javax.swing.JFrame {
         btSalvar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Atualizar Autor");
 
         labelInformacoesAutorFuncionario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        labelInformacoesAutorFuncionario.setText("Informações do Autor/Funcionário");
+        labelInformacoesAutorFuncionario.setText("Informações do Autor");
 
         labelNome.setText("Nome");
 
@@ -150,24 +151,21 @@ public class AtualizarAutor extends javax.swing.JFrame {
         String nome = textNome.getText().trim();
         String dataNascimento = textDataNascimento.getText().trim();
         String biografia = textAreaBiografia.getText().trim();
-        if (!nome.isEmpty()) {
-            if (dataNascimento.isEmpty() || biografia.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Informe todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
-            } else {
-                autor.setNome(nome);
-                autor.setDataNascimento(dataNascimento);
-                autor.setBiografia(biografia);                
 
-                if (dao.atualizar(autor)) {
-                    JOptionPane.showMessageDialog(this, "Autor atualizado com sucesso");
-                    dispose();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Erro!");
-                }
-            }
-        } else {
+        if (nome.isEmpty() || dataNascimento.isEmpty() || biografia.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Informe todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        }
+        } else {
+            autor.setNome(nome);
+            autor.setDataNascimento(dataNascimento);
+            autor.setBiografia(biografia);
+
+            if (dao.atualizar(autor)) {
+                JOptionPane.showMessageDialog(this, "Autor atualizado com sucesso");
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro!");
+            }
+        }        
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed

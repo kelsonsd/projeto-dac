@@ -2,7 +2,6 @@ package br.edu.ifpb.dac.frames.cadastros;
 
 import br.edu.ifpb.dac.entidades.Autor;
 import br.edu.ifpb.dac.entidades.Edicao;
-import br.edu.ifpb.dac.entidades.Livro;
 import br.edu.ifpb.dac.entidades.LivroFiccao;
 import br.edu.ifpb.dac.entidades.LivroTecnico;
 import br.edu.ifpb.dac.persistencia.DAO;
@@ -380,13 +379,9 @@ public class CadastroLivro extends javax.swing.JFrame {
                 if(!genero.isEmpty()) {
                     LivroFiccao livroFiccao = new LivroFiccao(titulo, idioma, anoPublicacao, genero);
                     
-                    for (Autor  autor : autores) {
-                        autor.getListaLivros().add(livroFiccao);
-                    }
-                    
                     for (Edicao edicao : edicoes) {
                         edicao.setLivro(livroFiccao);
-                    }                    
+                    }
                     
                     livroFiccao.setListaAutores(autores);
                     livroFiccao.setListaEdicoes(edicoes);                    
@@ -402,11 +397,7 @@ public class CadastroLivro extends javax.swing.JFrame {
             }
             else {
                 if(!areaAtuacao.isEmpty()) {
-                    LivroTecnico livroTecnico = new LivroTecnico(titulo, idioma, anoPublicacao, areaAtuacao);                   
-                    
-                    for (Autor  autor : autores) {
-                        autor.getListaLivros().add(livroTecnico);
-                    }
+                    LivroTecnico livroTecnico = new LivroTecnico(titulo, idioma, anoPublicacao, areaAtuacao);
                     
                     for (Edicao edicao : edicoes) {
                         edicao.setLivro(livroTecnico);

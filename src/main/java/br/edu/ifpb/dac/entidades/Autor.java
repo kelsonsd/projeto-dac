@@ -1,9 +1,8 @@
 package br.edu.ifpb.dac.entidades;
 
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -14,9 +13,9 @@ import javax.persistence.OneToMany;
 public class Autor extends Pessoa{    
     private String dataNascimento;    
     private String biografia;
-            
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
-    private List<Livro> listaLivros;    
+    
+    @ManyToMany(mappedBy = "listaAutores")
+    private List<Livro> listaLivros;
 
     public Autor() {
     }
@@ -50,4 +49,9 @@ public class Autor extends Pessoa{
     public void setListaLivros(List<Livro> listaLivros) {
         this.listaLivros = listaLivros;
     }
+
+    @Override
+    public String toString() {
+        return "Nome: " + getNome() + " - Data de Nasc.: " + dataNascimento;
+    }    
 }

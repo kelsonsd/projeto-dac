@@ -31,14 +31,15 @@ public class Edicao implements Serializable {
     private int numPaginas;
     private int qtdeEstoque;   
     
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     private Livro livro;
     
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     private Editora editora;   
     
-    @ManyToMany(mappedBy = "edicoes")
-    private List<Venda> listVendas;
+    
+    @ManyToMany(mappedBy = "listaEdicoes")
+    private List<Venda> listaVendas;
 
     public Edicao() {
     }
@@ -124,12 +125,12 @@ public class Edicao implements Serializable {
         this.editora = editora;
     }
 
-    public List<Venda> getListVendas() {
-        return listVendas;
+    public List<Venda> getListaVendas() {
+        return listaVendas;
     }
 
-    public void setListVendas(List<Venda> listVendas) {
-        this.listVendas = listVendas;
+    public void setListaVendas(List<Venda> listaVendas) {
+        this.listaVendas = listaVendas;
     }    
 
     @Override

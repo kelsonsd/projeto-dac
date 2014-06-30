@@ -4,6 +4,7 @@ import br.edu.ifpb.dac.entidades.Autor;
 import br.edu.ifpb.dac.entidades.Funcionario;
 import br.edu.ifpb.dac.persistencia.DAO;
 import br.edu.ifpb.dac.persistencia.DaoJPA;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -221,15 +222,30 @@ public class CadastroPessoa extends javax.swing.JFrame {
                 if(matricula.isEmpty() || funcao.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Informe todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
                 }
-                else {
+                else {                    
+                    List<Funcionario> funcionarios = dao.buscarTodos(Funcionario.class);
+                    boolean exist = false;
+                    
+                    for (Funcionario funcionario : funcionarios) {                        
+                        if(funcionario.getMatricula().equals(matricula)) {                            
+                            exist = true;
+                            break;
+                        }
+                    }
+                    
                     Funcionario funcionario = new Funcionario(matricula, funcao, nome);                
-
-                    if(dao.salvar(funcionario)) {
-                        JOptionPane.showMessageDialog(this, "Funcionário cadastrado com sucesso");
-                        limparCamposFuncionario();
+                    
+                    if(!exist) {
+                        if(dao.salvar(funcionario)) {
+                            JOptionPane.showMessageDialog(this, "Funcionário cadastrado com sucesso");
+                            limparCamposFuncionario();
+                        }
+                        else {
+                            JOptionPane.showMessageDialog(this, "Erro!");
+                        }
                     }
                     else {
-                        JOptionPane.showMessageDialog(this, "Erro!");
+                        JOptionPane.showMessageDialog(this, "Matrícula já cadastrada no sistema!", "Atenção", JOptionPane.WARNING_MESSAGE);
                     }
                 }
             }

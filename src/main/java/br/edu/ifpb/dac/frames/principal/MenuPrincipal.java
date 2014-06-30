@@ -3,8 +3,12 @@ package br.edu.ifpb.dac.frames.principal;
 import br.edu.ifpb.dac.frames.cadastros.CadastroEditora;
 import br.edu.ifpb.dac.frames.cadastros.CadastroLivro;
 import br.edu.ifpb.dac.frames.cadastros.CadastroPessoa;
+import br.edu.ifpb.dac.frames.cadastros.CadastroVenda;
 import br.edu.ifpb.dac.frames.listagens.ListarAutores;
+import br.edu.ifpb.dac.frames.listagens.ListarEditoras;
+import br.edu.ifpb.dac.frames.listagens.ListarFuncionarios;
 import br.edu.ifpb.dac.frames.listagens.ListarLivros;
+import br.edu.ifpb.dac.frames.listagens.ListarVendas;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -131,12 +135,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
         menuListar.add(listaAutores);
 
         listaEditoras.setText("Editoras");
+        listaEditoras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaEditorasActionPerformed(evt);
+            }
+        });
         menuListar.add(listaEditoras);
 
         listaVendas.setText("Vendas");
+        listaVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaVendasActionPerformed(evt);
+            }
+        });
         menuListar.add(listaVendas);
 
         listaFuncionarios.setText("Funcionários");
+        listaFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaFuncionariosActionPerformed(evt);
+            }
+        });
         menuListar.add(listaFuncionarios);
 
         menuBar.add(menuListar);
@@ -144,6 +163,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         menuVender.setText("Vender");
 
         efetuaVenda.setText("Efetuar Venda");
+        efetuaVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                efetuaVendaActionPerformed(evt);
+            }
+        });
         menuVender.add(efetuaVenda);
 
         menuBar.add(menuVender);
@@ -195,6 +219,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void listaAutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaAutoresActionPerformed
         new ListarAutores().setVisible(true);
     }//GEN-LAST:event_listaAutoresActionPerformed
+
+    private void listaEditorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaEditorasActionPerformed
+        new ListarEditoras().setVisible(true);
+    }//GEN-LAST:event_listaEditorasActionPerformed
+
+    private void listaFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaFuncionariosActionPerformed
+        new ListarFuncionarios().setVisible(true);
+    }//GEN-LAST:event_listaFuncionariosActionPerformed
+
+    private void efetuaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_efetuaVendaActionPerformed
+        new CadastroVenda().setVisible(true);
+    }//GEN-LAST:event_efetuaVendaActionPerformed
+
+    private void listaVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaVendasActionPerformed
+        new ListarVendas().setVisible(true);
+    }//GEN-LAST:event_listaVendasActionPerformed
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem cadastroEditora;

@@ -3,7 +3,7 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="Livros Cadastrados no Sistema"/>
+    <Property name="title" type="java.lang.String" value="Editoras Cadastradas no Sistema"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -24,34 +24,34 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panelListarLivro" alignment="0" max="32767" attributes="0"/>
+          <Component id="panelListarEditoras" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panelListarLivro" alignment="0" max="32767" attributes="0"/>
+          <Component id="panelListarEditoras" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="panelListarLivro">
+    <Container class="javax.swing.JPanel" name="panelListarEditoras">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="labelLivrosCadastrados" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="labelAutoresCadastrados" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="scrollPaneLivros" pref="324" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="scrollPaneEditora" pref="324" max="32767" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btEditarLivro" min="-2" max="-2" attributes="0"/>
+                          <Component id="btEditarEditora" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btRemoverLivro" min="-2" max="-2" attributes="0"/>
+                          <Component id="btRemoverEditora" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -67,14 +67,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="labelLivrosCadastrados" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelAutoresCadastrados" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btRemoverLivro" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btEditarLivro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="btRemoverEditora" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btEditarEditora" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="scrollPaneLivros" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="scrollPaneEditora" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="btFechar" min="-2" max="-2" attributes="0"/>
@@ -84,22 +84,22 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="labelLivrosCadastrados">
+        <Component class="javax.swing.JLabel" name="labelAutoresCadastrados">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="11" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Livros cadastrados:"/>
+            <Property name="text" type="java.lang.String" value="Editoras cadastradas:"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="scrollPaneLivros">
+        <Container class="javax.swing.JScrollPane" name="scrollPaneEditora">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JList" name="listLivros">
+            <Component class="javax.swing.JList" name="listEditoras">
               <Properties>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                   <StringArray count="0"/>
@@ -108,20 +108,20 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="btRemoverLivro">
+        <Component class="javax.swing.JButton" name="btRemoverEditora">
           <Properties>
             <Property name="text" type="java.lang.String" value="Remover"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btRemoverLivroActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btRemoverEditoraActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btEditarLivro">
+        <Component class="javax.swing.JButton" name="btEditarEditora">
           <Properties>
             <Property name="text" type="java.lang.String" value="Editar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEditarLivroActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEditarEditoraActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btFechar">

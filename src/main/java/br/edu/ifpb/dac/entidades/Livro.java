@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 /**
@@ -24,9 +25,9 @@ public class Livro implements Serializable {
     private int id;
     private String titulo;
     private String idioma;
-    private int anoPublicacao;      
+    private int anoPublicacao;    
     
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToMany
     private List<Autor> listaAutores;
     
     @OneToMany(cascade = CascadeType.ALL)    
