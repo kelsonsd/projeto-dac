@@ -1,6 +1,7 @@
 package br.edu.ifpb.dac.entidades;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,7 +31,7 @@ public class Venda implements Serializable {
     private String matriculaFuncionario;
     private double total;    
     
-    @OneToOne
+    @ManyToOne
     private Funcionario funcionario;
     
     @ManyToMany
@@ -91,9 +93,15 @@ public class Venda implements Serializable {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
+    
+    private String getData() {        
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+        return formatador.format(dataVenda);
+    }
+    
 
     @Override
     public String toString() {
-        return "Data: " + dataVenda + " - Matrícula: " + matriculaFuncionario + " - Total: R$ " + total;
+        return "Data: " + getData() + " - Matrícula: " + matriculaFuncionario + " - Total: R$ " + total;
     }
 }

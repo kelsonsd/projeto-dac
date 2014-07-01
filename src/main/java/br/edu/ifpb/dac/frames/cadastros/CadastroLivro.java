@@ -377,12 +377,7 @@ public class CadastroLivro extends javax.swing.JFrame {
         else {
             if(comboTipo.getSelectedIndex() == 0) {
                 if(!genero.isEmpty()) {
-                    LivroFiccao livroFiccao = new LivroFiccao(titulo, idioma, anoPublicacao, genero);
-                    
-                    for (Edicao edicao : edicoes) {
-                        edicao.setLivro(livroFiccao);
-                    }
-                    
+                    LivroFiccao livroFiccao = new LivroFiccao(titulo, idioma, anoPublicacao, genero);                    
                     livroFiccao.setListaAutores(autores);
                     livroFiccao.setListaEdicoes(edicoes);                    
                     
@@ -397,12 +392,7 @@ public class CadastroLivro extends javax.swing.JFrame {
             }
             else {
                 if(!areaAtuacao.isEmpty()) {
-                    LivroTecnico livroTecnico = new LivroTecnico(titulo, idioma, anoPublicacao, areaAtuacao);
-                    
-                    for (Edicao edicao : edicoes) {
-                        edicao.setLivro(livroTecnico);
-                    }
-                    
+                    LivroTecnico livroTecnico = new LivroTecnico(titulo, idioma, anoPublicacao, areaAtuacao);                    
                     livroTecnico.setListaAutores(autores);
                     livroTecnico.setListaEdicoes(edicoes);                    
                     

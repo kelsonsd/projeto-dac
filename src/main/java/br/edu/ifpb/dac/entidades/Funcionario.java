@@ -13,8 +13,8 @@ import javax.persistence.OneToMany;
 public class Funcionario extends Pessoa {
     private String matricula;
     private String funcao;    
-    
-    @OneToMany
+        
+    @OneToMany(mappedBy = "funcionario")
     private List<Venda> listVendas;
 
     public Funcionario() {

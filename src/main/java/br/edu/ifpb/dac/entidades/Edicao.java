@@ -2,7 +2,6 @@ package br.edu.ifpb.dac.entidades;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import org.eclipse.persistence.annotations.PrimaryKey;
 import javax.persistence.Id;
@@ -29,14 +28,10 @@ public class Edicao implements Serializable {
     private double preco;
     private int ano;
     private int numPaginas;
-    private int qtdeEstoque;   
+    private int qtdeEstoque;
     
     @OneToOne()
-    private Livro livro;
-    
-    @OneToOne()
-    private Editora editora;   
-    
+    private Editora editora;    
     
     @ManyToMany(mappedBy = "listaEdicoes")
     private List<Venda> listaVendas;
@@ -107,15 +102,7 @@ public class Edicao implements Serializable {
 
     public void setQtdeEstoque(int qtdeEstoque) {
         this.qtdeEstoque = qtdeEstoque;
-    }
-
-    public Livro getLivro() {
-        return livro;
-    }
-
-    public void setLivro(Livro livro) {
-        this.livro = livro;
-    }
+    }    
 
     public Editora getEditora() {
         return editora;

@@ -30,7 +30,7 @@ public class Livro implements Serializable {
     @ManyToMany
     private List<Autor> listaAutores;
     
-    @OneToMany(cascade = CascadeType.ALL)    
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})    
     private List<Edicao> listaEdicoes;    
 
     public Livro() {
