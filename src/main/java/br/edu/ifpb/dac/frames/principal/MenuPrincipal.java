@@ -58,6 +58,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Gerenciamento - Livraria Ler Bem");
 
+        panel.setBackground(new java.awt.Color(204, 204, 204));
         panel.setToolTipText("");
 
         data.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Date.png"))); // NOI18N
@@ -74,28 +75,28 @@ public class MenuPrincipal extends javax.swing.JFrame {
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
+                .addContainerGap(184, Short.MAX_VALUE)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(data))
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(190, 190, 190)
-                        .addComponent(labelCentroMenuPrincipal)
-                        .addGap(0, 182, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(panelLayout.createSequentialGroup()
-                .addGap(233, 233, 233)
-                .addComponent(logo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(data)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelCentroMenuPrincipal)
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(logo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(184, 184, 184))))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                .addContainerGap(83, Short.MAX_VALUE)
+                .addGap(84, 84, 84)
                 .addComponent(logo)
                 .addGap(18, 18, 18)
                 .addComponent(labelCentroMenuPrincipal)
-                .addGap(125, 125, 125)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addComponent(data)
                 .addContainerGap())
         );

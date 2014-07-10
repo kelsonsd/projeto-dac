@@ -20,7 +20,7 @@ import javax.persistence.OneToOne;
 public class Edicao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     
     @Id
     private String isbn;
@@ -30,6 +30,7 @@ public class Edicao implements Serializable {
     private int numPaginas;
     private int qtdeEstoque;
     
+    @Id
     @OneToOne()
     private Editora editora;    
     
@@ -48,11 +49,11 @@ public class Edicao implements Serializable {
         this.qtdeEstoque = qtdeEstoque;        
     }
     
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
     

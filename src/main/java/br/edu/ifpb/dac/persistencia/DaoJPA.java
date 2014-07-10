@@ -43,7 +43,7 @@ public class DaoJPA<T> implements DAO<T>{
     }
 
     @Override
-    public T buscar(Class classe, int id) {
+    public T buscar(Class classe, Long id) {
         T objLocalizado = null;
         try {
             objLocalizado = (T) em.find(classe, id);
@@ -54,8 +54,8 @@ public class DaoJPA<T> implements DAO<T>{
     
     @Override
     public List<T> buscarTodos(Class clazz) {        
-        String query = "SELECT x FROM " + clazz.getSimpleName() + " x";
-        return em.createQuery(query).getResultList();
+        String query = "SELECT x FROM " + clazz.getSimpleName() + " x";        
+        return em.createQuery(query).setMaxResults(50).getResultList();
     }
 
     @Override

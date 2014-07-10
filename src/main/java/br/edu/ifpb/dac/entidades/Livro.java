@@ -2,6 +2,7 @@ package br.edu.ifpb.dac.entidades;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ import javax.persistence.OneToMany;
 public class Livro implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String titulo;
     private String idioma;
     private int anoPublicacao;    
@@ -42,11 +43,11 @@ public class Livro implements Serializable {
         this.anoPublicacao = anoPublicacao;                
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -93,8 +94,15 @@ public class Livro implements Serializable {
     @Override
     public String toString() {
         return "Título: " + titulo + " Idioma: " + idioma + " Ano da Publicação: " + anoPublicacao;
-    }  
-    
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -104,16 +112,9 @@ public class Livro implements Serializable {
             return false;
         }
         final Livro other = (Livro) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + this.id;
-        return hash;
-    }
+    }       
 }

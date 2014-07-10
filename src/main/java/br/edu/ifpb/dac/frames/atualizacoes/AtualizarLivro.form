@@ -65,7 +65,6 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="textIdioma" min="-2" pref="77" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="btNovoAutor" alignment="0" min="-2" pref="96" max="-2" attributes="0"/>
                               <Component id="btNovaEdicao" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
@@ -103,6 +102,7 @@
                                   </Group>
                                   <Component id="btRemoverEdicao" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="btNovoAutor" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -226,6 +226,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btAdicionarAutor">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagens/Bullet-Add.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Adicionar"/>
           </Properties>
           <Events>
@@ -234,6 +237,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btRemoverAutor">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagens/Bullet-Delete.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Remover"/>
           </Properties>
           <Events>
@@ -252,6 +258,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btNovoAutor">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagens/Bullet-Add.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Novo Autor"/>
           </Properties>
           <Events>
@@ -282,6 +291,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btNovaEdicao">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagens/Bullet-Add.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Nova Edi&#xe7;&#xe3;o"/>
           </Properties>
           <Events>
@@ -340,6 +352,9 @@
         </Container>
         <Component class="javax.swing.JButton" name="btRemoverEdicao">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagens/Bullet-Delete.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Remover"/>
           </Properties>
           <Events>

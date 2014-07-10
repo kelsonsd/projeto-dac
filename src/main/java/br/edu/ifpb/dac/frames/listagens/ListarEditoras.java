@@ -103,9 +103,9 @@ public class ListarEditoras extends javax.swing.JFrame {
                         .addComponent(btRemoverEditora)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListarEditorasLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(249, Short.MAX_VALUE)
                 .addComponent(btFechar)
-                .addGap(186, 186, 186))
+                .addGap(250, 250, 250))
         );
         panelListarEditorasLayout.setVerticalGroup(
             panelListarEditorasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +158,7 @@ public class ListarEditoras extends javax.swing.JFrame {
     private void btEditarEditoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarEditoraActionPerformed
         if(listEditoras.getSelectedIndex() != -1) {
             int index = listEditoras.getSelectedIndex();
-            int id = listModelEditoras.getElementAt(index).getId();
+            Long id = listModelEditoras.getElementAt(index).getId();
             Editora editora = (Editora) dao.buscar(Editora.class, id);
 
             new AtualizarEditora(editora).setVisible(true);

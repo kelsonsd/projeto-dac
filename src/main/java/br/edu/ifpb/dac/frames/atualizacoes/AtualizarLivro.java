@@ -151,6 +151,7 @@ public class AtualizarLivro extends javax.swing.JFrame {
             }
         });
 
+        btAdicionarAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Bullet-Add.png"))); // NOI18N
         btAdicionarAutor.setText("Adicionar");
         btAdicionarAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,6 +159,7 @@ public class AtualizarLivro extends javax.swing.JFrame {
             }
         });
 
+        btRemoverAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Bullet-Delete.png"))); // NOI18N
         btRemoverAutor.setText("Remover");
         btRemoverAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,6 +167,7 @@ public class AtualizarLivro extends javax.swing.JFrame {
             }
         });
 
+        btNovoAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Bullet-Add.png"))); // NOI18N
         btNovoAutor.setText("Novo Autor");
         btNovoAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,6 +191,7 @@ public class AtualizarLivro extends javax.swing.JFrame {
             }
         });
 
+        btNovaEdicao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Bullet-Add.png"))); // NOI18N
         btNovaEdicao.setText("Nova Edição");
         btNovaEdicao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,6 +212,7 @@ public class AtualizarLivro extends javax.swing.JFrame {
 
         scrollPaneEdicao.setViewportView(listEdicoes);
 
+        btRemoverEdicao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Bullet-Delete.png"))); // NOI18N
         btRemoverEdicao.setText("Remover");
         btRemoverEdicao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -242,7 +247,6 @@ public class AtualizarLivro extends javax.swing.JFrame {
                                 .addComponent(labelIdioma)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(textIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btNovoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btNovaEdicao)
                             .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroLivroLayout.createSequentialGroup()
@@ -272,7 +276,8 @@ public class AtualizarLivro extends javax.swing.JFrame {
                                     .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(btAdicionarAutor)
                                         .addComponent(btRemoverAutor)))
-                                .addComponent(btRemoverEdicao)))
+                                .addComponent(btRemoverEdicao))
+                            .addComponent(btNovoAutor))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panelCadastroLivroLayout.setVerticalGroup(

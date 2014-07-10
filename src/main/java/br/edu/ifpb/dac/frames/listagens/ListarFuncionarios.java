@@ -103,9 +103,9 @@ public class ListarFuncionarios extends javax.swing.JFrame {
                         .addComponent(btRemoverFuncionario)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListarFuncionariosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(249, Short.MAX_VALUE)
                 .addComponent(btFechar)
-                .addGap(195, 195, 195))
+                .addGap(250, 250, 250))
         );
         panelListarFuncionariosLayout.setVerticalGroup(
             panelListarFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +158,7 @@ public class ListarFuncionarios extends javax.swing.JFrame {
     private void btEditarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarFuncionarioActionPerformed
         if(listFuncionario.getSelectedIndex() != -1) {
             int index = listFuncionario.getSelectedIndex();
-            int id = listModelFuncionarios.getElementAt(index).getId();
+            Long id = listModelFuncionarios.getElementAt(index).getId();
             Funcionario funcionario = (Funcionario) dao.buscar(Funcionario.class, id);
 
             new AtualizarFuncionario(funcionario).setVisible(true);

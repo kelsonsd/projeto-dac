@@ -86,14 +86,14 @@ public class ListarVendas extends javax.swing.JFrame {
                         .addComponent(labelVendasEfetuadas)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panelListarVendasLayout.createSequentialGroup()
-                        .addComponent(scrollPaneVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+                        .addComponent(scrollPaneVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btRemoverVenda)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListarVendasLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btFechar)
-                .addGap(171, 171, 171))
+                .addGap(224, 224, 224))
         );
         panelListarVendasLayout.setVerticalGroup(
             panelListarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

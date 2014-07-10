@@ -96,7 +96,7 @@ public class ListarAutores extends javax.swing.JFrame {
                         .addComponent(labelAutoresCadastrados)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panelListarAutoresLayout.createSequentialGroup()
-                        .addComponent(scrollPaneAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                        .addComponent(scrollPaneAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btEditarAutor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -105,7 +105,7 @@ public class ListarAutores extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListarAutoresLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btFechar)
-                .addGap(204, 204, 204))
+                .addGap(249, 249, 249))
         );
         panelListarAutoresLayout.setVerticalGroup(
             panelListarAutoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +158,7 @@ public class ListarAutores extends javax.swing.JFrame {
     private void btEditarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarAutorActionPerformed
         if(listAutores.getSelectedIndex() != -1) {
             int index = listAutores.getSelectedIndex();
-            int id = listModelAutores.getElementAt(index).getId();
+            Long id = listModelAutores.getElementAt(index).getId();
             Autor autor = (Autor) dao.buscar(Autor.class, id);
 
             new AtualizarAutor(autor).setVisible(true);

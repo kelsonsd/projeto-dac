@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface DAO<T> {
     public boolean salvar(T objeto);
-    public T buscar(Class classe, int id);
+    public T buscar(Class classe, Long id);
     public List<T> buscarTodos(Class clazz);
     public boolean atualizar(T objeto);
     public boolean remover(T objeto);    

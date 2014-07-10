@@ -18,7 +18,7 @@ import javax.persistence.OneToMany;
 public class Editora implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String nome;
     private String telefone;
     
@@ -33,11 +33,11 @@ public class Editora implements Serializable {
         this.telefone = telefone;
     }
     
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

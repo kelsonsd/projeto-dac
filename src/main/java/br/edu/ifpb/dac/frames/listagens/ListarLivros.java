@@ -103,9 +103,9 @@ public class ListarLivros extends javax.swing.JFrame {
                         .addComponent(btRemoverLivro)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListarLivroLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(249, Short.MAX_VALUE)
                 .addComponent(btFechar)
-                .addGap(195, 195, 195))
+                .addGap(250, 250, 250))
         );
         panelListarLivroLayout.setVerticalGroup(
             panelListarLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,7 +162,7 @@ public class ListarLivros extends javax.swing.JFrame {
     private void btEditarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarLivroActionPerformed
         if(listLivros.getSelectedIndex() != -1) {
             int index = listLivros.getSelectedIndex();            
-            int id = listModelLivros.getElementAt(index).getId();            
+            Long id = listModelLivros.getElementAt(index).getId();            
             Livro livro = (Livro) dao.buscar(Livro.class, id);
             
             new AtualizarLivro(livro).setVisible(true);

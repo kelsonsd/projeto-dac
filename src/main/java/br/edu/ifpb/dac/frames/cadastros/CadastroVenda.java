@@ -92,7 +92,7 @@ public class CadastroVenda extends javax.swing.JFrame {
 
         labelData.setText("Data");
 
-        labelMatricula.setText("Matrícula do Funcionário");
+        labelMatricula.setText("Matric. Funcionário");
 
         labelEdicao.setText("Edição");
 
