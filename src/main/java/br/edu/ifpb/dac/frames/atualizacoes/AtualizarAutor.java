@@ -47,6 +47,8 @@ public class AtualizarAutor extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Atualizar Autor");
 
+        panelCadastroPessoa.setBackground(new java.awt.Color(204, 204, 204));
+
         labelInformacoesAutorFuncionario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelInformacoesAutorFuncionario.setText("Informações do Autor");
 

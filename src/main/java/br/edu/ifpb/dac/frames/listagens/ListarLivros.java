@@ -56,11 +56,14 @@ public class ListarLivros extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Livros Cadastrados no Sistema");
 
+        panelListarLivro.setBackground(new java.awt.Color(204, 204, 204));
+
         labelLivrosCadastrados.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelLivrosCadastrados.setText("Livros cadastrados:");
 
         scrollPaneLivros.setViewportView(listLivros);
 
+        btRemoverLivro.setBackground(new java.awt.Color(231, 228, 231));
         btRemoverLivro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Book-Delete.png"))); // NOI18N
         btRemoverLivro.setText("Remover");
         btRemoverLivro.addActionListener(new java.awt.event.ActionListener() {
@@ -69,6 +72,7 @@ public class ListarLivros extends javax.swing.JFrame {
             }
         });
 
+        btEditarLivro.setBackground(new java.awt.Color(231, 228, 231));
         btEditarLivro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Book-Edit.png"))); // NOI18N
         btEditarLivro.setText("Editar");
         btEditarLivro.addActionListener(new java.awt.event.ActionListener() {
@@ -77,6 +81,7 @@ public class ListarLivros extends javax.swing.JFrame {
             }
         });
 
+        btFechar.setBackground(new java.awt.Color(231, 228, 231));
         btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btFechar.setText("Fechar");
         btFechar.addActionListener(new java.awt.event.ActionListener() {

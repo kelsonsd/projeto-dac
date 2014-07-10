@@ -54,11 +54,14 @@ public class ListarVendas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Vendas Efetuadas");
 
+        panelListarVendas.setBackground(new java.awt.Color(204, 204, 204));
+
         labelVendasEfetuadas.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelVendasEfetuadas.setText("Vendas Efetuadas:");
 
         scrollPaneVendas.setViewportView(listVendas);
 
+        btRemoverVenda.setBackground(new java.awt.Color(231, 228, 231));
         btRemoverVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cart-Delete.png"))); // NOI18N
         btRemoverVenda.setText("Remover");
         btRemoverVenda.addActionListener(new java.awt.event.ActionListener() {
@@ -67,6 +70,7 @@ public class ListarVendas extends javax.swing.JFrame {
             }
         });
 
+        btFechar.setBackground(new java.awt.Color(231, 228, 231));
         btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btFechar.setText("Fechar");
         btFechar.addActionListener(new java.awt.event.ActionListener() {

@@ -45,6 +45,8 @@ public class AtualizarFuncionario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        panelAtualizarFuncionario.setBackground(new java.awt.Color(204, 204, 204));
+
         labelInformacoesFuncionario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelInformacoesFuncionario.setText("Informações do Funcionário");
 

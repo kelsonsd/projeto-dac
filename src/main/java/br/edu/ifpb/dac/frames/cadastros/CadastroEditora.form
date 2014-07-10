@@ -24,10 +24,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="panelCadastroEditora" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
+          <Component id="panelCadastroEditora" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -38,6 +35,11 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="panelCadastroEditora">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="cc" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -45,28 +47,24 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="labelInformacoesEditora" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="labelNome" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="textNome" max="32767" attributes="0"/>
+                          <Component id="textNome" min="-2" pref="175" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="labelTelefone" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="textTelefone" min="-2" pref="100" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                          <Component id="textTelefone" min="-2" pref="106" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="labelInformacoesEditora" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="btSalvar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="btCancelar" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="96" max="32767" attributes="0"/>
-                  <Component id="btSalvar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btCancelar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -82,7 +80,7 @@
                       <Component id="labelTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="textTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace pref="35" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -122,6 +120,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btSalvar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e7" green="e4" red="e7" type="rgb"/>
+            </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagens/Disk.png"/>
             </Property>
@@ -133,6 +134,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btCancelar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e7" green="e4" red="e7" type="rgb"/>
+            </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagens/Cancel.png"/>
             </Property>

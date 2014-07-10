@@ -22,16 +22,17 @@ public class Edicao implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Id
-    private String isbn;
-    private int numero;
-    private double preco;
-    private int ano;
+    @Id    
+    private String isbn;      
+    private int numero;    
+    private double preco;    
+    private int ano;    
     private int numPaginas;
     private int qtdeEstoque;
     
-    @Id
+    @Id    
     @OneToOne()
+    
     private Editora editora;    
     
     @ManyToMany(mappedBy = "listaEdicoes")

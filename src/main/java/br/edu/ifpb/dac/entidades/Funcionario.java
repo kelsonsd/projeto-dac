@@ -1,6 +1,7 @@
 package br.edu.ifpb.dac.entidades;
 
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -11,7 +12,8 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Funcionario extends Pessoa {
-    private String matricula;
+    @Column(unique = true)
+    private String matricula;    
     private String funcao;    
         
     @OneToMany(mappedBy = "funcionario")

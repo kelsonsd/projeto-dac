@@ -43,6 +43,8 @@ public class AtualizarEditora extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Atualizar Editora");
 
+        panelAtualizarEditora.setBackground(new java.awt.Color(204, 204, 204));
+
         labelInformacoesEditora.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelInformacoesEditora.setText("Informações da Editora");
 

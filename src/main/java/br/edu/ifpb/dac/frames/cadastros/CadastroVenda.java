@@ -87,6 +87,8 @@ public class CadastroVenda extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Venda de Livro");
 
+        panelCadastroVenda.setBackground(new java.awt.Color(204, 204, 204));
+
         labelInformacoesVenda.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelInformacoesVenda.setText("Informações da Venda");
 
@@ -96,12 +98,14 @@ public class CadastroVenda extends javax.swing.JFrame {
 
         labelEdicao.setText("Edição");
 
+        comboEdicoes.setBackground(new java.awt.Color(231, 228, 231));
         comboEdicoes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 comboEdicoesMouseClicked(evt);
             }
         });
 
+        btAdicionar.setBackground(new java.awt.Color(231, 228, 231));
         btAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cart-Add.png"))); // NOI18N
         btAdicionar.setText("Adicionar");
         btAdicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -110,6 +114,7 @@ public class CadastroVenda extends javax.swing.JFrame {
             }
         });
 
+        btRemover.setBackground(new java.awt.Color(231, 228, 231));
         btRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cart-Delete.png"))); // NOI18N
         btRemover.setText("Remover");
         btRemover.addActionListener(new java.awt.event.ActionListener() {
@@ -124,6 +129,7 @@ public class CadastroVenda extends javax.swing.JFrame {
 
         textValorTotal.setEditable(false);
 
+        btFinalizarVenda.setBackground(new java.awt.Color(231, 228, 231));
         btFinalizarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Accept.png"))); // NOI18N
         btFinalizarVenda.setText("Finalizar Venda");
         btFinalizarVenda.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +138,7 @@ public class CadastroVenda extends javax.swing.JFrame {
             }
         });
 
+        btCancelar.setBackground(new java.awt.Color(231, 228, 231));
         btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btCancelar.setText("Cancelar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {

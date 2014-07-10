@@ -56,11 +56,14 @@ public class ListarAutores extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Autores Cadastrados no Sistema");
 
+        panelListarAutores.setBackground(new java.awt.Color(204, 204, 204));
+
         labelAutoresCadastrados.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelAutoresCadastrados.setText("Autores cadastrados:");
 
         scrollPaneAutor.setViewportView(listAutores);
 
+        btRemoverAutor.setBackground(new java.awt.Color(231, 228, 231));
         btRemoverAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/User-Delete.png"))); // NOI18N
         btRemoverAutor.setText("Remover");
         btRemoverAutor.addActionListener(new java.awt.event.ActionListener() {
@@ -69,6 +72,7 @@ public class ListarAutores extends javax.swing.JFrame {
             }
         });
 
+        btEditarAutor.setBackground(new java.awt.Color(231, 228, 231));
         btEditarAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/User-Edit.png"))); // NOI18N
         btEditarAutor.setText("Editar");
         btEditarAutor.addActionListener(new java.awt.event.ActionListener() {
@@ -77,6 +81,7 @@ public class ListarAutores extends javax.swing.JFrame {
             }
         });
 
+        btFechar.setBackground(new java.awt.Color(231, 228, 231));
         btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btFechar.setText("Fechar");
         btFechar.addActionListener(new java.awt.event.ActionListener() {

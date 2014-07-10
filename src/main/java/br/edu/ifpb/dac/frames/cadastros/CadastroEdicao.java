@@ -70,6 +70,8 @@ public class CadastroEdicao extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Edição");
 
+        panelCadastroEdicao.setBackground(new java.awt.Color(204, 204, 204));
+
         labelInformacoesEdicao.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelInformacoesEdicao.setText("Informações da Edição");
 
@@ -87,6 +89,7 @@ public class CadastroEdicao extends javax.swing.JFrame {
 
         labelQuantidade.setText("Quantidade");
 
+        btSalvar.setBackground(new java.awt.Color(231, 228, 231));
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Disk.png"))); // NOI18N
         btSalvar.setText("Salvar");
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +98,7 @@ public class CadastroEdicao extends javax.swing.JFrame {
             }
         });
 
+        btCancelar.setBackground(new java.awt.Color(231, 228, 231));
         btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btCancelar.setText("Cancelar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -103,6 +107,7 @@ public class CadastroEdicao extends javax.swing.JFrame {
             }
         });
 
+        btNovaEditora.setBackground(new java.awt.Color(231, 228, 231));
         btNovaEditora.setText("Nova Editora");
         btNovaEditora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +115,7 @@ public class CadastroEdicao extends javax.swing.JFrame {
             }
         });
 
+        comboEditora.setBackground(new java.awt.Color(231, 228, 231));
         comboEditora.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 comboEditoraMouseClicked(evt);
@@ -122,14 +128,14 @@ public class CadastroEdicao extends javax.swing.JFrame {
         panelCadastroEdicao.setLayout(panelCadastroEdicaoLayout);
         panelCadastroEdicaoLayout.setHorizontalGroup(
             panelCadastroEdicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroEdicaoLayout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
-                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btCancelar)
-                .addGap(25, 25, 25))
             .addGroup(panelCadastroEdicaoLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btCancelar)
+                .addGap(26, 26, 26))
+            .addGroup(panelCadastroEdicaoLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
                 .addGroup(panelCadastroEdicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelInformacoesEdicao)
                     .addGroup(panelCadastroEdicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -168,7 +174,7 @@ public class CadastroEdicao extends javax.swing.JFrame {
                             .addComponent(comboEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btNovaEditora))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         panelCadastroEdicaoLayout.setVerticalGroup(
             panelCadastroEdicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,13 +204,11 @@ public class CadastroEdicao extends javax.swing.JFrame {
                     .addComponent(labelEditora)
                     .addComponent(comboEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btNovaEditora))
-                .addGap(35, 35, 35)
-                .addGroup(panelCadastroEdicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelCadastroEdicaoLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btCancelar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGroup(panelCadastroEdicaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btCancelar)
                     .addComponent(btSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(10, 10, 10))
+                .addGap(19, 19, 19))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

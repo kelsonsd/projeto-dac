@@ -35,6 +35,11 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="panelCadastroLivro">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="cc" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -44,7 +49,7 @@
                   <Component id="btSalvar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btCancelar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
@@ -240,6 +245,9 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="comboAutor">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e7" green="e4" red="e7" type="rgb"/>
+            </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
@@ -250,6 +258,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btAdicionarAutor">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e7" green="e4" red="e7" type="rgb"/>
+            </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagens/Bullet-Add.png"/>
             </Property>
@@ -261,6 +272,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btRemoverAutor">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e7" green="e4" red="e7" type="rgb"/>
+            </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagens/Bullet-Delete.png"/>
             </Property>
@@ -282,6 +296,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btNovoAutor">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e7" green="e4" red="e7" type="rgb"/>
+            </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagens/Bullet-Add.png"/>
             </Property>
@@ -293,6 +310,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btSalvar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e7" green="e4" red="e7" type="rgb"/>
+            </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagens/Disk.png"/>
             </Property>
@@ -304,6 +324,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btCancelar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e7" green="e4" red="e7" type="rgb"/>
+            </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagens/Cancel.png"/>
             </Property>
@@ -315,6 +338,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btNovaEdicao">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e7" green="e4" red="e7" type="rgb"/>
+            </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagens/Bullet-Add.png"/>
             </Property>
@@ -331,6 +357,9 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="comboTipo">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e7" green="e4" red="e7" type="rgb"/>
+            </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="2">
                 <StringItem index="0" value="Fic&#xe7;&#xe3;o"/>
@@ -376,6 +405,9 @@
         </Container>
         <Component class="javax.swing.JButton" name="btRemoverEdicao">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e7" green="e4" red="e7" type="rgb"/>
+            </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagens/Bullet-Delete.png"/>
             </Property>

@@ -1,7 +1,9 @@
 package br.edu.ifpb.dac.entidades;
 
 import java.util.List;
+import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 
 /**
@@ -10,8 +12,10 @@ import javax.persistence.ManyToMany;
  */
 
 @Entity
-public class Autor extends Pessoa{    
+public class Autor extends Pessoa{        
     private String dataNascimento;    
+    
+    @Basic(fetch = FetchType.LAZY)
     private String biografia;
     
     @ManyToMany(mappedBy = "listaAutores")
@@ -33,7 +37,7 @@ public class Autor extends Pessoa{
     public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-
+        
     public String getBiografia() {
         return biografia;
     }

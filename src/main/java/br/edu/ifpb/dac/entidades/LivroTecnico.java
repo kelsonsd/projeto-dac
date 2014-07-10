@@ -8,7 +8,7 @@ import javax.persistence.Entity;
  */
 
 @Entity
-public class LivroTecnico extends Livro {
+public class LivroTecnico extends Livro {    
     private String areaAtuacao;
 
     public LivroTecnico() {

@@ -58,6 +58,8 @@ public class CadastroPessoa extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Autor/Funcionário");
 
+        panelCadastroPessoa.setBackground(new java.awt.Color(204, 204, 204));
+
         labelInformacoesAutorFuncionario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelInformacoesAutorFuncionario.setText("Informações do Autor/Funcionário");
 
@@ -73,6 +75,7 @@ public class CadastroPessoa extends javax.swing.JFrame {
 
         labelBiografia.setText("Biografia");
 
+        comboTipo.setBackground(new java.awt.Color(231, 228, 231));
         comboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Autor", "Funcionário" }));
         comboTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,6 +93,7 @@ public class CadastroPessoa extends javax.swing.JFrame {
         textAreaBiografia.setRows(5);
         scrollPanelBiografia.setViewportView(textAreaBiografia);
 
+        btSalvar.setBackground(new java.awt.Color(231, 228, 231));
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Disk.png"))); // NOI18N
         btSalvar.setText("Salvar");
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -98,6 +102,7 @@ public class CadastroPessoa extends javax.swing.JFrame {
             }
         });
 
+        btCancelar.setBackground(new java.awt.Color(231, 228, 231));
         btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btCancelar.setText("Cancelar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {

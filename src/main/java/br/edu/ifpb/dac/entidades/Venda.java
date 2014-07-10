@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,10 +24,11 @@ public class Venda implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+        
+    @Temporal(TemporalType.DATE)    
+    private Date dataVenda;    
     
-    @Temporal(TemporalType.DATE)
-    private Date dataVenda;
-    
+    @Column(unique = true)
     private String matriculaFuncionario;
     private double total;    
     

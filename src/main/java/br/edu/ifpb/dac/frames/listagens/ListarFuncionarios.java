@@ -56,9 +56,12 @@ public class ListarFuncionarios extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Atualizar Funcionário");
 
+        panelListarFuncionarios.setBackground(new java.awt.Color(204, 204, 204));
+
         labelFuncionariosCadastrados.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelFuncionariosCadastrados.setText("Funcionários cadastrados:");
 
+        btRemoverFuncionario.setBackground(new java.awt.Color(231, 228, 231));
         btRemoverFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/User-Delete.png"))); // NOI18N
         btRemoverFuncionario.setText("Remover");
         btRemoverFuncionario.addActionListener(new java.awt.event.ActionListener() {
@@ -67,6 +70,7 @@ public class ListarFuncionarios extends javax.swing.JFrame {
             }
         });
 
+        btEditarFuncionario.setBackground(new java.awt.Color(231, 228, 231));
         btEditarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/User-Edit.png"))); // NOI18N
         btEditarFuncionario.setText("Editar");
         btEditarFuncionario.addActionListener(new java.awt.event.ActionListener() {
@@ -75,6 +79,7 @@ public class ListarFuncionarios extends javax.swing.JFrame {
             }
         });
 
+        btFechar.setBackground(new java.awt.Color(231, 228, 231));
         btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btFechar.setText("Fechar");
         btFechar.addActionListener(new java.awt.event.ActionListener() {

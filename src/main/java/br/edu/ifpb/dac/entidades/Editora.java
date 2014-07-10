@@ -18,8 +18,8 @@ import javax.persistence.OneToMany;
 public class Editora implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String nome;
+    private Long id;    
+    private String nome;    
     private String telefone;
     
     @OneToMany(cascade = CascadeType.ALL)
@@ -67,6 +67,6 @@ public class Editora implements Serializable {
 
     @Override
     public String toString() {
-        return nome;
+        return "Nome: " + nome;
     }
 }

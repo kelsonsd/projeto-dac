@@ -116,6 +116,8 @@ public class CadastroLivro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Livro");
 
+        panelCadastroLivro.setBackground(new java.awt.Color(204, 204, 204));
+
         labeIinformacoesLivro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labeIinformacoesLivro.setText("Informações do Livro");
 
@@ -133,12 +135,14 @@ public class CadastroLivro extends javax.swing.JFrame {
 
         labelAutor.setText("Autor");
 
+        comboAutor.setBackground(new java.awt.Color(231, 228, 231));
         comboAutor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 comboAutorMouseClicked(evt);
             }
         });
 
+        btAdicionarAutor.setBackground(new java.awt.Color(231, 228, 231));
         btAdicionarAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Bullet-Add.png"))); // NOI18N
         btAdicionarAutor.setText("Adicionar");
         btAdicionarAutor.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +151,7 @@ public class CadastroLivro extends javax.swing.JFrame {
             }
         });
 
+        btRemoverAutor.setBackground(new java.awt.Color(231, 228, 231));
         btRemoverAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Bullet-Delete.png"))); // NOI18N
         btRemoverAutor.setText("Remover");
         btRemoverAutor.addActionListener(new java.awt.event.ActionListener() {
@@ -155,6 +160,7 @@ public class CadastroLivro extends javax.swing.JFrame {
             }
         });
 
+        btNovoAutor.setBackground(new java.awt.Color(231, 228, 231));
         btNovoAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Bullet-Add.png"))); // NOI18N
         btNovoAutor.setText("Novo Autor");
         btNovoAutor.addActionListener(new java.awt.event.ActionListener() {
@@ -163,6 +169,7 @@ public class CadastroLivro extends javax.swing.JFrame {
             }
         });
 
+        btSalvar.setBackground(new java.awt.Color(231, 228, 231));
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Disk.png"))); // NOI18N
         btSalvar.setText("Salvar");
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -171,6 +178,7 @@ public class CadastroLivro extends javax.swing.JFrame {
             }
         });
 
+        btCancelar.setBackground(new java.awt.Color(231, 228, 231));
         btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btCancelar.setText("Cancelar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -179,6 +187,7 @@ public class CadastroLivro extends javax.swing.JFrame {
             }
         });
 
+        btNovaEdicao.setBackground(new java.awt.Color(231, 228, 231));
         btNovaEdicao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Bullet-Add.png"))); // NOI18N
         btNovaEdicao.setText("Nova Edição");
         btNovaEdicao.addActionListener(new java.awt.event.ActionListener() {
@@ -189,6 +198,7 @@ public class CadastroLivro extends javax.swing.JFrame {
 
         labelEdicao.setText("Edição");
 
+        comboTipo.setBackground(new java.awt.Color(231, 228, 231));
         comboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ficção", "Técnico" }));
         comboTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,6 +210,7 @@ public class CadastroLivro extends javax.swing.JFrame {
 
         scrollPaneEdicao.setViewportView(listEdicoes);
 
+        btRemoverEdicao.setBackground(new java.awt.Color(231, 228, 231));
         btRemoverEdicao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Bullet-Delete.png"))); // NOI18N
         btRemoverEdicao.setText("Remover");
         btRemoverEdicao.addActionListener(new java.awt.event.ActionListener() {
@@ -217,7 +228,7 @@ public class CadastroLivro extends javax.swing.JFrame {
                 .addComponent(btSalvar)
                 .addGap(18, 18, 18)
                 .addComponent(btCancelar)
-                .addGap(77, 77, 77))
+                .addGap(89, 89, 89))
             .addGroup(panelCadastroLivroLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

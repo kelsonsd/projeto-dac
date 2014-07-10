@@ -128,6 +128,8 @@ public class AtualizarLivro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Atualizar Livro");
 
+        panelCadastroLivro.setBackground(new java.awt.Color(204, 204, 204));
+
         labeIinformacoesLivro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labeIinformacoesLivro.setText("Informações do Livro");
 

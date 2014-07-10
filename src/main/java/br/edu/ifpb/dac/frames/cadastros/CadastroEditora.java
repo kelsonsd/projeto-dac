@@ -38,6 +38,8 @@ public class CadastroEditora extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Editora");
 
+        panelCadastroEditora.setBackground(new java.awt.Color(204, 204, 204));
+
         labelInformacoesEditora.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelInformacoesEditora.setText("Informações da Editora");
 
@@ -51,6 +53,7 @@ public class CadastroEditora extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        btSalvar.setBackground(new java.awt.Color(231, 228, 231));
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Disk.png"))); // NOI18N
         btSalvar.setText("Salvar");
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -59,6 +62,7 @@ public class CadastroEditora extends javax.swing.JFrame {
             }
         });
 
+        btCancelar.setBackground(new java.awt.Color(231, 228, 231));
         btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btCancelar.setText("Cancelar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -74,24 +78,21 @@ public class CadastroEditora extends javax.swing.JFrame {
             .addGroup(panelCadastroEditoraLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelCadastroEditoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelInformacoesEditora)
                     .addGroup(panelCadastroEditoraLayout.createSequentialGroup()
                         .addComponent(labelNome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textNome)
+                        .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelTelefone)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8))
+                        .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelCadastroEditoraLayout.createSequentialGroup()
-                        .addComponent(labelInformacoesEditora)
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroEditoraLayout.createSequentialGroup()
-                .addContainerGap(96, Short.MAX_VALUE)
-                .addComponent(btSalvar)
-                .addGap(18, 18, 18)
-                .addComponent(btCancelar)
-                .addGap(71, 71, 71))
+                        .addGap(80, 80, 80)
+                        .addComponent(btSalvar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btCancelar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelCadastroEditoraLayout.setVerticalGroup(
             panelCadastroEditoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,7 +105,7 @@ public class CadastroEditora extends javax.swing.JFrame {
                     .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelTelefone)
                     .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(panelCadastroEditoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btSalvar)
                     .addComponent(btCancelar))
@@ -115,9 +116,7 @@ public class CadastroEditora extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelCadastroEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelCadastroEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

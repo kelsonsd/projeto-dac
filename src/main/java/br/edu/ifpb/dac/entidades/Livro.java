@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,11 +25,13 @@ public class Livro implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String titulo;
-    private String idioma;
-    private int anoPublicacao;    
     
-    @ManyToMany
+    @Column(unique = true)
+    private String titulo;    
+    private String idioma;    
+    private int anoPublicacao;
+    
+    @ManyToMany    
     private List<Autor> listaAutores;
     
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})    
