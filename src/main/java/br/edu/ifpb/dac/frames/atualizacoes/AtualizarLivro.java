@@ -172,6 +172,7 @@ public class AtualizarLivro extends javax.swing.JFrame {
             }
         });
 
+        btAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Accept.png"))); // NOI18N
         btAtualizar.setText("Atualizar");
         btAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,6 +180,7 @@ public class AtualizarLivro extends javax.swing.JFrame {
             }
         });
 
+        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btCancelar.setText("Cancelar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,7 +226,7 @@ public class AtualizarLivro extends javax.swing.JFrame {
                         .addComponent(btAtualizar)
                         .addGap(18, 18, 18)
                         .addComponent(btCancelar)
-                        .addGap(104, 104, 104))
+                        .addGap(63, 63, 63))
                     .addGroup(panelCadastroLivroLayout.createSequentialGroup()
                         .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelCadastroLivroLayout.createSequentialGroup()
@@ -271,7 +273,7 @@ public class AtualizarLivro extends javax.swing.JFrame {
                                         .addComponent(btAdicionarAutor)
                                         .addComponent(btRemoverAutor)))
                                 .addComponent(btRemoverEdicao)))
-                        .addContainerGap(37, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panelCadastroLivroLayout.setVerticalGroup(
             panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,11 +318,11 @@ public class AtualizarLivro extends javax.swing.JFrame {
                     .addComponent(btRemoverEdicao))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btNovaEdicao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
                 .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btAtualizar)
                     .addComponent(btCancelar))
-                .addGap(15, 15, 15))
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

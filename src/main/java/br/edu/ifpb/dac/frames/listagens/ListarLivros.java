@@ -61,6 +61,7 @@ public class ListarLivros extends javax.swing.JFrame {
 
         scrollPaneLivros.setViewportView(listLivros);
 
+        btRemoverLivro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Book-Delete.png"))); // NOI18N
         btRemoverLivro.setText("Remover");
         btRemoverLivro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +69,7 @@ public class ListarLivros extends javax.swing.JFrame {
             }
         });
 
+        btEditarLivro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Book-Edit.png"))); // NOI18N
         btEditarLivro.setText("Editar");
         btEditarLivro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,6 +77,7 @@ public class ListarLivros extends javax.swing.JFrame {
             }
         });
 
+        btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btFechar.setText("Fechar");
         btFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +96,7 @@ public class ListarLivros extends javax.swing.JFrame {
                         .addComponent(labelLivrosCadastrados)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panelListarLivroLayout.createSequentialGroup()
-                        .addComponent(scrollPaneLivros, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+                        .addComponent(scrollPaneLivros)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btEditarLivro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -115,7 +118,7 @@ public class ListarLivros extends javax.swing.JFrame {
                         .addComponent(btRemoverLivro)
                         .addComponent(btEditarLivro))
                     .addComponent(scrollPaneLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
+                .addGap(35, 35, 35)
                 .addComponent(btFechar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

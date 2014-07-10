@@ -47,7 +47,7 @@
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="scrollPaneLivros" pref="324" max="32767" attributes="0"/>
+                          <Component id="scrollPaneLivros" max="32767" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btEditarLivro" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -76,7 +76,7 @@
                       </Group>
                       <Component id="scrollPaneLivros" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="btFechar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -110,6 +110,9 @@
         </Container>
         <Component class="javax.swing.JButton" name="btRemoverLivro">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagens/Book-Delete.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Remover"/>
           </Properties>
           <Events>
@@ -118,6 +121,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btEditarLivro">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagens/Book-Edit.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Editar"/>
           </Properties>
           <Events>
@@ -126,6 +132,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btFechar">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagens/Cancel.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Fechar"/>
           </Properties>
           <Events>

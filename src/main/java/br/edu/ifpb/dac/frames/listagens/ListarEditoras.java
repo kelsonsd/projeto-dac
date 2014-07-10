@@ -61,6 +61,7 @@ public class ListarEditoras extends javax.swing.JFrame {
 
         scrollPaneEditora.setViewportView(listEditoras);
 
+        btRemoverEditora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Report-Delete.png"))); // NOI18N
         btRemoverEditora.setText("Remover");
         btRemoverEditora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +69,7 @@ public class ListarEditoras extends javax.swing.JFrame {
             }
         });
 
+        btEditarEditora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Report-Edit.png"))); // NOI18N
         btEditarEditora.setText("Editar");
         btEditarEditora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,6 +77,7 @@ public class ListarEditoras extends javax.swing.JFrame {
             }
         });
 
+        btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btFechar.setText("Fechar");
         btFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +96,7 @@ public class ListarEditoras extends javax.swing.JFrame {
                         .addComponent(labelAutoresCadastrados)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panelListarEditorasLayout.createSequentialGroup()
-                        .addComponent(scrollPaneEditora, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+                        .addComponent(scrollPaneEditora)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btEditarEditora)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -102,7 +105,7 @@ public class ListarEditoras extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListarEditorasLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btFechar)
-                .addGap(195, 195, 195))
+                .addGap(186, 186, 186))
         );
         panelListarEditorasLayout.setVerticalGroup(
             panelListarEditorasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,9 +118,9 @@ public class ListarEditoras extends javax.swing.JFrame {
                         .addComponent(btRemoverEditora)
                         .addComponent(btEditarEditora))
                     .addComponent(scrollPaneEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(btFechar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

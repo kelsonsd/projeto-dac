@@ -139,6 +139,7 @@ public class CadastroLivro extends javax.swing.JFrame {
             }
         });
 
+        btAdicionarAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Bullet-Add.png"))); // NOI18N
         btAdicionarAutor.setText("Adicionar");
         btAdicionarAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +147,7 @@ public class CadastroLivro extends javax.swing.JFrame {
             }
         });
 
+        btRemoverAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Bullet-Delete.png"))); // NOI18N
         btRemoverAutor.setText("Remover");
         btRemoverAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,6 +155,7 @@ public class CadastroLivro extends javax.swing.JFrame {
             }
         });
 
+        btNovoAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Bullet-Add.png"))); // NOI18N
         btNovoAutor.setText("Novo Autor");
         btNovoAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,6 +163,7 @@ public class CadastroLivro extends javax.swing.JFrame {
             }
         });
 
+        btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Disk.png"))); // NOI18N
         btSalvar.setText("Salvar");
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,6 +171,7 @@ public class CadastroLivro extends javax.swing.JFrame {
             }
         });
 
+        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btCancelar.setText("Cancelar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,6 +179,7 @@ public class CadastroLivro extends javax.swing.JFrame {
             }
         });
 
+        btNovaEdicao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Bullet-Add.png"))); // NOI18N
         btNovaEdicao.setText("Nova Edição");
         btNovaEdicao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,6 +200,7 @@ public class CadastroLivro extends javax.swing.JFrame {
 
         scrollPaneEdicao.setViewportView(listEdicoes);
 
+        btRemoverEdicao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Bullet-Delete.png"))); // NOI18N
         btRemoverEdicao.setText("Remover");
         btRemoverEdicao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,54 +219,59 @@ public class CadastroLivro extends javax.swing.JFrame {
                         .addComponent(btSalvar)
                         .addGap(18, 18, 18)
                         .addComponent(btCancelar)
-                        .addGap(104, 104, 104))
+                        .addGap(70, 70, 70))
                     .addGroup(panelCadastroLivroLayout.createSequentialGroup()
                         .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelCadastroLivroLayout.createSequentialGroup()
-                                .addComponent(labelTipo)
+                                .addComponent(labelGenero)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(labeIinformacoesLivro)
+                                .addComponent(textGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(labelAreaAtuacao)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textAreaAtuacao)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(labelAnoLivro)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textAnoLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroLivroLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroLivroLayout.createSequentialGroup()
+                                        .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(scrollPaneEdicao, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroLivroLayout.createSequentialGroup()
+                                                .addComponent(labelEdicao)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addComponent(scrollPaneAutor, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroLivroLayout.createSequentialGroup()
+                                                .addComponent(labelAutor)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(comboAutor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btAdicionarAutor)
+                                            .addComponent(btRemoverAutor)))
+                                    .addComponent(btRemoverEdicao, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(panelCadastroLivroLayout.createSequentialGroup()
+                                .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelCadastroLivroLayout.createSequentialGroup()
+                                        .addComponent(labelTipo)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(labeIinformacoesLivro)
+                                    .addComponent(btNovaEdicao)
+                                    .addComponent(btNovoAutor))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(panelCadastroLivroLayout.createSequentialGroup()
                                 .addComponent(labelTitulo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textTitulo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(labelIdioma)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btNovoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btNovaEdicao)
-                            .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroLivroLayout.createSequentialGroup()
-                                    .addComponent(labelGenero)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(textGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(labelAreaAtuacao)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(textAreaAtuacao, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(labelAnoLivro)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(textAnoLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panelCadastroLivroLayout.createSequentialGroup()
-                                    .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(scrollPaneEdicao, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroLivroLayout.createSequentialGroup()
-                                            .addComponent(labelEdicao)
-                                            .addGap(0, 0, Short.MAX_VALUE))
-                                        .addComponent(scrollPaneAutor, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroLivroLayout.createSequentialGroup()
-                                            .addComponent(labelAutor)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(comboAutor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(btAdicionarAutor)
-                                        .addComponent(btRemoverAutor)))
-                                .addComponent(btRemoverEdicao)))
-                        .addContainerGap(11, Short.MAX_VALUE))))
+                                .addComponent(textIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(65, 65, 65))))
         );
         panelCadastroLivroLayout.setVerticalGroup(
             panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,11 +316,11 @@ public class CadastroLivro extends javax.swing.JFrame {
                     .addComponent(btRemoverEdicao))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btNovaEdicao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btSalvar)
                     .addComponent(btCancelar))
-                .addGap(15, 15, 15))
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -37,7 +37,7 @@ public class AtualizarEditora extends javax.swing.JFrame {
         labelTelefone = new javax.swing.JLabel();
         textNome = new javax.swing.JTextField();
         textTelefone = new javax.swing.JFormattedTextField();
-        btSalvar = new javax.swing.JButton();
+        btAtualizar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -56,13 +56,15 @@ public class AtualizarEditora extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        btSalvar.setText("Salvar");
-        btSalvar.addActionListener(new java.awt.event.ActionListener() {
+        btAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Accept.png"))); // NOI18N
+        btAtualizar.setText("Atualizar");
+        btAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSalvarActionPerformed(evt);
+                btAtualizarActionPerformed(evt);
             }
         });
 
+        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btCancelar.setText("Cancelar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,11 +92,11 @@ public class AtualizarEditora extends javax.swing.JFrame {
                         .addComponent(labelInformacoesEditora)
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAtualizarEditoraLayout.createSequentialGroup()
-                .addContainerGap(81, Short.MAX_VALUE)
-                .addComponent(btSalvar)
+                .addContainerGap(65, Short.MAX_VALUE)
+                .addComponent(btAtualizar)
                 .addGap(18, 18, 18)
                 .addComponent(btCancelar)
-                .addGap(71, 71, 71))
+                .addGap(65, 65, 65))
         );
         panelAtualizarEditoraLayout.setVerticalGroup(
             panelAtualizarEditoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,9 +109,9 @@ public class AtualizarEditora extends javax.swing.JFrame {
                     .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelTelefone)
                     .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addGap(35, 35, 35)
                 .addGroup(panelAtualizarEditoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btSalvar)
+                    .addComponent(btAtualizar)
                     .addComponent(btCancelar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -128,7 +130,7 @@ public class AtualizarEditora extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+    private void btAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarActionPerformed
         String nome = textNome.getText().trim();
         String telefone = textTelefone.getText().trim();
 
@@ -148,14 +150,14 @@ public class AtualizarEditora extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Erro!");
             }
         }
-    }//GEN-LAST:event_btSalvarActionPerformed
+    }//GEN-LAST:event_btAtualizarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_btCancelarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAtualizar;
     private javax.swing.JButton btCancelar;
-    private javax.swing.JButton btSalvar;
     private javax.swing.JLabel labelInformacoesEditora;
     private javax.swing.JLabel labelNome;
     private javax.swing.JLabel labelTelefone;

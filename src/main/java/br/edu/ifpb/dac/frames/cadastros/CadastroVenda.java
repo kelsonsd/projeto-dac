@@ -102,6 +102,7 @@ public class CadastroVenda extends javax.swing.JFrame {
             }
         });
 
+        btAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cart-Add.png"))); // NOI18N
         btAdicionar.setText("Adicionar");
         btAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +110,7 @@ public class CadastroVenda extends javax.swing.JFrame {
             }
         });
 
+        btRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cart-Delete.png"))); // NOI18N
         btRemover.setText("Remover");
         btRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,6 +124,7 @@ public class CadastroVenda extends javax.swing.JFrame {
 
         textValorTotal.setEditable(false);
 
+        btFinalizarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Accept.png"))); // NOI18N
         btFinalizarVenda.setText("Finalizar Venda");
         btFinalizarVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,6 +132,7 @@ public class CadastroVenda extends javax.swing.JFrame {
             }
         });
 
+        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btCancelar.setText("Cancelar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,26 +157,28 @@ public class CadastroVenda extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroVendaLayout.createSequentialGroup()
                                         .addComponent(labelData)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(textData, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(textData, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 219, Short.MAX_VALUE))
+                            .addComponent(scrollPaneEdicoes)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroVendaLayout.createSequentialGroup()
+                                .addGroup(panelCadastroVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(panelCadastroVendaLayout.createSequentialGroup()
+                                        .addComponent(labelMatricula)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(textMatricula))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroVendaLayout.createSequentialGroup()
                                         .addComponent(labelEdicao)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(comboEdicoes, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btAdicionar))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroVendaLayout.createSequentialGroup()
-                                        .addComponent(labelMatricula)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(textMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(scrollPaneEdicoes))
+                                        .addComponent(comboEdicoes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btAdicionar)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroVendaLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btFinalizarVenda)
                         .addGap(18, 18, 18)
                         .addComponent(btCancelar)
-                        .addGap(60, 60, 60))
+                        .addGap(49, 49, 49))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroVendaLayout.createSequentialGroup()
                         .addComponent(labelValorTotal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -207,11 +213,11 @@ public class CadastroVenda extends javax.swing.JFrame {
                         .addComponent(labelValorTotal)
                         .addComponent(textValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btRemover))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(panelCadastroVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btFinalizarVenda)
                     .addComponent(btCancelar))
-                .addContainerGap())
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -242,19 +248,9 @@ public class CadastroVenda extends javax.swing.JFrame {
     private void btAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarActionPerformed
         if(comboEdicoes.getSelectedIndex() != -1) {
             Edicao edicaoSelecionada = (Edicao) comboEdicoes.getSelectedItem();
-            if(listModelEdicoes.isEmpty()) {
-                listModelEdicoes.addElement(edicaoSelecionada);
-                
-                textValorTotal.setText(String.valueOf(edicaoSelecionada.getPreco()));
-            }
-            else if(!listModelEdicoes.contains(edicaoSelecionada)) {
-                listModelEdicoes.addElement(edicaoSelecionada);
-                                
-                textValorTotal.setText(String.valueOf(edicaoSelecionada.getPreco() + Double.parseDouble(textValorTotal.getText())));                
-            }
-            else {
-                JOptionPane.showMessageDialog(this, "Esta edição já está adicionado na lista!", "Atenção!", JOptionPane.WARNING_MESSAGE);
-            }
+            
+            listModelEdicoes.addElement(edicaoSelecionada);
+            textValorTotal.setText(String.valueOf(edicaoSelecionada.getPreco() + Double.parseDouble(textValorTotal.getText())));            
         }
     }//GEN-LAST:event_btAdicionarActionPerformed
 
@@ -310,14 +306,13 @@ public class CadastroVenda extends javax.swing.JFrame {
                     venda.setTotal(preco);
                     venda.setListaEdicoes(getEdicoesSelecionadas());                
 
+                    for (Edicao edicao : venda.getListaEdicoes()) {
+                        edicao.setQtdeEstoque(edicao.getQtdeEstoque() - 1);                        
+                    }
+                    
                     if(dao.salvar(venda)) {
                         JOptionPane.showMessageDialog(this, "Venda efetuada com sucesso!");
-                        limparCampos();
-
-                        for (Edicao edicao : getEdicoesSelecionadas()) {
-                            edicao.setQtdeEstoque(edicao.getQtdeEstoque() - 1);
-                            dao.atualizar(edicao);
-                        }
+                        limparCampos();                        
                     }
                     else {
                         JOptionPane.showMessageDialog(this, "Erro!");

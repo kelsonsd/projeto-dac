@@ -59,6 +59,7 @@ public class ListarVendas extends javax.swing.JFrame {
 
         scrollPaneVendas.setViewportView(listVendas);
 
+        btRemoverVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cart-Delete.png"))); // NOI18N
         btRemoverVenda.setText("Remover");
         btRemoverVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +67,7 @@ public class ListarVendas extends javax.swing.JFrame {
             }
         });
 
+        btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btFechar.setText("Fechar");
         btFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,14 +86,14 @@ public class ListarVendas extends javax.swing.JFrame {
                         .addComponent(labelVendasEfetuadas)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panelListarVendasLayout.createSequentialGroup()
-                        .addComponent(scrollPaneVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
+                        .addComponent(scrollPaneVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btRemoverVenda)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListarVendasLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btFechar)
-                .addGap(195, 195, 195))
+                .addGap(171, 171, 171))
         );
         panelListarVendasLayout.setVerticalGroup(
             panelListarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,7 +104,7 @@ public class ListarVendas extends javax.swing.JFrame {
                 .addGroup(panelListarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btRemoverVenda)
                     .addComponent(scrollPaneVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
+                .addGap(35, 35, 35)
                 .addComponent(btFechar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

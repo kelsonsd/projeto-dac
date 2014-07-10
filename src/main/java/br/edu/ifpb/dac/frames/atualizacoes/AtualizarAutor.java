@@ -66,6 +66,7 @@ public class AtualizarAutor extends javax.swing.JFrame {
         textAreaBiografia.setRows(5);
         scrollPanelBiografia.setViewportView(textAreaBiografia);
 
+        btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Accept.png"))); // NOI18N
         btSalvar.setText("Atualizar");
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,6 +74,7 @@ public class AtualizarAutor extends javax.swing.JFrame {
             }
         });
 
+        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btCancelar.setText("Cancelar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,7 +109,7 @@ public class AtualizarAutor extends javax.swing.JFrame {
                 .addComponent(btSalvar)
                 .addGap(18, 18, 18)
                 .addComponent(btCancelar)
-                .addGap(132, 132, 132))
+                .addGap(96, 96, 96))
         );
         panelCadastroPessoaLayout.setVerticalGroup(
             panelCadastroPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,7 +126,7 @@ public class AtualizarAutor extends javax.swing.JFrame {
                 .addComponent(labelBiografia)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrollPanelBiografia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(panelCadastroPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btSalvar)
                     .addComponent(btCancelar))

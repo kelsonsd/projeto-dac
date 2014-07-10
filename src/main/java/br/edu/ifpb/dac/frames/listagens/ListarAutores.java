@@ -61,6 +61,7 @@ public class ListarAutores extends javax.swing.JFrame {
 
         scrollPaneAutor.setViewportView(listAutores);
 
+        btRemoverAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/User-Delete.png"))); // NOI18N
         btRemoverAutor.setText("Remover");
         btRemoverAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +69,7 @@ public class ListarAutores extends javax.swing.JFrame {
             }
         });
 
+        btEditarAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/User-Edit.png"))); // NOI18N
         btEditarAutor.setText("Editar");
         btEditarAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,6 +77,7 @@ public class ListarAutores extends javax.swing.JFrame {
             }
         });
 
+        btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btFechar.setText("Fechar");
         btFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +96,7 @@ public class ListarAutores extends javax.swing.JFrame {
                         .addComponent(labelAutoresCadastrados)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panelListarAutoresLayout.createSequentialGroup()
-                        .addComponent(scrollPaneAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+                        .addComponent(scrollPaneAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btEditarAutor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -102,7 +105,7 @@ public class ListarAutores extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListarAutoresLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btFechar)
-                .addGap(195, 195, 195))
+                .addGap(204, 204, 204))
         );
         panelListarAutoresLayout.setVerticalGroup(
             panelListarAutoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,9 +118,9 @@ public class ListarAutores extends javax.swing.JFrame {
                         .addComponent(btRemoverAutor)
                         .addComponent(btEditarAutor))
                     .addComponent(scrollPaneAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(btFechar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

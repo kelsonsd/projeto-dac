@@ -39,6 +39,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         panel = new javax.swing.JPanel();
         data = new javax.swing.JLabel();
         labelCentroMenuPrincipal = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menuCadastrar = new javax.swing.JMenu();
         cadastroLivro = new javax.swing.JMenuItem();
@@ -59,37 +60,50 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         panel.setToolTipText("");
 
+        data.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Date.png"))); // NOI18N
         data.setText("Data:");
 
         labelCentroMenuPrincipal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelCentroMenuPrincipal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelCentroMenuPrincipal.setText("LIVRARIA LER BEM");
 
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Book-Picture.png"))); // NOI18N
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
-                .addGap(191, 191, 191)
-                .addComponent(labelCentroMenuPrincipal)
-                .addContainerGap(191, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(data)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(data))
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(labelCentroMenuPrincipal)
+                        .addGap(0, 182, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(panelLayout.createSequentialGroup()
+                .addGap(233, 233, 233)
+                .addComponent(logo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                .addGap(115, 115, 115)
+                .addContainerGap(83, Short.MAX_VALUE)
+                .addComponent(logo)
+                .addGap(18, 18, 18)
                 .addComponent(labelCentroMenuPrincipal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
+                .addGap(125, 125, 125)
                 .addComponent(data)
                 .addContainerGap())
         );
 
+        menuCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Add.png"))); // NOI18N
         menuCadastrar.setText("Cadastrar");
 
+        cadastroLivro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Book-Add.png"))); // NOI18N
         cadastroLivro.setText("Livro");
         cadastroLivro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,6 +112,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         menuCadastrar.add(cadastroLivro);
 
+        cadastroPessoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Group-Add.png"))); // NOI18N
         cadastroPessoa.setText("Autor/Funcionário");
         cadastroPessoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,6 +121,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         menuCadastrar.add(cadastroPessoa);
 
+        cadastroEditora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Education.png"))); // NOI18N
         cadastroEditora.setText("Editora");
         cadastroEditora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,8 +132,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         menuBar.add(menuCadastrar);
 
+        menuListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Column-One.png"))); // NOI18N
         menuListar.setText("Listar");
 
+        listaLivros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Books.png"))); // NOI18N
         listaLivros.setText("Livros");
         listaLivros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +144,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         menuListar.add(listaLivros);
 
+        listaAutores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Group.png"))); // NOI18N
         listaAutores.setText("Autores");
         listaAutores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,6 +153,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         menuListar.add(listaAutores);
 
+        listaEditoras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Education.png"))); // NOI18N
         listaEditoras.setText("Editoras");
         listaEditoras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,6 +162,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         menuListar.add(listaEditoras);
 
+        listaVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cart.png"))); // NOI18N
         listaVendas.setText("Vendas");
         listaVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,6 +171,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         menuListar.add(listaVendas);
 
+        listaFuncionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Group.png"))); // NOI18N
         listaFuncionarios.setText("Funcionários");
         listaFuncionarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,8 +182,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         menuBar.add(menuListar);
 
+        menuVender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cart.png"))); // NOI18N
         menuVender.setText("Vender");
 
+        efetuaVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Money-Dollar.png"))); // NOI18N
         efetuaVenda.setText("Efetuar Venda");
         efetuaVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,6 +196,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         menuBar.add(menuVender);
 
+        menuSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Door-Out.png"))); // NOI18N
         menuSair.setText("Sair");
         menuSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -195,10 +220,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cadastroLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroLivroActionPerformed
-        new CadastroLivro().setVisible(true);     
-    }//GEN-LAST:event_cadastroLivroActionPerformed
 
     private void cadastroPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroPessoaActionPerformed
         new CadastroPessoa().setVisible(true);
@@ -235,6 +256,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void listaVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaVendasActionPerformed
         new ListarVendas().setVisible(true);
     }//GEN-LAST:event_listaVendasActionPerformed
+
+    private void cadastroLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroLivroActionPerformed
+        new CadastroLivro().setVisible(true);
+    }//GEN-LAST:event_cadastroLivroActionPerformed
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem cadastroEditora;
@@ -248,6 +273,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem listaFuncionarios;
     private javax.swing.JMenuItem listaLivros;
     private javax.swing.JMenuItem listaVendas;
+    private javax.swing.JLabel logo;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuCadastrar;
     private javax.swing.JMenu menuListar;

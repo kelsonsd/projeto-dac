@@ -59,6 +59,7 @@ public class ListarFuncionarios extends javax.swing.JFrame {
         labelFuncionariosCadastrados.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelFuncionariosCadastrados.setText("Funcionários cadastrados:");
 
+        btRemoverFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/User-Delete.png"))); // NOI18N
         btRemoverFuncionario.setText("Remover");
         btRemoverFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +67,7 @@ public class ListarFuncionarios extends javax.swing.JFrame {
             }
         });
 
+        btEditarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/User-Edit.png"))); // NOI18N
         btEditarFuncionario.setText("Editar");
         btEditarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,6 +75,7 @@ public class ListarFuncionarios extends javax.swing.JFrame {
             }
         });
 
+        btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btFechar.setText("Fechar");
         btFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,7 +103,7 @@ public class ListarFuncionarios extends javax.swing.JFrame {
                         .addComponent(btRemoverFuncionario)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListarFuncionariosLayout.createSequentialGroup()
-                .addContainerGap(240, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btFechar)
                 .addGap(195, 195, 195))
         );
@@ -115,7 +118,7 @@ public class ListarFuncionarios extends javax.swing.JFrame {
                         .addComponent(btRemoverFuncionario)
                         .addComponent(btEditarFuncionario))
                     .addComponent(scrollPaneFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
+                .addGap(35, 35, 35)
                 .addComponent(btFechar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
