@@ -1,9 +1,11 @@
 package br.edu.ifpb.dac.entidades;
 
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -15,6 +17,9 @@ public class Funcionario extends Pessoa {
     @Column(unique = true)
     private String matricula;    
     private String funcao;    
+    
+    @OneToOne(cascade = CascadeType.ALL)    
+    private Endereco endereco;
         
     @OneToMany(mappedBy = "funcionario")
     private List<Venda> listVendas;
@@ -22,10 +27,11 @@ public class Funcionario extends Pessoa {
     public Funcionario() {
     }
     
-    public Funcionario(String matricula, String funcao, String nome) {
+    public Funcionario(String matricula, String funcao, String nome, Endereco endereco) {
         super(nome);
         this.matricula = matricula;
         this.funcao = funcao;
+        this.endereco = endereco;
     }
 
     public String getMatricula() {
@@ -52,8 +58,17 @@ public class Funcionario extends Pessoa {
         this.listVendas = listVendas;
     }
 
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }    
+
     @Override
     public String toString() {
-        return "Nome: " + getNome() + " - Matrícula: " + matricula + " - Função: " + funcao;
+        return "Nome: " + getNome() + " Matrícula: " + matricula + " Função: " + funcao
+            + " Endereço - " + endereco;
     }    
 }

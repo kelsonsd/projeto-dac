@@ -31,8 +31,7 @@ public class Edicao implements Serializable {
     private int qtdeEstoque;
     
     @Id    
-    @OneToOne()
-    
+    @OneToOne()    
     private Editora editora;    
     
     @ManyToMany(mappedBy = "listaEdicoes")

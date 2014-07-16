@@ -1,10 +1,16 @@
 package br.edu.ifpb.dac.frames.cadastros;
 
 import br.edu.ifpb.dac.entidades.Autor;
+import br.edu.ifpb.dac.entidades.Endereco;
 import br.edu.ifpb.dac.entidades.Funcionario;
 import br.edu.ifpb.dac.persistencia.DAO;
 import br.edu.ifpb.dac.persistencia.DaoJPA;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,46 +28,92 @@ public class CadastroPessoa extends javax.swing.JFrame {
     }
     
     public void limparCamposAutor() {
-        textNome.setText("");
+        textNomeAutor.setText("");
         textDataNascimento.setText("");
         textAreaBiografia.setText("");                
     }
     
     public void limparCamposFuncionario() {
-        textNome.setText("");
+        textNomeFuncionario.setText("");
         textMatricula.setText("");
-        textFuncao.setText("");                
+        textFuncao.setText("");    
+        textRua.setText("");
+        textNumero.setText("");
+        textBairro.setText("");
+        textCidade.setText("");
+        textEstado.setText("");
     }
-
+    
+    private void setEnableCamposFuncionario(boolean b) {
+        textNomeFuncionario.setEnabled(b);
+        textMatricula.setEnabled(b);
+        textFuncao.setEnabled(b);
+        textRua.setEnabled(b);
+        textNumero.setEnabled(b);
+        textBairro.setEnabled(b);
+        textCidade.setEnabled(b);
+        textEstado.setEnabled(b);
+    }
+    
+    private void setEnableCamposAutor(boolean b) {
+        textNomeAutor.setEnabled(b);
+        textDataNascimento.setEnabled(b);           
+        textAreaBiografia.setEnabled(b);  
+    }
+    
+    private Date setFormatoData(String data) {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            return new Date(format.parse(data).getTime());
+        } catch (ParseException ex) {
+            return null;
+        }        
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         panelCadastroPessoa = new javax.swing.JPanel();
-        labelInformacoesAutorFuncionario = new javax.swing.JLabel();
+        labelInformacoesFuncionario = new javax.swing.JLabel();
         labelTipo = new javax.swing.JLabel();
         labelMatricula = new javax.swing.JLabel();
         labelFuncao = new javax.swing.JLabel();
-        labelNome = new javax.swing.JLabel();
+        labelNomeAutor = new javax.swing.JLabel();
         labelDataNascimento = new javax.swing.JLabel();
         labelBiografia = new javax.swing.JLabel();
         comboTipo = new javax.swing.JComboBox();
         textMatricula = new javax.swing.JTextField();
         textFuncao = new javax.swing.JTextField();
-        textNome = new javax.swing.JTextField();
+        textNomeAutor = new javax.swing.JTextField();
         textDataNascimento = new javax.swing.JFormattedTextField();
         scrollPanelBiografia = new javax.swing.JScrollPane();
         textAreaBiografia = new javax.swing.JTextArea();
         btSalvar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
+        separador2 = new javax.swing.JSeparator();
+        labelRua = new javax.swing.JLabel();
+        labelBairro = new javax.swing.JLabel();
+        labelCidade = new javax.swing.JLabel();
+        labelEstado = new javax.swing.JLabel();
+        textRua = new javax.swing.JTextField();
+        labelNumero = new javax.swing.JLabel();
+        textNumero = new javax.swing.JTextField();
+        textBairro = new javax.swing.JTextField();
+        textCidade = new javax.swing.JTextField();
+        textEstado = new javax.swing.JTextField();
+        labelInformacoesAutor = new javax.swing.JLabel();
+        labelNomeFuncionario = new javax.swing.JLabel();
+        textNomeFuncionario = new javax.swing.JTextField();
+        separador1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Autor/Funcionário");
 
         panelCadastroPessoa.setBackground(new java.awt.Color(204, 204, 204));
 
-        labelInformacoesAutorFuncionario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        labelInformacoesAutorFuncionario.setText("Informações do Autor/Funcionário");
+        labelInformacoesFuncionario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        labelInformacoesFuncionario.setText("Informações do Funcionário");
 
         labelTipo.setText("Tipo");
 
@@ -69,7 +121,7 @@ public class CadastroPessoa extends javax.swing.JFrame {
 
         labelFuncao.setText("Função");
 
-        labelNome.setText("Nome");
+        labelNomeAutor.setText("Nome");
 
         labelDataNascimento.setText("Data de Nascimento");
 
@@ -111,57 +163,115 @@ public class CadastroPessoa extends javax.swing.JFrame {
             }
         });
 
+        labelRua.setText("Rua");
+
+        labelBairro.setText("Bairro");
+
+        labelCidade.setText("Cidade");
+
+        labelEstado.setText("Estado");
+
+        labelNumero.setText("Nº");
+
+        labelInformacoesAutor.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        labelInformacoesAutor.setText("Informações do Autor");
+
+        labelNomeFuncionario.setText("Nome");
+
         javax.swing.GroupLayout panelCadastroPessoaLayout = new javax.swing.GroupLayout(panelCadastroPessoa);
         panelCadastroPessoa.setLayout(panelCadastroPessoaLayout);
         panelCadastroPessoaLayout.setHorizontalGroup(
             panelCadastroPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(separador2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(panelCadastroPessoaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelCadastroPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollPanelBiografia)
+                    .addGroup(panelCadastroPessoaLayout.createSequentialGroup()
+                        .addGroup(panelCadastroPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scrollPanelBiografia, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
+                            .addGroup(panelCadastroPessoaLayout.createSequentialGroup()
+                                .addGroup(panelCadastroPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelCadastroPessoaLayout.createSequentialGroup()
+                                        .addComponent(labelNomeAutor)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(textNomeAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(labelDataNascimento)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(textDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panelCadastroPessoaLayout.createSequentialGroup()
+                                        .addComponent(labelTipo)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(labelBiografia))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroPessoaLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btSalvar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btCancelar)
+                        .addGap(104, 104, 104))
                     .addGroup(panelCadastroPessoaLayout.createSequentialGroup()
                         .addGroup(panelCadastroPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelCadastroPessoaLayout.createSequentialGroup()
-                                .addComponent(labelNome)
+                                .addComponent(labelBairro)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(labelDataNascimento)
+                                .addComponent(labelCidade)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(labelInformacoesAutorFuncionario)
+                                .addComponent(textCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelEstado)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textEstado))
                             .addGroup(panelCadastroPessoaLayout.createSequentialGroup()
-                                .addComponent(labelTipo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(labelBiografia)
-                            .addGroup(panelCadastroPessoaLayout.createSequentialGroup()
-                                .addComponent(labelMatricula)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(labelFuncao)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroPessoaLayout.createSequentialGroup()
-                .addContainerGap(110, Short.MAX_VALUE)
-                .addComponent(btSalvar)
-                .addGap(18, 18, 18)
-                .addComponent(btCancelar)
-                .addGap(101, 101, 101))
+                                .addGroup(panelCadastroPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelInformacoesAutor)
+                                    .addGroup(panelCadastroPessoaLayout.createSequentialGroup()
+                                        .addComponent(labelNomeFuncionario)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(textNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panelCadastroPessoaLayout.createSequentialGroup()
+                                        .addGroup(panelCadastroPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroPessoaLayout.createSequentialGroup()
+                                                .addComponent(labelRua)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(textRua))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroPessoaLayout.createSequentialGroup()
+                                                .addComponent(labelMatricula)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(textMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(labelFuncao)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(textFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(labelNumero)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(textNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(labelInformacoesFuncionario))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(10, 10, 10))))
+            .addComponent(separador1)
         );
         panelCadastroPessoaLayout.setVerticalGroup(
             panelCadastroPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCadastroPessoaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelInformacoesAutorFuncionario)
-                .addGap(18, 18, 18)
                 .addGroup(panelCadastroPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTipo)
                     .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(separador1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(labelInformacoesFuncionario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelCadastroPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNomeFuncionario)
+                    .addComponent(textNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
                 .addGroup(panelCadastroPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelMatricula)
                     .addComponent(textMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,8 +279,26 @@ public class CadastroPessoa extends javax.swing.JFrame {
                     .addComponent(textFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelCadastroPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNome)
-                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelRua)
+                    .addComponent(textRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNumero)
+                    .addComponent(textNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelCadastroPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelBairro)
+                    .addComponent(textBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCidade)
+                    .addComponent(textCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelEstado)
+                    .addComponent(textEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(separador2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelInformacoesAutor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelCadastroPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNomeAutor)
+                    .addComponent(textNomeAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelDataNascimento)
                     .addComponent(textDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -200,18 +328,20 @@ public class CadastroPessoa extends javax.swing.JFrame {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         DAO dao = new DaoJPA("projeto-dac"); 
-        String nome = textNome.getText().trim();
+        String nomeAutor = textNomeAutor.getText().trim();
+        String nomeFuncionario = textNomeFuncionario.getText().trim();
         
-        if(!nome.isEmpty()) {
-            if(comboTipo.getSelectedIndex() == 0) {            
+        if(!nomeAutor.isEmpty() || !nomeFuncionario.isEmpty()) {
+            if(comboTipo.getSelectedIndex() == 0) {
+                Date data = setFormatoData(textDataNascimento.getText().trim());
                 String dataNascimento = textDataNascimento.getText().trim();
                 String biografia = textAreaBiografia.getText().trim();
 
-                if(dataNascimento.isEmpty() || biografia.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Informe todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
+                if(dataNascimento.isEmpty() || data == null || biografia.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Informe todos os campos ou verifique se a data está correta!", "Atenção", JOptionPane.WARNING_MESSAGE);
                 }
-                else {
-                    Autor autor = new Autor(dataNascimento, biografia, nome);               
+                else {                                 
+                    Autor autor = new Autor(data, biografia, nomeAutor);               
 
                     if(dao.salvar(autor)) {
                         JOptionPane.showMessageDialog(this, "Autor cadastrado com sucesso");
@@ -224,9 +354,15 @@ public class CadastroPessoa extends javax.swing.JFrame {
             }
             else {            
                 String matricula = textMatricula.getText().trim();
-                String funcao = textFuncao.getText().trim();            
+                String funcao = textFuncao.getText().trim();
+                String rua = textRua.getText().trim();
+                String numero = textNumero.getText().trim();
+                String bairro = textBairro.getText().trim();
+                String cidade = textCidade.getText().trim();
+                String estado = textEstado.getText().trim();
 
-                if(matricula.isEmpty() || funcao.isEmpty()) {
+                if(matricula.isEmpty() || funcao.isEmpty() || rua.isEmpty() || numero.isEmpty() ||
+                        bairro.isEmpty() || cidade.isEmpty() || estado.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Informe todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
                 }
                 else {                    
@@ -239,8 +375,8 @@ public class CadastroPessoa extends javax.swing.JFrame {
                             break;
                         }
                     }
-                    
-                    Funcionario funcionario = new Funcionario(matricula, funcao, nome);                
+                    Endereco endereco = new Endereco(rua, numero, bairro, cidade, estado);                    
+                    Funcionario funcionario = new Funcionario(matricula, funcao, nomeFuncionario, endereco);
                     
                     if(!exist) {
                         if(dao.salvar(funcionario)) {
@@ -264,25 +400,15 @@ public class CadastroPessoa extends javax.swing.JFrame {
 
     private void comboTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoActionPerformed
         if(comboTipo.getSelectedIndex() == 0) {
-           textMatricula.setText("");
-           textFuncao.setText("");
-           
-           textMatricula.setEnabled(false);
-           textFuncao.setEnabled(false);           
-           
-           textDataNascimento.setEnabled(true);
-           textAreaBiografia.setEnabled(true);
-       }
-       else {
-           textDataNascimento.setText("");
-           textAreaBiografia.setText("");
-           
-           textDataNascimento.setEnabled(false);           
-           textAreaBiografia.setEnabled(false);
-           
-           textMatricula.setEnabled(true);
-           textFuncao.setEnabled(true);
-       }
+            limparCamposFuncionario();           
+            setEnableCamposFuncionario(false);           
+            setEnableCamposAutor(true);
+        }
+        else {
+            limparCamposAutor();
+            setEnableCamposAutor(false);           
+            setEnableCamposFuncionario(true);
+        }
     }//GEN-LAST:event_comboTipoActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
@@ -293,19 +419,34 @@ public class CadastroPessoa extends javax.swing.JFrame {
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btSalvar;
     private javax.swing.JComboBox comboTipo;
+    private javax.swing.JLabel labelBairro;
     private javax.swing.JLabel labelBiografia;
+    private javax.swing.JLabel labelCidade;
     private javax.swing.JLabel labelDataNascimento;
+    private javax.swing.JLabel labelEstado;
     private javax.swing.JLabel labelFuncao;
-    private javax.swing.JLabel labelInformacoesAutorFuncionario;
+    private javax.swing.JLabel labelInformacoesAutor;
+    private javax.swing.JLabel labelInformacoesFuncionario;
     private javax.swing.JLabel labelMatricula;
-    private javax.swing.JLabel labelNome;
+    private javax.swing.JLabel labelNomeAutor;
+    private javax.swing.JLabel labelNomeFuncionario;
+    private javax.swing.JLabel labelNumero;
+    private javax.swing.JLabel labelRua;
     private javax.swing.JLabel labelTipo;
     private javax.swing.JPanel panelCadastroPessoa;
     private javax.swing.JScrollPane scrollPanelBiografia;
+    private javax.swing.JSeparator separador1;
+    private javax.swing.JSeparator separador2;
     private javax.swing.JTextArea textAreaBiografia;
+    private javax.swing.JTextField textBairro;
+    private javax.swing.JTextField textCidade;
     private javax.swing.JFormattedTextField textDataNascimento;
+    private javax.swing.JTextField textEstado;
     private javax.swing.JTextField textFuncao;
     private javax.swing.JTextField textMatricula;
-    private javax.swing.JTextField textNome;
+    private javax.swing.JTextField textNomeAutor;
+    private javax.swing.JTextField textNomeFuncionario;
+    private javax.swing.JTextField textNumero;
+    private javax.swing.JTextField textRua;
     // End of variables declaration//GEN-END:variables
 }

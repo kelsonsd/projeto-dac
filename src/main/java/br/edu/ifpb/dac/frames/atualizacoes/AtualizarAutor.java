@@ -1,8 +1,14 @@
 package br.edu.ifpb.dac.frames.atualizacoes;
 
 import br.edu.ifpb.dac.entidades.Autor;
+import br.edu.ifpb.dac.frames.cadastros.CadastroPessoa;
 import br.edu.ifpb.dac.persistencia.DAO;
 import br.edu.ifpb.dac.persistencia.DaoJPA;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,8 +30,23 @@ public class AtualizarAutor extends javax.swing.JFrame {
     
     private void preencheCampos() {
         textNome.setText(autor.getNome());
-        textDataNascimento.setText(autor.getDataNascimento());
+        textDataNascimento.setText(setFormatoDataText(autor.getDataNascimento()));
         textAreaBiografia.setText(autor.getBiografia());
+    }
+    
+    private String setFormatoDataText(Date data) {        
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+        String dataformatada = formatador.format(data);
+        return dataformatada;
+    }
+    
+    private Date setFormatoData(String data) {        
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            return new Date(format.parse(data).getTime());
+        } catch (ParseException ex) {
+            return null;
+        }        
     }
 
     @SuppressWarnings("unchecked")
@@ -151,16 +172,19 @@ public class AtualizarAutor extends javax.swing.JFrame {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         DAO dao = new DaoJPA("projeto-dac");
-
         String nome = textNome.getText().trim();
-        String dataNascimento = textDataNascimento.getText().trim();
         String biografia = textAreaBiografia.getText().trim();
+        Date data = null;
+        
+        if(setFormatoData(textDataNascimento.getText().trim()) != null) {
+            data = setFormatoData(textDataNascimento.getText().trim());
+        }        
 
-        if (nome.isEmpty() || dataNascimento.isEmpty() || biografia.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Informe todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else {
+        if (nome.isEmpty() || data == null || biografia.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Informe todos os campos ou verifique se a data está correta!", "Atenção", JOptionPane.WARNING_MESSAGE);
+        } else {            
             autor.setNome(nome);
-            autor.setDataNascimento(dataNascimento);
+            autor.setDataNascimento(data);
             autor.setBiografia(biografia);
 
             if (dao.atualizar(autor)) {

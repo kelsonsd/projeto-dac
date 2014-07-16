@@ -26,6 +26,11 @@ public class AtualizarFuncionario extends javax.swing.JFrame {
         textNome.setText(funcionario.getNome());
         textMatricula.setText(funcionario.getMatricula());
         textFuncao.setText(funcionario.getFuncao());
+        textRua.setText(funcionario.getEndereco().getRua());
+        textNumero.setText(funcionario.getEndereco().getNumero());        
+        textBairro.setText(funcionario.getEndereco().getBairro());        
+        textCidade.setText(funcionario.getEndereco().getCidade());        
+        textEstado.setText(funcionario.getEndereco().getEstado());
     }
     
     @SuppressWarnings("unchecked")
@@ -42,6 +47,16 @@ public class AtualizarFuncionario extends javax.swing.JFrame {
         textNome = new javax.swing.JTextField();
         btAtualizar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
+        textEstado = new javax.swing.JTextField();
+        labelEstado = new javax.swing.JLabel();
+        textCidade = new javax.swing.JTextField();
+        labelCidade = new javax.swing.JLabel();
+        textBairro = new javax.swing.JTextField();
+        labelBairro = new javax.swing.JLabel();
+        labelRua = new javax.swing.JLabel();
+        textRua = new javax.swing.JTextField();
+        labelNumero = new javax.swing.JLabel();
+        textNumero = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,10 +87,26 @@ public class AtualizarFuncionario extends javax.swing.JFrame {
             }
         });
 
+        labelEstado.setText("Estado");
+
+        labelCidade.setText("Cidade");
+
+        labelBairro.setText("Bairro");
+
+        labelRua.setText("Rua");
+
+        labelNumero.setText("Nº");
+
         javax.swing.GroupLayout panelAtualizarFuncionarioLayout = new javax.swing.GroupLayout(panelAtualizarFuncionario);
         panelAtualizarFuncionario.setLayout(panelAtualizarFuncionarioLayout);
         panelAtualizarFuncionarioLayout.setHorizontalGroup(
             panelAtualizarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAtualizarFuncionarioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btAtualizar)
+                .addGap(18, 18, 18)
+                .addComponent(btCancelar)
+                .addGap(111, 111, 111))
             .addGroup(panelAtualizarFuncionarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelAtualizarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,14 +122,30 @@ public class AtualizarFuncionario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelFuncao)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAtualizarFuncionarioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btAtualizar)
-                .addGap(18, 18, 18)
-                .addComponent(btCancelar)
-                .addGap(42, 42, 42))
+                        .addComponent(textFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelAtualizarFuncionarioLayout.createSequentialGroup()
+                        .addGroup(panelAtualizarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panelAtualizarFuncionarioLayout.createSequentialGroup()
+                                .addComponent(labelRua)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textRua, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(labelNumero)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(labelBairro))
+                            .addGroup(panelAtualizarFuncionarioLayout.createSequentialGroup()
+                                .addComponent(labelCidade)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(labelEstado)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textEstado)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelAtualizarFuncionarioLayout.setVerticalGroup(
             panelAtualizarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,6 +162,20 @@ public class AtualizarFuncionario extends javax.swing.JFrame {
                     .addComponent(textMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelFuncao)
                     .addComponent(textFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelAtualizarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelRua)
+                    .addComponent(textRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNumero)
+                    .addComponent(textNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelBairro)
+                    .addComponent(textBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelAtualizarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelCidade)
+                    .addComponent(textCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelEstado)
+                    .addComponent(textEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(panelAtualizarFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btAtualizar)
@@ -141,13 +202,24 @@ public class AtualizarFuncionario extends javax.swing.JFrame {
         String nome = textNome.getText().trim();
         String matricula = textMatricula.getText().trim();
         String funcao = textFuncao.getText().trim();
+        String rua = textRua.getText().trim();
+        String numero = textNumero.getText().trim();
+        String bairro = textBairro.getText().trim();
+        String cidade = textCidade.getText().trim();
+        String estado = textEstado.getText().trim();
 
-        if (nome.isEmpty() || matricula.isEmpty() || funcao.isEmpty()) {
+        if (nome.isEmpty() || matricula.isEmpty() || funcao.isEmpty() || rua.isEmpty() || numero.isEmpty() ||
+                bairro.isEmpty() || cidade.isEmpty() || estado.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Informe todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
         } else {
             funcionario.setNome(nome);
             funcionario.setMatricula(matricula);
             funcionario.setFuncao(funcao);
+            funcionario.getEndereco().setRua(rua);
+            funcionario.getEndereco().setNumero(numero);
+            funcionario.getEndereco().setBairro(bairro);
+            funcionario.getEndereco().setCidade(cidade);
+            funcionario.getEndereco().setEstado(estado);
 
             if (dao.atualizar(funcionario)) {
                 JOptionPane.showMessageDialog(this, "Funcionário atualizado com sucesso");
@@ -165,13 +237,23 @@ public class AtualizarFuncionario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAtualizar;
     private javax.swing.JButton btCancelar;
+    private javax.swing.JLabel labelBairro;
+    private javax.swing.JLabel labelCidade;
+    private javax.swing.JLabel labelEstado;
     private javax.swing.JLabel labelFuncao;
     private javax.swing.JLabel labelInformacoesFuncionario;
     private javax.swing.JLabel labelMatricula;
     private javax.swing.JLabel labelNome;
+    private javax.swing.JLabel labelNumero;
+    private javax.swing.JLabel labelRua;
     private javax.swing.JPanel panelAtualizarFuncionario;
+    private javax.swing.JTextField textBairro;
+    private javax.swing.JTextField textCidade;
+    private javax.swing.JTextField textEstado;
     private javax.swing.JTextField textFuncao;
     private javax.swing.JTextField textMatricula;
     private javax.swing.JTextField textNome;
+    private javax.swing.JTextField textNumero;
+    private javax.swing.JTextField textRua;
     // End of variables declaration//GEN-END:variables
 }

@@ -44,63 +44,118 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Component id="separador2" alignment="1" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="scrollPanelBiografia" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="scrollPanelBiografia" pref="429" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="labelNomeAutor" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="textNomeAutor" min="-2" pref="200" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="labelDataNascimento" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="textDataNascimento" min="-2" pref="72" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="labelTipo" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="comboTipo" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="labelBiografia" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="btSalvar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="btCancelar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="labelNome" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelBairro" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="textNome" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="textBairro" min="-2" pref="129" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="labelDataNascimento" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelCidade" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="textDataNascimento" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="textCidade" min="-2" pref="105" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="labelEstado" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="textEstado" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="labelInformacoesAutorFuncionario" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="labelTipo" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="comboTipo" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="labelBiografia" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="labelMatricula" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="textMatricula" min="-2" pref="105" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="labelFuncao" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="textFuncao" min="-2" pref="95" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="labelInformacoesAutor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="labelNomeFuncionario" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="textNomeFuncionario" min="-2" pref="200" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="labelRua" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="textRua" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="labelMatricula" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="textMatricula" min="-2" pref="105" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="labelFuncao" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="textFuncao" min="-2" pref="95" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="labelNumero" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="textNumero" min="-2" pref="55" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="labelInformacoesFuncionario" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="110" max="32767" attributes="0"/>
-                  <Component id="btSalvar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btCancelar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
-              </Group>
+              <Component id="separador1" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="labelInformacoesAutorFuncionario" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelTipo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="comboTipo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="separador1" min="-2" pref="10" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                  <Component id="labelInformacoesFuncionario" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="labelNomeFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textNomeFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelMatricula" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="textMatricula" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -109,8 +164,28 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelNome" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="textNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelRua" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textRua" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelNumero" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textNumero" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="labelBairro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textBairro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelCidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textCidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="separador2" min="-2" pref="10" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="labelInformacoesAutor" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="labelNomeAutor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textNomeAutor" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelDataNascimento" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="textDataNascimento" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -129,12 +204,12 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="labelInformacoesAutorFuncionario">
+        <Component class="javax.swing.JLabel" name="labelInformacoesFuncionario">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="11" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Informa&#xe7;&#xf5;es do Autor/Funcion&#xe1;rio"/>
+            <Property name="text" type="java.lang.String" value="Informa&#xe7;&#xf5;es do Funcion&#xe1;rio"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelTipo">
@@ -152,7 +227,7 @@
             <Property name="text" type="java.lang.String" value="Fun&#xe7;&#xe3;o"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelNome">
+        <Component class="javax.swing.JLabel" name="labelNomeAutor">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nome"/>
           </Properties>
@@ -187,7 +262,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textFuncao">
         </Component>
-        <Component class="javax.swing.JTextField" name="textNome">
+        <Component class="javax.swing.JTextField" name="textNomeAutor">
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="textDataNascimento">
           <Properties>
@@ -238,6 +313,60 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCancelarActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JSeparator" name="separador2">
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelRua">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Rua"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelBairro">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Bairro"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelCidade">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cidade"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelEstado">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Estado"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="textRua">
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelNumero">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="N&#xba;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="textNumero">
+        </Component>
+        <Component class="javax.swing.JTextField" name="textBairro">
+        </Component>
+        <Component class="javax.swing.JTextField" name="textCidade">
+        </Component>
+        <Component class="javax.swing.JTextField" name="textEstado">
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelInformacoesAutor">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="11" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Informa&#xe7;&#xf5;es do Autor"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelNomeFuncionario">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nome"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="textNomeFuncionario">
+        </Component>
+        <Component class="javax.swing.JSeparator" name="separador1">
         </Component>
       </SubComponents>
     </Container>
