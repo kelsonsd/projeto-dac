@@ -13,16 +13,14 @@ import javax.swing.JOptionPane;
  * @author kelsonsd
  */
 
-public class ListarLivros extends javax.swing.JFrame {
-    private final DAO dao;
+public class ListarLivros extends javax.swing.JFrame {    
     private DefaultListModel<Livro> listModelLivros;    
     
     public ListarLivros() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        
-        dao = new DaoJPA("projeto-dac");
+                
         setModel();
         carregarLista();
     }
@@ -32,7 +30,8 @@ public class ListarLivros extends javax.swing.JFrame {
         listLivros.setModel(listModelLivros);
     }
     
-    private void carregarLista() {                        
+    private void carregarLista() {
+        DAO dao = new DaoJPA("projeto-dac");
         List<Livro> listaLivros = dao.buscarTodos(Livro.class);        
         listModelLivros.removeAllElements();
         
@@ -52,6 +51,7 @@ public class ListarLivros extends javax.swing.JFrame {
         btRemoverLivro = new javax.swing.JButton();
         btEditarLivro = new javax.swing.JButton();
         btFechar = new javax.swing.JButton();
+        btAtualizarListaLivros = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Livros Cadastrados no Sistema");
@@ -90,6 +90,15 @@ public class ListarLivros extends javax.swing.JFrame {
             }
         });
 
+        btAtualizarListaLivros.setBackground(new java.awt.Color(231, 228, 231));
+        btAtualizarListaLivros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Update.png"))); // NOI18N
+        btAtualizarListaLivros.setText("Atualizar");
+        btAtualizarListaLivros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAtualizarListaLivrosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelListarLivroLayout = new javax.swing.GroupLayout(panelListarLivro);
         panelListarLivro.setLayout(panelListarLivroLayout);
         panelListarLivroLayout.setHorizontalGroup(
@@ -103,9 +112,12 @@ public class ListarLivros extends javax.swing.JFrame {
                     .addGroup(panelListarLivroLayout.createSequentialGroup()
                         .addComponent(scrollPaneLivros)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btEditarLivro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btRemoverLivro)))
+                        .addGroup(panelListarLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelListarLivroLayout.createSequentialGroup()
+                                .addComponent(btEditarLivro)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btRemoverLivro))
+                            .addComponent(btAtualizarListaLivros, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListarLivroLayout.createSequentialGroup()
                 .addContainerGap(249, Short.MAX_VALUE)
@@ -118,10 +130,13 @@ public class ListarLivros extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(labelLivrosCadastrados)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelListarLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelListarLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btRemoverLivro)
-                        .addComponent(btEditarLivro))
+                .addGroup(panelListarLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelListarLivroLayout.createSequentialGroup()
+                        .addGroup(panelListarLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btRemoverLivro)
+                            .addComponent(btEditarLivro))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btAtualizarListaLivros))
                     .addComponent(scrollPaneLivros, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addComponent(btFechar)
@@ -146,6 +161,7 @@ public class ListarLivros extends javax.swing.JFrame {
         if(listLivros.getSelectedIndex() != -1) {
             int index = listLivros.getSelectedIndex();            
             Livro livro = listModelLivros.getElementAt(index);
+            DAO dao = new DaoJPA("projeto-dac");
             
             if(dao.remover(livro)){
                 JOptionPane.showMessageDialog(this, "Livro excluído com sucesso!");                        
@@ -167,9 +183,10 @@ public class ListarLivros extends javax.swing.JFrame {
     private void btEditarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarLivroActionPerformed
         if(listLivros.getSelectedIndex() != -1) {
             int index = listLivros.getSelectedIndex();            
-            Long id = listModelLivros.getElementAt(index).getId();            
-            Livro livro = (Livro) dao.buscar(Livro.class, id);
+            Long id = listModelLivros.getElementAt(index).getId();
+            DAO dao = new DaoJPA("projeto-dac");
             
+            Livro livro = (Livro) dao.buscar(Livro.class, id);            
             new AtualizarLivro(livro).setVisible(true);
         }
         else {
@@ -177,7 +194,12 @@ public class ListarLivros extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btEditarLivroActionPerformed
 
+    private void btAtualizarListaLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarListaLivrosActionPerformed
+        carregarLista();
+    }//GEN-LAST:event_btAtualizarListaLivrosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAtualizarListaLivros;
     private javax.swing.JButton btEditarLivro;
     private javax.swing.JButton btFechar;
     private javax.swing.JButton btRemoverLivro;

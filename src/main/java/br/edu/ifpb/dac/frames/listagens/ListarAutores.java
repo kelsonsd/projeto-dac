@@ -1,10 +1,10 @@
 package br.edu.ifpb.dac.frames.listagens;
 
+import br.edu.ifpb.dac.controle.AutorControle;
 import br.edu.ifpb.dac.entidades.Autor;
 import br.edu.ifpb.dac.frames.atualizacoes.AtualizarAutor;
 import br.edu.ifpb.dac.persistencia.DAO;
 import br.edu.ifpb.dac.persistencia.DaoJPA;
-import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -13,16 +13,14 @@ import javax.swing.JOptionPane;
  * @author kelsonsd
  */
 
-public class ListarAutores extends javax.swing.JFrame {
-    private final DAO dao;
+public class ListarAutores extends javax.swing.JFrame {    
     private DefaultListModel<Autor> listModelAutores; 
     
     public ListarAutores() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);        
-        
-        dao = new DaoJPA("projeto-dac");
+                
         setModel();
         carregarLista();
     }
@@ -33,10 +31,10 @@ public class ListarAutores extends javax.swing.JFrame {
     }
     
     private void carregarLista() {
-        List<Autor> listaAutores = dao.buscarTodos(Autor.class);        
         listModelAutores.removeAllElements();
+        AutorControle ac = new AutorControle();
         
-        for (Autor autor : listaAutores) {
+        for (Autor autor : ac.buscarTodos()) {
             listModelAutores.addElement(autor);
         }
     }
@@ -52,6 +50,7 @@ public class ListarAutores extends javax.swing.JFrame {
         btRemoverAutor = new javax.swing.JButton();
         btEditarAutor = new javax.swing.JButton();
         btFechar = new javax.swing.JButton();
+        btAtualizarListaAutores = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Autores Cadastrados no Sistema");
@@ -90,6 +89,15 @@ public class ListarAutores extends javax.swing.JFrame {
             }
         });
 
+        btAtualizarListaAutores.setBackground(new java.awt.Color(231, 228, 231));
+        btAtualizarListaAutores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Update.png"))); // NOI18N
+        btAtualizarListaAutores.setText("Atualizar");
+        btAtualizarListaAutores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAtualizarListaAutoresActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelListarAutoresLayout = new javax.swing.GroupLayout(panelListarAutores);
         panelListarAutores.setLayout(panelListarAutoresLayout);
         panelListarAutoresLayout.setHorizontalGroup(
@@ -103,9 +111,12 @@ public class ListarAutores extends javax.swing.JFrame {
                     .addGroup(panelListarAutoresLayout.createSequentialGroup()
                         .addComponent(scrollPaneAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btEditarAutor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btRemoverAutor)))
+                        .addGroup(panelListarAutoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelListarAutoresLayout.createSequentialGroup()
+                                .addComponent(btEditarAutor)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btRemoverAutor))
+                            .addComponent(btAtualizarListaAutores, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListarAutoresLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -118,10 +129,13 @@ public class ListarAutores extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(labelAutoresCadastrados)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelListarAutoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelListarAutoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btRemoverAutor)
-                        .addComponent(btEditarAutor))
+                .addGroup(panelListarAutoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelListarAutoresLayout.createSequentialGroup()
+                        .addGroup(panelListarAutoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btRemoverAutor)
+                            .addComponent(btEditarAutor))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btAtualizarListaAutores))
                     .addComponent(scrollPaneAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(btFechar)
@@ -143,17 +157,14 @@ public class ListarAutores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btRemoverAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverAutorActionPerformed
-        if(listAutores.getSelectedIndex() != -1) {
-            int index = listAutores.getSelectedIndex();
-            Autor autor = listModelAutores.getElementAt(index);
+        if(listAutores.getSelectedIndex() != -1) {            
+            Autor autor = (Autor) listAutores.getSelectedValue();                        
+            AutorControle ac = new AutorControle();
             
-            if(dao.remover(autor)) {
-                JOptionPane.showMessageDialog(this, "Autor excluído com sucesso!");
+            if(ac.remover(autor)) {
                 carregarLista();
-            }
-            else {
-                JOptionPane.showMessageDialog(this, "Erro!");
-            }
+                JOptionPane.showMessageDialog(this, "Autor excluído com sucesso!");                
+            }            
         }
         else {
             JOptionPane.showMessageDialog(this, "Nenhum item selecionado!", "Atenção!", JOptionPane.WARNING_MESSAGE);
@@ -164,6 +175,8 @@ public class ListarAutores extends javax.swing.JFrame {
         if(listAutores.getSelectedIndex() != -1) {
             int index = listAutores.getSelectedIndex();
             Long id = listModelAutores.getElementAt(index).getId();
+            
+            DAO dao = new DaoJPA("projeto-dac");
             Autor autor = (Autor) dao.buscar(Autor.class, id);
 
             new AtualizarAutor(autor).setVisible(true);
@@ -177,7 +190,12 @@ public class ListarAutores extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btFecharActionPerformed
 
+    private void btAtualizarListaAutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarListaAutoresActionPerformed
+        carregarLista();
+    }//GEN-LAST:event_btAtualizarListaAutoresActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAtualizarListaAutores;
     private javax.swing.JButton btEditarAutor;
     private javax.swing.JButton btFechar;
     private javax.swing.JButton btRemoverAutor;

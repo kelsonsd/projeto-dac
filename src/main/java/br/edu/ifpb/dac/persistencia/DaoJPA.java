@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 public class DaoJPA<T> implements DAO<T>{
     private EntityManagerFactory emf;
-    private  EntityManager em;
+    private EntityManager em;
     
     public DaoJPA(String unidadePersistencia){
         if (emf == null) {    
@@ -33,11 +33,9 @@ public class DaoJPA<T> implements DAO<T>{
         try {
             em.getTransaction().begin();
             em.persist(objeto);
-            return commitTransaction();
-                   
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Erro ao adicionar!", "Erro!", JOptionPane.ERROR_MESSAGE);
+            return commitTransaction();                   
+        } catch (Exception e) {            
+            JOptionPane.showMessageDialog(null, "Erro ao adicionar! " + e.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
             return false;
         }        
     }
@@ -63,11 +61,9 @@ public class DaoJPA<T> implements DAO<T>{
         try {
             em.getTransaction().begin();
             em.merge(objeto);            
-            return commitTransaction();
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Erro na atualização!", "Erro!", JOptionPane.ERROR_MESSAGE);
+            return commitTransaction();            
+        } catch (Exception e) {            
+            JOptionPane.showMessageDialog(null, "Erro na atualização! " + e.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
             return false;
         }        
     }
@@ -75,13 +71,12 @@ public class DaoJPA<T> implements DAO<T>{
     @Override
     public boolean remover(T objeto) {
         try {
-            em.getTransaction().begin();
+            em.getTransaction().begin();            
             em.remove(objeto);            
-            return commitTransaction();
-            
+            return commitTransaction();            
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Erro na remoção!", "Erro!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro na remoção! " + e.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
@@ -96,6 +91,9 @@ public class DaoJPA<T> implements DAO<T>{
             }    
             JOptionPane.showMessageDialog(null, "Não foi possível completar a operação! " + ex.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
             return false;
-        }        
+        }
+        finally {
+            em.close();
+        }
     }
 }

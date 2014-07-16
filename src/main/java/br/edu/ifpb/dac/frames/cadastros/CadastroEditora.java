@@ -1,8 +1,6 @@
 package br.edu.ifpb.dac.frames.cadastros;
 
-import br.edu.ifpb.dac.entidades.Editora;
-import br.edu.ifpb.dac.persistencia.DAO;
-import br.edu.ifpb.dac.persistencia.DaoJPA;
+import br.edu.ifpb.dac.controle.EditoraControle;
 import javax.swing.JOptionPane;
 
 /**
@@ -131,23 +129,11 @@ public class CadastroEditora extends javax.swing.JFrame {
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        String nome = textNome.getText().trim();
-        String telefone = textTelefone.getText().trim();        
+        EditoraControle ec = new EditoraControle();
         
-        if(nome.equals("") || telefone.equals("(  )    -")) {        
-            JOptionPane.showMessageDialog(this, "Informe todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        }
-        else {
-            DAO dao = new DaoJPA("projeto-dac");
-            Editora editora = new Editora(nome, telefone);
-            
-            if(dao.salvar(editora)) {
-                JOptionPane.showMessageDialog(this, "Editora cadastrada com sucesso");
-                limparCampos();
-            }
-            else {
-                JOptionPane.showMessageDialog(this, "Erro!");
-            }
+        if(ec.salvar(textNome.getText().trim(), textTelefone.getText().trim())) {
+            JOptionPane.showMessageDialog(this, "Editora cadastrada com sucesso");
+            limparCampos();
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 

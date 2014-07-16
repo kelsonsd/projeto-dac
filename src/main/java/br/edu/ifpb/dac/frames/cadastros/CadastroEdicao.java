@@ -13,16 +13,14 @@ import javax.swing.JOptionPane;
  * @author kelsonsd
  */
 
-public class CadastroEdicao extends javax.swing.JFrame {
-    private final DAO dao;
+public class CadastroEdicao extends javax.swing.JFrame {    
     private final DefaultListModel<Edicao> listModelEdicoes;    
     
     public CadastroEdicao(DefaultListModel<Edicao> listModelEdicoes) {
         initComponents();
         setLocationRelativeTo(null);
-        setResizable(false);
+        setResizable(false);        
         
-        dao = new DaoJPA("projeto-dac");
         this.listModelEdicoes = listModelEdicoes;
         
         carregarComboEditora();
@@ -257,7 +255,9 @@ public class CadastroEdicao extends javax.swing.JFrame {
             editora.getListaEdicoes().add(edicao);
             edicao.setEditora(editora);            
             
-            List<Edicao> edicoes = dao.buscarTodos(Edicao.class); 
+            DAO dao = new DaoJPA("projeto-dac");             
+            List<Edicao> edicoes = dao.buscarTodos(Edicao.class);
+            
             boolean exist = false;
             
             if(listModelEdicoes.isEmpty()) {
@@ -310,6 +310,7 @@ public class CadastroEdicao extends javax.swing.JFrame {
     }//GEN-LAST:event_btNovaEditoraActionPerformed
 
     private void comboEditoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboEditoraMouseClicked
+        DAO dao = new DaoJPA("projeto-dac");
         List<Editora> editoras = dao.buscarTodos(Editora.class);
         comboEditora.removeAllItems();
 

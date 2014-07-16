@@ -1,16 +1,10 @@
 package br.edu.ifpb.dac.frames.cadastros;
 
-import br.edu.ifpb.dac.entidades.Autor;
-import br.edu.ifpb.dac.entidades.Endereco;
-import br.edu.ifpb.dac.entidades.Funcionario;
-import br.edu.ifpb.dac.persistencia.DAO;
-import br.edu.ifpb.dac.persistencia.DaoJPA;
+import br.edu.ifpb.dac.controle.AutorControle;
+import br.edu.ifpb.dac.controle.FuncionarioControle;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -211,7 +205,7 @@ public class CadastroPessoa extends javax.swing.JFrame {
                         .addComponent(btSalvar)
                         .addGap(18, 18, 18)
                         .addComponent(btCancelar)
-                        .addGap(104, 104, 104))
+                        .addGap(114, 114, 114))
                     .addGroup(panelCadastroPessoaLayout.createSequentialGroup()
                         .addGroup(panelCadastroPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelCadastroPessoaLayout.createSequentialGroup()
@@ -327,75 +321,27 @@ public class CadastroPessoa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        DAO dao = new DaoJPA("projeto-dac"); 
-        String nomeAutor = textNomeAutor.getText().trim();
-        String nomeFuncionario = textNomeFuncionario.getText().trim();
-        
-        if(!nomeAutor.isEmpty() || !nomeFuncionario.isEmpty()) {
-            if(comboTipo.getSelectedIndex() == 0) {
-                Date data = setFormatoData(textDataNascimento.getText().trim());
-                String dataNascimento = textDataNascimento.getText().trim();
-                String biografia = textAreaBiografia.getText().trim();
-
-                if(dataNascimento.isEmpty() || data == null || biografia.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Informe todos os campos ou verifique se a data está correta!", "Atenção", JOptionPane.WARNING_MESSAGE);
+        if(comboTipo.getSelectedIndex() == 0) {
+            AutorControle ac = new AutorControle();
+            try {
+                if(ac.salvar(textNomeAutor.getText().trim(), textDataNascimento.getText().trim(), textAreaBiografia.getText().trim())) {
+                    JOptionPane.showMessageDialog(this, "Autor cadastrado com sucesso");
+                    limparCamposAutor();
                 }
-                else {                                 
-                    Autor autor = new Autor(data, biografia, nomeAutor);               
-
-                    if(dao.salvar(autor)) {
-                        JOptionPane.showMessageDialog(this, "Autor cadastrado com sucesso");
-                        limparCamposAutor();
-                    }
-                    else {
-                        JOptionPane.showMessageDialog(this, "Erro!");
-                    }
-                }       
-            }
-            else {            
-                String matricula = textMatricula.getText().trim();
-                String funcao = textFuncao.getText().trim();
-                String rua = textRua.getText().trim();
-                String numero = textNumero.getText().trim();
-                String bairro = textBairro.getText().trim();
-                String cidade = textCidade.getText().trim();
-                String estado = textEstado.getText().trim();
-
-                if(matricula.isEmpty() || funcao.isEmpty() || rua.isEmpty() || numero.isEmpty() ||
-                        bairro.isEmpty() || cidade.isEmpty() || estado.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Informe todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
-                }
-                else {                    
-                    List<Funcionario> funcionarios = dao.buscarTodos(Funcionario.class);
-                    boolean exist = false;
-                    
-                    for (Funcionario funcionario : funcionarios) {                        
-                        if(funcionario.getMatricula().equals(matricula)) {                            
-                            exist = true;
-                            break;
-                        }
-                    }
-                    Endereco endereco = new Endereco(rua, numero, bairro, cidade, estado);                    
-                    Funcionario funcionario = new Funcionario(matricula, funcao, nomeFuncionario, endereco);
-                    
-                    if(!exist) {
-                        if(dao.salvar(funcionario)) {
-                            JOptionPane.showMessageDialog(this, "Funcionário cadastrado com sucesso");
-                            limparCamposFuncionario();
-                        }
-                        else {
-                            JOptionPane.showMessageDialog(this, "Erro!");
-                        }
-                    }
-                    else {
-                        JOptionPane.showMessageDialog(this, "Matrícula já cadastrada no sistema!", "Atenção", JOptionPane.WARNING_MESSAGE);
-                    }
-                }
-            }
+            } catch (ParseException ex) {                
+            }                       
         }
-        else {
-            JOptionPane.showMessageDialog(this, "Informe todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        }
+        else {            
+            FuncionarioControle fc = new FuncionarioControle();
+            
+            if(fc.salvar(textNomeFuncionario.getText().trim(), textMatricula.getText().trim(),
+                    textFuncao.getText().trim(), textRua.getText().trim(), textNumero.getText().trim(),
+                    textBairro.getText().trim(), textCidade.getText().trim(), textEstado.getText().trim())) {
+                
+                JOptionPane.showMessageDialog(null, "Funcionário cadastrado com sucesso");
+                limparCamposFuncionario();
+            }                
+        }                 
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void comboTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoActionPerformed

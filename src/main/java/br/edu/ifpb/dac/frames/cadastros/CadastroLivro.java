@@ -16,8 +16,7 @@ import javax.swing.JOptionPane;
  * @author kelsonsd
  */
 
-public class CadastroLivro extends javax.swing.JFrame {    
-    private final DAO dao;    
+public class CadastroLivro extends javax.swing.JFrame {        
     private DefaultListModel<Autor> listModelAutores;
     private DefaultListModel<Edicao> listModelEdicoes;    
         
@@ -25,8 +24,7 @@ public class CadastroLivro extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        
-        dao = new DaoJPA("projeto-dac");
+                
         carregaCombos();        
         setModel();    
     }  
@@ -400,6 +398,7 @@ public class CadastroLivro extends javax.swing.JFrame {
         
         List<Autor> autores = getAutoresSelecionados();
         List<Edicao> edicoes = getEdicoesSelecionadas();        
+        DAO dao = new DaoJPA("projeto-dac");
         
         if(!textAnoLivro.getText().isEmpty()) {
             anoPublicacao = Integer.parseInt(textAnoLivro.getText().trim());
@@ -471,6 +470,7 @@ public class CadastroLivro extends javax.swing.JFrame {
     }//GEN-LAST:event_btAdicionarAutorActionPerformed
 
     private void comboAutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboAutorMouseClicked
+        DAO dao = new DaoJPA("projeto-dac");
         List<Autor> autores = dao.buscarTodos(Autor.class);
         comboAutor.removeAllItems();
 

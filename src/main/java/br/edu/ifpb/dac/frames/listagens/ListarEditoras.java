@@ -1,10 +1,10 @@
 package br.edu.ifpb.dac.frames.listagens;
 
+import br.edu.ifpb.dac.controle.EditoraControle;
 import br.edu.ifpb.dac.entidades.Editora;
 import br.edu.ifpb.dac.frames.atualizacoes.AtualizarEditora;
 import br.edu.ifpb.dac.persistencia.DAO;
 import br.edu.ifpb.dac.persistencia.DaoJPA;
-import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -13,16 +13,14 @@ import javax.swing.JOptionPane;
  * @author kelsonsd
  */
 
-public class ListarEditoras extends javax.swing.JFrame {
-    private final DAO dao;
+public class ListarEditoras extends javax.swing.JFrame {    
     private DefaultListModel<Editora> listModelEditoras;
 
     public ListarEditoras() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);        
-        
-        dao = new DaoJPA("projeto-dac");
+                
         setModel();
         carregarLista();
     }
@@ -32,11 +30,11 @@ public class ListarEditoras extends javax.swing.JFrame {
         listEditoras.setModel(listModelEditoras);
     }
     
-    private void carregarLista() {
-        List<Editora> listaEditora = dao.buscarTodos(Editora.class);
+    private void carregarLista() {             
         listModelEditoras.removeAllElements();
+        EditoraControle ec = new EditoraControle();
         
-        for (Editora editora : listaEditora) {
+        for (Editora editora : ec.buscarTodos()) {
             listModelEditoras.addElement(editora);
         }
     }
@@ -52,6 +50,7 @@ public class ListarEditoras extends javax.swing.JFrame {
         btRemoverEditora = new javax.swing.JButton();
         btEditarEditora = new javax.swing.JButton();
         btFechar = new javax.swing.JButton();
+        btAtualizarListaEditoras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editoras Cadastradas no Sistema");
@@ -90,6 +89,15 @@ public class ListarEditoras extends javax.swing.JFrame {
             }
         });
 
+        btAtualizarListaEditoras.setBackground(new java.awt.Color(231, 228, 231));
+        btAtualizarListaEditoras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Update.png"))); // NOI18N
+        btAtualizarListaEditoras.setText("Atualizar");
+        btAtualizarListaEditoras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAtualizarListaEditorasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelListarEditorasLayout = new javax.swing.GroupLayout(panelListarEditoras);
         panelListarEditoras.setLayout(panelListarEditorasLayout);
         panelListarEditorasLayout.setHorizontalGroup(
@@ -103,9 +111,12 @@ public class ListarEditoras extends javax.swing.JFrame {
                     .addGroup(panelListarEditorasLayout.createSequentialGroup()
                         .addComponent(scrollPaneEditora)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btEditarEditora)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btRemoverEditora)))
+                        .addGroup(panelListarEditorasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelListarEditorasLayout.createSequentialGroup()
+                                .addComponent(btEditarEditora)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btRemoverEditora))
+                            .addComponent(btAtualizarListaEditoras, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListarEditorasLayout.createSequentialGroup()
                 .addContainerGap(249, Short.MAX_VALUE)
@@ -118,10 +129,13 @@ public class ListarEditoras extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(labelAutoresCadastrados)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelListarEditorasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelListarEditorasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btRemoverEditora)
-                        .addComponent(btEditarEditora))
+                .addGroup(panelListarEditorasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelListarEditorasLayout.createSequentialGroup()
+                        .addGroup(panelListarEditorasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btRemoverEditora)
+                            .addComponent(btEditarEditora))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btAtualizarListaEditoras))
                     .addComponent(scrollPaneEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(btFechar)
@@ -144,15 +158,11 @@ public class ListarEditoras extends javax.swing.JFrame {
 
     private void btRemoverEditoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverEditoraActionPerformed
         if(listEditoras.getSelectedIndex() != -1) {
-            int index = listEditoras.getSelectedIndex();
-            Editora editora = listModelEditoras.getElementAt(index);
-            
-            if(dao.remover(editora)) {
+            EditoraControle ec = new EditoraControle();            
+                        
+            if(ec.remover((Editora) listEditoras.getSelectedValue())) {
                 JOptionPane.showMessageDialog(this, "Editora excluída com sucesso!");
                 carregarLista();
-            }
-            else {
-                JOptionPane.showMessageDialog(this, "Erro!");
             }
         }
         else {
@@ -164,6 +174,8 @@ public class ListarEditoras extends javax.swing.JFrame {
         if(listEditoras.getSelectedIndex() != -1) {
             int index = listEditoras.getSelectedIndex();
             Long id = listModelEditoras.getElementAt(index).getId();
+            
+            DAO dao = new DaoJPA("projeto-dac");
             Editora editora = (Editora) dao.buscar(Editora.class, id);
 
             new AtualizarEditora(editora).setVisible(true);
@@ -176,8 +188,13 @@ public class ListarEditoras extends javax.swing.JFrame {
     private void btFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFecharActionPerformed
         dispose();
     }//GEN-LAST:event_btFecharActionPerformed
+
+    private void btAtualizarListaEditorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarListaEditorasActionPerformed
+        carregarLista();
+    }//GEN-LAST:event_btAtualizarListaEditorasActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAtualizarListaEditoras;
     private javax.swing.JButton btEditarEditora;
     private javax.swing.JButton btFechar;
     private javax.swing.JButton btRemoverEditora;

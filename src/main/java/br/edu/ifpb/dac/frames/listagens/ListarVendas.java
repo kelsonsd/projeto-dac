@@ -12,16 +12,14 @@ import javax.swing.JOptionPane;
  * @author kelsonsd
  */
 
-public class ListarVendas extends javax.swing.JFrame {
-    private final DAO dao;
+public class ListarVendas extends javax.swing.JFrame {    
     private DefaultListModel<Venda> listModelVendas;
 
     public ListarVendas() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);        
-        
-        dao = new DaoJPA("projeto-dac");
+                
         setModel();
         carregarLista();
     }
@@ -32,6 +30,7 @@ public class ListarVendas extends javax.swing.JFrame {
     }
     
     private void carregarLista() {
+        DAO dao = new DaoJPA("projeto-dac");
         List<Venda> listaVenda = dao.buscarTodos(Venda.class);
         listModelVendas.removeAllElements();
         
@@ -50,6 +49,7 @@ public class ListarVendas extends javax.swing.JFrame {
         listVendas = new javax.swing.JList();
         btRemoverVenda = new javax.swing.JButton();
         btFechar = new javax.swing.JButton();
+        btAtualizarListaVendas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Vendas Efetuadas");
@@ -79,6 +79,15 @@ public class ListarVendas extends javax.swing.JFrame {
             }
         });
 
+        btAtualizarListaVendas.setBackground(new java.awt.Color(231, 228, 231));
+        btAtualizarListaVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Update.png"))); // NOI18N
+        btAtualizarListaVendas.setText("Atualizar");
+        btAtualizarListaVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAtualizarListaVendasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelListarVendasLayout = new javax.swing.GroupLayout(panelListarVendas);
         panelListarVendas.setLayout(panelListarVendasLayout);
         panelListarVendasLayout.setHorizontalGroup(
@@ -92,7 +101,9 @@ public class ListarVendas extends javax.swing.JFrame {
                     .addGroup(panelListarVendasLayout.createSequentialGroup()
                         .addComponent(scrollPaneVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btRemoverVenda)))
+                        .addGroup(panelListarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btRemoverVenda)
+                            .addComponent(btAtualizarListaVendas, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListarVendasLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -105,8 +116,11 @@ public class ListarVendas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(labelVendasEfetuadas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelListarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btRemoverVenda)
+                .addGroup(panelListarVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelListarVendasLayout.createSequentialGroup()
+                        .addComponent(btRemoverVenda)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btAtualizarListaVendas))
                     .addComponent(scrollPaneVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addComponent(btFechar)
@@ -131,6 +145,7 @@ public class ListarVendas extends javax.swing.JFrame {
         if(listVendas.getSelectedIndex() != -1) {
             int index = listVendas.getSelectedIndex();
             Venda venda = listModelVendas.getElementAt(index);
+            DAO dao = new DaoJPA("projeto-dac");
 
             if(dao.remover(venda)){
                 JOptionPane.showMessageDialog(this, "Venda excluída com sucesso!");
@@ -149,7 +164,12 @@ public class ListarVendas extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btFecharActionPerformed
 
+    private void btAtualizarListaVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarListaVendasActionPerformed
+        carregarLista();
+    }//GEN-LAST:event_btAtualizarListaVendasActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAtualizarListaVendas;
     private javax.swing.JButton btFechar;
     private javax.swing.JButton btRemoverVenda;
     private javax.swing.JLabel labelVendasEfetuadas;

@@ -1,8 +1,7 @@
 package br.edu.ifpb.dac.frames.atualizacoes;
 
+import br.edu.ifpb.dac.controle.FuncionarioControle;
 import br.edu.ifpb.dac.entidades.Funcionario;
-import br.edu.ifpb.dac.persistencia.DAO;
-import br.edu.ifpb.dac.persistencia.DaoJPA;
 import javax.swing.JOptionPane;
 
 /**
@@ -198,35 +197,13 @@ public class AtualizarFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarActionPerformed
-        DAO dao = new DaoJPA("projeto-dac");
-        String nome = textNome.getText().trim();
-        String matricula = textMatricula.getText().trim();
-        String funcao = textFuncao.getText().trim();
-        String rua = textRua.getText().trim();
-        String numero = textNumero.getText().trim();
-        String bairro = textBairro.getText().trim();
-        String cidade = textCidade.getText().trim();
-        String estado = textEstado.getText().trim();
-
-        if (nome.isEmpty() || matricula.isEmpty() || funcao.isEmpty() || rua.isEmpty() || numero.isEmpty() ||
-                bairro.isEmpty() || cidade.isEmpty() || estado.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Informe todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else {
-            funcionario.setNome(nome);
-            funcionario.setMatricula(matricula);
-            funcionario.setFuncao(funcao);
-            funcionario.getEndereco().setRua(rua);
-            funcionario.getEndereco().setNumero(numero);
-            funcionario.getEndereco().setBairro(bairro);
-            funcionario.getEndereco().setCidade(cidade);
-            funcionario.getEndereco().setEstado(estado);
-
-            if (dao.atualizar(funcionario)) {
-                JOptionPane.showMessageDialog(this, "Funcionário atualizado com sucesso");
-                dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Erro!");
-            }
+        FuncionarioControle fc = new FuncionarioControle();
+        if(fc.atualizar(textNome.getText().trim(), textMatricula.getText().trim(), textFuncao.getText().trim(),
+            textRua.getText().trim(), textNumero.getText().trim(), textBairro.getText().trim(), textCidade.getText().trim(),
+            textEstado.getText().trim(), funcionario)) {
+            
+            JOptionPane.showMessageDialog(this, "Funcionário atualizado com sucesso");
+            dispose();    
         }
     }//GEN-LAST:event_btAtualizarActionPerformed
 

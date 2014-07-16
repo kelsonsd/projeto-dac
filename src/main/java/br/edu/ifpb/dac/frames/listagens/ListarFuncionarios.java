@@ -1,10 +1,10 @@
 package br.edu.ifpb.dac.frames.listagens;
 
+import br.edu.ifpb.dac.controle.FuncionarioControle;
 import br.edu.ifpb.dac.entidades.Funcionario;
 import br.edu.ifpb.dac.frames.atualizacoes.AtualizarFuncionario;
 import br.edu.ifpb.dac.persistencia.DAO;
 import br.edu.ifpb.dac.persistencia.DaoJPA;
-import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -13,16 +13,14 @@ import javax.swing.JOptionPane;
  * @author kelsonsd
  */
 
-public class ListarFuncionarios extends javax.swing.JFrame {
-    private final DAO dao;
+public class ListarFuncionarios extends javax.swing.JFrame {    
     private DefaultListModel<Funcionario> listModelFuncionarios;
 
     public ListarFuncionarios() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);        
-        
-        dao = new DaoJPA("projeto-dac");
+                
         setModel();
         carregarLista();
     }
@@ -33,10 +31,10 @@ public class ListarFuncionarios extends javax.swing.JFrame {
     }
     
     private void carregarLista() {
-        List<Funcionario> listaFuncionarios = dao.buscarTodos(Funcionario.class);        
+        FuncionarioControle fc = new FuncionarioControle();
         listModelFuncionarios.removeAllElements();
         
-        for (Funcionario funcionario : listaFuncionarios) {
+        for (Funcionario funcionario : fc.buscarTodos()) {
             listModelFuncionarios.addElement(funcionario);
         }
     }
@@ -52,6 +50,7 @@ public class ListarFuncionarios extends javax.swing.JFrame {
         btFechar = new javax.swing.JButton();
         scrollPaneFuncionario = new javax.swing.JScrollPane();
         listFuncionario = new javax.swing.JList();
+        btAtualizarListaFuncionarios = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Atualizar Funcionário");
@@ -90,6 +89,15 @@ public class ListarFuncionarios extends javax.swing.JFrame {
 
         scrollPaneFuncionario.setViewportView(listFuncionario);
 
+        btAtualizarListaFuncionarios.setBackground(new java.awt.Color(231, 228, 231));
+        btAtualizarListaFuncionarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Update.png"))); // NOI18N
+        btAtualizarListaFuncionarios.setText("Atualizar");
+        btAtualizarListaFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAtualizarListaFuncionariosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelListarFuncionariosLayout = new javax.swing.GroupLayout(panelListarFuncionarios);
         panelListarFuncionarios.setLayout(panelListarFuncionariosLayout);
         panelListarFuncionariosLayout.setHorizontalGroup(
@@ -103,9 +111,12 @@ public class ListarFuncionarios extends javax.swing.JFrame {
                     .addGroup(panelListarFuncionariosLayout.createSequentialGroup()
                         .addComponent(scrollPaneFuncionario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btEditarFuncionario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btRemoverFuncionario)))
+                        .addGroup(panelListarFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelListarFuncionariosLayout.createSequentialGroup()
+                                .addComponent(btEditarFuncionario)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btRemoverFuncionario))
+                            .addComponent(btAtualizarListaFuncionarios, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListarFuncionariosLayout.createSequentialGroup()
                 .addContainerGap(249, Short.MAX_VALUE)
@@ -118,10 +129,13 @@ public class ListarFuncionarios extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(labelFuncionariosCadastrados)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelListarFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelListarFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btRemoverFuncionario)
-                        .addComponent(btEditarFuncionario))
+                .addGroup(panelListarFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelListarFuncionariosLayout.createSequentialGroup()
+                        .addGroup(panelListarFuncionariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btRemoverFuncionario)
+                            .addComponent(btEditarFuncionario))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btAtualizarListaFuncionarios))
                     .addComponent(scrollPaneFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addComponent(btFechar)
@@ -144,16 +158,13 @@ public class ListarFuncionarios extends javax.swing.JFrame {
 
     private void btRemoverFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverFuncionarioActionPerformed
         if(listFuncionario.getSelectedIndex() != -1) {
-            int index = listFuncionario.getSelectedIndex();
-            Funcionario funcionario  = listModelFuncionarios.getElementAt(index);
+            Funcionario funcionario = (Funcionario) listFuncionario.getSelectedValue();
+            FuncionarioControle fc = new FuncionarioControle();            
             
-            if(dao.remover(funcionario)) {
-                JOptionPane.showMessageDialog(this, "Funcionário excluído com sucesso!");
+            if(fc.remover(funcionario)) {
                 carregarLista();
-            }
-            else {                
-                JOptionPane.showMessageDialog(this, "Erro!");            
-            }
+                JOptionPane.showMessageDialog(this, "Funcionário excluído com sucesso!");                
+            }            
         }
         else {
             JOptionPane.showMessageDialog(this, "Nenhum item selecionado!", "Atenção!", JOptionPane.WARNING_MESSAGE);
@@ -164,8 +175,9 @@ public class ListarFuncionarios extends javax.swing.JFrame {
         if(listFuncionario.getSelectedIndex() != -1) {
             int index = listFuncionario.getSelectedIndex();
             Long id = listModelFuncionarios.getElementAt(index).getId();
+            DAO dao = new DaoJPA("projeto-dac");
+            
             Funcionario funcionario = (Funcionario) dao.buscar(Funcionario.class, id);
-
             new AtualizarFuncionario(funcionario).setVisible(true);
         }
         else {
@@ -176,8 +188,13 @@ public class ListarFuncionarios extends javax.swing.JFrame {
     private void btFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFecharActionPerformed
         dispose();
     }//GEN-LAST:event_btFecharActionPerformed
+
+    private void btAtualizarListaFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarListaFuncionariosActionPerformed
+        carregarLista();
+    }//GEN-LAST:event_btAtualizarListaFuncionariosActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAtualizarListaFuncionarios;
     private javax.swing.JButton btEditarFuncionario;
     private javax.swing.JButton btFechar;
     private javax.swing.JButton btRemoverFuncionario;

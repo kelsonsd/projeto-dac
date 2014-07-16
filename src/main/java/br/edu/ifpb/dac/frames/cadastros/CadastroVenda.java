@@ -17,8 +17,7 @@ import javax.swing.JOptionPane;
  * @author kelsonsd
  */
 
-public class CadastroVenda extends javax.swing.JFrame {
-    private final DAO dao;
+public class CadastroVenda extends javax.swing.JFrame {    
     private DefaultListModel<Edicao> listModelEdicoes;
     
     public CadastroVenda() {
@@ -27,8 +26,7 @@ public class CadastroVenda extends javax.swing.JFrame {
         setResizable(false);        
         
         setData();
-        setModel();
-        dao = new DaoJPA("projeto-dac");
+        setModel();        
         textValorTotal.setText("0.0");
     }
     
@@ -244,6 +242,7 @@ public class CadastroVenda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboEdicoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboEdicoesMouseClicked
+        DAO dao = new DaoJPA("projeto-dac");
         List<Edicao> edicoes = dao.buscarTodos(Edicao.class);
         comboEdicoes.removeAllItems();
 
@@ -256,8 +255,13 @@ public class CadastroVenda extends javax.swing.JFrame {
         if(comboEdicoes.getSelectedIndex() != -1) {
             Edicao edicaoSelecionada = (Edicao) comboEdicoes.getSelectedItem();
             
-            listModelEdicoes.addElement(edicaoSelecionada);
-            textValorTotal.setText(String.valueOf(edicaoSelecionada.getPreco() + Double.parseDouble(textValorTotal.getText())));            
+            if(edicaoSelecionada.getQtdeEstoque() > 0) {
+                listModelEdicoes.addElement(edicaoSelecionada);
+                textValorTotal.setText(String.valueOf(edicaoSelecionada.getPreco() + Double.parseDouble(textValorTotal.getText())));
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Sem estoque disponível!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            }                
         }
     }//GEN-LAST:event_btAdicionarActionPerformed
 
@@ -279,13 +283,14 @@ public class CadastroVenda extends javax.swing.JFrame {
 
     private void btFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFinalizarVendaActionPerformed
         String matricula = textMatricula.getText();        
-        Double preco = Double.parseDouble(textValorTotal.getText());
+        Double preco = Double.parseDouble(textValorTotal.getText());        
         
         if(matricula.isEmpty() || listModelEdicoes.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Informe todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
         }
         else {
-            Venda venda = new Venda();            
+            Venda venda = new Venda();
+            DAO dao = new DaoJPA("projeto-dac");                        
             List<Funcionario> funcionarios = dao.buscarTodos(Funcionario.class);
             boolean exist = false;
             boolean estoque = true;
@@ -296,33 +301,27 @@ public class CadastroVenda extends javax.swing.JFrame {
                     exist = true;
                     break;
                 }
-            }
-            
+            }            
             for (Edicao edicao : getEdicoesSelecionadas()) {
                 if(edicao.getQtdeEstoque() < 1) {
                     estoque = false;
                     JOptionPane.showMessageDialog(this, "A edição não possui estoque disponível para venda!\n" + edicao, "Atenção", JOptionPane.WARNING_MESSAGE);
                     break;
                 }    
-            }            
-            
+            }
             if(exist) {
                 if(estoque) {
                     venda.setDataVenda(new Date());
                     venda.setMatriculaFuncionario(matricula);
                     venda.setTotal(preco);
-                    venda.setListaEdicoes(getEdicoesSelecionadas());                
-
+                    venda.setListaEdicoes(getEdicoesSelecionadas());
+                    
                     for (Edicao edicao : venda.getListaEdicoes()) {
                         edicao.setQtdeEstoque(edicao.getQtdeEstoque() - 1);                        
-                    }
-                    
+                    }                    
                     if(dao.salvar(venda)) {
                         JOptionPane.showMessageDialog(this, "Venda efetuada com sucesso!");
                         limparCampos();                        
-                    }
-                    else {
-                        JOptionPane.showMessageDialog(this, "Erro!");
                     }
                 }                
             }    

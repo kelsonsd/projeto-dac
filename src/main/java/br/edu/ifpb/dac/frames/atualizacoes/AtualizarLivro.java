@@ -19,8 +19,7 @@ import javax.swing.JOptionPane;
  * @author kelsonsd
  */
 
-public class AtualizarLivro extends javax.swing.JFrame {
-    private final DAO dao;
+public class AtualizarLivro extends javax.swing.JFrame {    
     private LivroFiccao livroFiccao;
     private LivroTecnico livroTecnico;
     private DefaultListModel<Autor> listModelAutores;
@@ -31,9 +30,7 @@ public class AtualizarLivro extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setModel();                
-        
-        dao = new DaoJPA("projeto-dac");                
-        
+                
         preencherCampos(livro);
     }
     
@@ -347,6 +344,7 @@ public class AtualizarLivro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboAutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboAutorMouseClicked
+        DAO dao = new DaoJPA("projeto-dac");
         List<Autor> autores = dao.buscarTodos(Autor.class);
         comboAutor.removeAllItems();
 
@@ -391,7 +389,9 @@ public class AtualizarLivro extends javax.swing.JFrame {
         String areaAtuacao = textAreaAtuacao.getText().trim();
 
         List<Autor> autores = getAutoresSelecionados();
-        List<Edicao> edicoes = getEdicoesSelecionadas();        
+        List<Edicao> edicoes = getEdicoesSelecionadas();
+        
+        DAO dao = new DaoJPA("projeto-dac");
 
         if(!textAnoLivro.getText().isEmpty()) {
             anoPublicacao = Integer.parseInt(textAnoLivro.getText().trim());
@@ -409,7 +409,7 @@ public class AtualizarLivro extends javax.swing.JFrame {
                     livroFiccao.setGenero(genero);                    
                     
                     livroFiccao.setListaAutores(autores);
-                    livroFiccao.setListaEdicoes(edicoes);                    
+                    livroFiccao.setListaEdicoes(edicoes);                   
                     
                     if(dao.atualizar(livroFiccao)) {
                         JOptionPane.showMessageDialog(this, "Livro atualizado com sucesso!");

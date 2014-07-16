@@ -1,14 +1,10 @@
 package br.edu.ifpb.dac.frames.atualizacoes;
 
+import br.edu.ifpb.dac.controle.AutorControle;
 import br.edu.ifpb.dac.entidades.Autor;
-import br.edu.ifpb.dac.frames.cadastros.CadastroPessoa;
-import br.edu.ifpb.dac.persistencia.DAO;
-import br.edu.ifpb.dac.persistencia.DaoJPA;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -40,14 +36,14 @@ public class AtualizarAutor extends javax.swing.JFrame {
         return dataformatada;
     }
     
-    private Date setFormatoData(String data) {        
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            return new Date(format.parse(data).getTime());
-        } catch (ParseException ex) {
-            return null;
-        }        
-    }
+//    private Date setFormatoData(String data) {        
+//        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+//        try {
+//            return new Date(format.parse(data).getTime());
+//        } catch (ParseException ex) {
+//            return null;
+//        }        
+//    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -132,7 +128,7 @@ public class AtualizarAutor extends javax.swing.JFrame {
                 .addComponent(btSalvar)
                 .addGap(18, 18, 18)
                 .addComponent(btCancelar)
-                .addGap(96, 96, 96))
+                .addGap(97, 97, 97))
         );
         panelCadastroPessoaLayout.setVerticalGroup(
             panelCadastroPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,29 +167,14 @@ public class AtualizarAutor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        DAO dao = new DaoJPA("projeto-dac");
-        String nome = textNome.getText().trim();
-        String biografia = textAreaBiografia.getText().trim();
-        Date data = null;
-        
-        if(setFormatoData(textDataNascimento.getText().trim()) != null) {
-            data = setFormatoData(textDataNascimento.getText().trim());
-        }        
-
-        if (nome.isEmpty() || data == null || biografia.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Informe todos os campos ou verifique se a data está correta!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else {            
-            autor.setNome(nome);
-            autor.setDataNascimento(data);
-            autor.setBiografia(biografia);
-
-            if (dao.atualizar(autor)) {
-                JOptionPane.showMessageDialog(this, "Autor atualizado com sucesso");
+        AutorControle ac = new AutorControle();
+        try {
+            if(ac.atualizar(textNome.getText().trim(), textDataNascimento.getText().trim(), textAreaBiografia.getText().trim(), autor)) {
+                JOptionPane.showMessageDialog(null, "Autor atualizado com sucesso");
                 dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Erro!");
             }
-        }        
+        } catch (ParseException ex) {            
+        }                
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed

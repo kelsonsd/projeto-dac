@@ -1,8 +1,7 @@
 package br.edu.ifpb.dac.frames.atualizacoes;
 
+import br.edu.ifpb.dac.controle.EditoraControle;
 import br.edu.ifpb.dac.entidades.Editora;
-import br.edu.ifpb.dac.persistencia.DAO;
-import br.edu.ifpb.dac.persistencia.DaoJPA;
 import javax.swing.JOptionPane;
 
 /**
@@ -133,25 +132,12 @@ public class AtualizarEditora extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarActionPerformed
-        String nome = textNome.getText().trim();
-        String telefone = textTelefone.getText().trim();
+        EditoraControle ec = new EditoraControle();        
 
-        if(nome.equals("") || telefone.equals("(  )    -")) {
-            JOptionPane.showMessageDialog(this, "Informe todos os campos!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        }
-        else {
-            DAO dao = new DaoJPA("projeto-dac");
-            editora.setNome(nome);
-            editora.setTelefone(telefone);
-
-            if(dao.atualizar(editora)) {
-                JOptionPane.showMessageDialog(this, "Editora atualizada com sucesso");
-                dispose();
-            }
-            else {
-                JOptionPane.showMessageDialog(this, "Erro!");
-            }
-        }
+        if(ec.atualizar(textNome.getText().trim(), textTelefone.getText().trim(), editora)) {
+            JOptionPane.showMessageDialog(this, "Editora atualizada com sucesso");
+            dispose();
+        }        
     }//GEN-LAST:event_btAtualizarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
