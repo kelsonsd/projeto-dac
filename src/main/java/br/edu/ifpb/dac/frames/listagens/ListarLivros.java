@@ -163,6 +163,7 @@ public class ListarLivros extends javax.swing.JFrame {
             Livro livro = listModelLivros.getElementAt(index);
             DAO dao = new DaoJPA("projeto-dac");
             
+            livro = (Livro) dao.buscar(Livro.class, livro.getId());
             if(dao.remover(livro)){
                 JOptionPane.showMessageDialog(this, "Livro excluído com sucesso!");                        
                 carregarLista();
