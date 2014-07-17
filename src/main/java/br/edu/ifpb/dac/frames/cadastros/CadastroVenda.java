@@ -311,8 +311,7 @@ public class CadastroVenda extends javax.swing.JFrame {
             }
             if(exist) {
                 if(estoque) {
-                    venda.setDataVenda(new Date());
-                    venda.setMatriculaFuncionario(matricula);
+                    venda.setDataVenda(new Date());                    
                     venda.setTotal(preco);
                     venda.setListaEdicoes(getEdicoesSelecionadas());
                     

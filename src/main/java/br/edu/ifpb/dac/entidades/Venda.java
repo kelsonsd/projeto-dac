@@ -26,8 +26,7 @@ public class Venda implements Serializable {
         
     @Temporal(TemporalType.DATE)    
     private Date dataVenda;    
-        
-    private String matriculaFuncionario;
+    
     private double total;    
     
     @ManyToOne
@@ -39,9 +38,8 @@ public class Venda implements Serializable {
     public Venda() {
     }
 
-    public Venda(Date dataVenda, String matriculaFuncionario, double total) {
-        this.dataVenda = dataVenda;
-        this.matriculaFuncionario = matriculaFuncionario;
+    public Venda(Date dataVenda, double total) {
+        this.dataVenda = dataVenda;        
         this.total = total;        
     }
     
@@ -60,14 +58,6 @@ public class Venda implements Serializable {
     public void setDataVenda(Date dataVenda) {
         this.dataVenda = dataVenda;
     }    
-    
-    public String getMatriculaFuncionario() {
-        return matriculaFuncionario;
-    }
-
-    public void setMatriculaFuncionario(String matriculaFuncionario) {
-        this.matriculaFuncionario = matriculaFuncionario;
-    }
 
     public double getTotal() {
         return total;
@@ -101,6 +91,6 @@ public class Venda implements Serializable {
 
     @Override
     public String toString() {
-        return "Data: " + getData() + " - Matrícula: " + matriculaFuncionario + " - Total: R$ " + total;
+        return "Data: " + getData() + " - Matric. Func.: " + funcionario.getMatricula() + " - Total: R$ " + total;
     }
 }
