@@ -70,6 +70,7 @@ public class AtualizarFuncionario extends javax.swing.JFrame {
 
         labelNome.setText("Nome");
 
+        btAtualizar.setBackground(new java.awt.Color(231, 228, 231));
         btAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Accept.png"))); // NOI18N
         btAtualizar.setText("Atualizar");
         btAtualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -78,6 +79,7 @@ public class AtualizarFuncionario extends javax.swing.JFrame {
             }
         });
 
+        btCancelar.setBackground(new java.awt.Color(231, 228, 231));
         btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btCancelar.setText("Cancelar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {

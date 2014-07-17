@@ -121,6 +121,7 @@ public class AtualizarLivro extends javax.swing.JFrame {
         scrollPaneEdicao = new javax.swing.JScrollPane();
         listEdicoes = new javax.swing.JList();
         btRemoverEdicao = new javax.swing.JButton();
+        btEditarEdicao = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Atualizar Livro");
@@ -144,12 +145,14 @@ public class AtualizarLivro extends javax.swing.JFrame {
 
         labelAutor.setText("Autor");
 
+        comboAutor.setBackground(new java.awt.Color(231, 228, 231));
         comboAutor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 comboAutorMouseClicked(evt);
             }
         });
 
+        btAdicionarAutor.setBackground(new java.awt.Color(231, 228, 231));
         btAdicionarAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Bullet-Add.png"))); // NOI18N
         btAdicionarAutor.setText("Adicionar");
         btAdicionarAutor.addActionListener(new java.awt.event.ActionListener() {
@@ -158,6 +161,7 @@ public class AtualizarLivro extends javax.swing.JFrame {
             }
         });
 
+        btRemoverAutor.setBackground(new java.awt.Color(231, 228, 231));
         btRemoverAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Bullet-Delete.png"))); // NOI18N
         btRemoverAutor.setText("Remover");
         btRemoverAutor.addActionListener(new java.awt.event.ActionListener() {
@@ -166,6 +170,7 @@ public class AtualizarLivro extends javax.swing.JFrame {
             }
         });
 
+        btNovoAutor.setBackground(new java.awt.Color(231, 228, 231));
         btNovoAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Bullet-Add.png"))); // NOI18N
         btNovoAutor.setText("Novo Autor");
         btNovoAutor.addActionListener(new java.awt.event.ActionListener() {
@@ -174,6 +179,7 @@ public class AtualizarLivro extends javax.swing.JFrame {
             }
         });
 
+        btAtualizar.setBackground(new java.awt.Color(231, 228, 231));
         btAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Accept.png"))); // NOI18N
         btAtualizar.setText("Atualizar");
         btAtualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -182,6 +188,7 @@ public class AtualizarLivro extends javax.swing.JFrame {
             }
         });
 
+        btCancelar.setBackground(new java.awt.Color(231, 228, 231));
         btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Cancel.png"))); // NOI18N
         btCancelar.setText("Cancelar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -190,6 +197,7 @@ public class AtualizarLivro extends javax.swing.JFrame {
             }
         });
 
+        btNovaEdicao.setBackground(new java.awt.Color(231, 228, 231));
         btNovaEdicao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Bullet-Add.png"))); // NOI18N
         btNovaEdicao.setText("Nova Edição");
         btNovaEdicao.addActionListener(new java.awt.event.ActionListener() {
@@ -200,6 +208,7 @@ public class AtualizarLivro extends javax.swing.JFrame {
 
         labelEdicao.setText("Edição");
 
+        comboTipo.setBackground(new java.awt.Color(231, 228, 231));
         comboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ficção", "Técnico" }));
         comboTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,11 +220,21 @@ public class AtualizarLivro extends javax.swing.JFrame {
 
         scrollPaneEdicao.setViewportView(listEdicoes);
 
+        btRemoverEdicao.setBackground(new java.awt.Color(231, 228, 231));
         btRemoverEdicao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Bullet-Delete.png"))); // NOI18N
         btRemoverEdicao.setText("Remover");
         btRemoverEdicao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRemoverEdicaoActionPerformed(evt);
+            }
+        });
+
+        btEditarEdicao.setBackground(new java.awt.Color(231, 228, 231));
+        btEditarEdicao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Pencil.png"))); // NOI18N
+        btEditarEdicao.setText("Editar");
+        btEditarEdicao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditarEdicaoActionPerformed(evt);
             }
         });
 
@@ -272,9 +291,12 @@ public class AtualizarLivro extends javax.swing.JFrame {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(comboAutor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(btAdicionarAutor)
-                                        .addComponent(btRemoverAutor)))
+                                        .addComponent(btRemoverAutor)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroLivroLayout.createSequentialGroup()
+                                            .addGap(2, 2, 2)
+                                            .addComponent(btEditarEdicao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addComponent(btRemoverEdicao))
                             .addComponent(btNovoAutor))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -302,24 +324,29 @@ public class AtualizarLivro extends javax.swing.JFrame {
                     .addComponent(textAreaAtuacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelAnoLivro)
                     .addComponent(textAnoLivro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelAutor)
-                    .addComponent(comboAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btAdicionarAutor))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btRemoverAutor)
-                    .addComponent(scrollPaneAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(25, 25, 25)
+                .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroLivroLayout.createSequentialGroup()
+                        .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelAutor)
+                            .addComponent(comboAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(scrollPaneAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(panelCadastroLivroLayout.createSequentialGroup()
+                        .addComponent(btAdicionarAutor)
+                        .addGap(26, 26, 26)
+                        .addComponent(btRemoverAutor)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btNovoAutor)
                 .addGap(18, 18, 18)
-                .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(labelEdicao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelCadastroLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(panelCadastroLivroLayout.createSequentialGroup()
-                        .addComponent(labelEdicao)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollPaneEdicao, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btRemoverEdicao))
+                        .addComponent(btEditarEdicao, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btRemoverEdicao))
+                    .addComponent(scrollPaneEdicao, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btNovaEdicao)
                 .addGap(35, 35, 35)
@@ -474,10 +501,20 @@ public class AtualizarLivro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btRemoverEdicaoActionPerformed
 
+    private void btEditarEdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarEdicaoActionPerformed
+        if(listEdicoes.getSelectedIndex() != -1) {
+            new AtualizarEdicao((Edicao)listEdicoes.getSelectedValue()).setVisible(true);            
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Nenhum item selecionado!", "Atenção!", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btEditarEdicaoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAdicionarAutor;
     private javax.swing.JButton btAtualizar;
     private javax.swing.JButton btCancelar;
+    private javax.swing.JButton btEditarEdicao;
     private javax.swing.JButton btNovaEdicao;
     private javax.swing.JButton btNovoAutor;
     private javax.swing.JButton btRemoverAutor;
