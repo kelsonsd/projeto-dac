@@ -3,14 +3,13 @@ package br.edu.ifpb.dac.frames.cadastros;
 import br.edu.ifpb.dac.controle.AutorControle;
 import br.edu.ifpb.dac.controle.FuncionarioControle;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author kelsonsd
  */
+
 public class CadastroPessoa extends javax.swing.JFrame {
     
     public CadastroPessoa() {
@@ -53,16 +52,7 @@ public class CadastroPessoa extends javax.swing.JFrame {
         textNomeAutor.setEnabled(b);
         textDataNascimento.setEnabled(b);           
         textAreaBiografia.setEnabled(b);  
-    }
-    
-    private Date setFormatoData(String data) {
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            return new Date(format.parse(data).getTime());
-        } catch (ParseException ex) {
-            return null;
-        }        
-    }
+    }   
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -320,6 +310,7 @@ public class CadastroPessoa extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    @SuppressWarnings("empty-statement")
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         if(comboTipo.getSelectedIndex() == 0) {
             AutorControle ac = new AutorControle();
@@ -332,8 +323,7 @@ public class CadastroPessoa extends javax.swing.JFrame {
             }                       
         }
         else {            
-            FuncionarioControle fc = new FuncionarioControle();
-            
+            FuncionarioControle fc = new FuncionarioControle();            
             if(fc.salvar(textNomeFuncionario.getText().trim(), textMatricula.getText().trim(),
                     textFuncao.getText().trim(), textRua.getText().trim(), textNumero.getText().trim(),
                     textBairro.getText().trim(), textCidade.getText().trim(), textEstado.getText().trim())) {

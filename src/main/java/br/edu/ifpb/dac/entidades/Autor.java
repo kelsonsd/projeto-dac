@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
  */
 
 @Entity
-public class Autor extends Pessoa{
+public class Autor extends Pessoa {
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;    
     
